@@ -10,6 +10,14 @@ import {
   MatToolbarModule,
   MatButtonModule,
 } from '@angular/material';
+
+import { PagesRoutingModule } from './pages/pages-routing.module';
+import { NavigationComponent as RengularNavigationComponent } from './pages/navigation.component';
+import { RengularHomeComponent } from './pages/rengular-home/rengular-home.component';
+import { GameScreenComponent } from './pages/game-screen/game-screen.component';
+import { LicenseComponent } from './pages/license/license.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+
 import { SimulationModule } from './modules/simulation/simulation.module';
 import { SceneModule } from './modules/scene/scene.module';
 import { SimpleEntryModule } from './modules/simple-entry/simple-entry.module';
@@ -20,12 +28,18 @@ import { ChoiceMenuModule } from './modules/choice-menu/choice-menu.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RengularNavigationComponent,
+    RengularHomeComponent,
+    LicenseComponent,
+    GameScreenComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     // Routing
+    PagesRoutingModule,
     AppRoutingModule,
     // Material
     MatToolbarModule,

@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+@mixin navigation-component-theme($theme) {
+  $primary: map-get($theme, 'primary');
+
+  .nav-link.home {
+    color: inherit;
+  }
+}

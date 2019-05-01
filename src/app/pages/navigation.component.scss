@@ -1,0 +1,58 @@
+.mat-toolbar.mat-primary {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  box-shadow: 0 2px 5px 0 rgba($color: #000000, $alpha: 0.3);
+
+  .nav-link.home {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .main-logo {
+    width: 80px;
+    height: 100%;
+    background: url("../../assets/logo.svg") no-repeat left center;
+    background-size: auto 130%;
+    display: block;
+  }
+}
+
+.docs-logo {
+  height: 26px;
+  margin: 0 4px 3px 0;
+  vertical-align: middle;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+  min-height: 60vh;
+  padding: 80px 3rem 1rem;
+}
+
+footer {
+  position: relative;
+  line-height: 24px;
+  flex: 1;
+  padding: 48px;
+
+  div.grid-fluid {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    margin: 0 0 40px;
+  }
+
+  p {
+    text-align: center;
+    margin: 10px 0 5px;
+  }
+}
