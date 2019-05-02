@@ -20,4 +20,8 @@ export class SimpleEntryComponent implements OnInit {
   ngOnInit() {
   }
 
+  onExited() {
+    this.simulationService.leave();
+  }
+
 }

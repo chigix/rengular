@@ -25,14 +25,17 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
 
   public readonly initObserve: Observable<SimulationContext>;
   public readonly sceneObserve: Observable<SceneContext>;
+  public readonly leaveObserve: Observable<SimulationContext>;
 
   private init$ = new BehaviorSubject<SimulationContext>(null);
+  private leave$ = new BehaviorSubject<SimulationContext>(null);
 
   constructor(
     private http: HttpClient,
   ) {
     this.initObserve = this.init$.pipe(filter(c => !!c));
     this.sceneObserve = this.tick$.pipe(filter(s => !!s));
+    this.leaveObserve = this.leave$.pipe(filter(s => !!s));
   }
 
   /**
@@ -41,6 +44,10 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
   ngOnDestroy(): void {
     this.destroySubject.next();
     this.destroySubject.complete();
+  }
+
+  leave() {
+    this.leave$.next(this.context);
   }
 
   public get context() {

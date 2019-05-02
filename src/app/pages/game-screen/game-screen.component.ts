@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ComponentsRegistryService, SimulationServiceBase } from 'app/renpi/services';
 import { SimulationService } from 'app/modules/simulation';
@@ -16,6 +17,7 @@ export class GameScreenComponent implements OnInit {
   private simulationService: SimulationService;
 
   constructor(
+    private router: Router,
     simulationServiceBase: SimulationServiceBase,
     private componentRegistry: ComponentsRegistryService,
   ) {
@@ -33,6 +35,8 @@ export class GameScreenComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.simulationService.leaveObserve.subscribe(
+      e => this.router.navigate(['/']));
     this.simulationService.initFromUrl('/renpi/maru-quest/context/1');
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ren-simple-navi',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimpleNaviComponent implements OnInit {
 
+  @Output() exit = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onQuit() {
+    this.exit.emit();
   }
 
 }
