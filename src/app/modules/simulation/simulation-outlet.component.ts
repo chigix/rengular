@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, OnInit, ComponentFactoryResolver,
+  ViewChild,
+} from '@angular/core';
+import { SimulationService } from './simulation.service';
+import { SceneHostDirective } from './scene-host.directive';
 import { Resolution } from './resolutions';
+import { ComponentsRegistryService } from 'app/renpi/services';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map, filter } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'ren-simulation',
@@ -10,10 +16,15 @@ import { map, filter } from 'rxjs/operators';
 })
 export class SimulationOutletComponent implements OnInit {
 
+  @ViewChild(SceneHostDirective) sceneHost: SceneHostDirective;
+
   resolution: Resolution;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private componentRegistry: ComponentsRegistryService,
+    private simulationService: SimulationService,
   ) {
     this.breakpointObserver.observe([
       Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium])
@@ -25,9 +36,25 @@ export class SimulationOutletComponent implements OnInit {
     this.breakpointObserver.observe(Breakpoints.XLarge)
       .pipe(filter(result => result.matches))
       .subscribe(result => this.resolution = { width: 1920, height: 1080 });
+    simulationService.outlet = this;
   }
 
   ngOnInit() {
+    this.simulationService.observeScenes().subscribe(scene => {
+      const sceneMeta = this.componentRegistry.getMeta(scene.component);
+      const sceneHostRef = this.sceneHost.viewContainerRef;
+      sceneHostRef.clear();
+      const componentRef = sceneHostRef.createComponent(
+        this.componentFactoryResolver.resolveComponentFactory(sceneMeta.component));
+      for (const key in sceneMeta.inputs) {
+        if (sceneMeta.inputs.hasOwnProperty(key)) {
+          const type = sceneMeta.inputs[key];
+          if (type) {
+            componentRef[key] = scene[key];
+          }
+        }
+      }
+    });
   }
 
 }
