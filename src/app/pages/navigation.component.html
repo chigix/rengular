@@ -1,21 +1,24 @@
-<mat-toolbar color="primary" *ngIf="!(isHandset$ | async)">
-  <a href="/" class="nav-link home">
-    <div class="main-logo"></div>
-    <h1>RenGULAR</h1>
-  </a>
-  <span class="fill-remaining-space"></span>
-  <a mat-button href="https://github.com/chigix/rengular" aria-label="GitHub Repository">
-    <img alt="github" class="docs-logo"
-      src="./assets/github-circle-white-transparent.svg">
-    GitHub
-  </a>
-</mat-toolbar>
+<div class="homepage">
+  <mat-toolbar color="primary" *ngIf="!(isHandset$ | async)">
+    <a href="/" class="nav-link home">
+      <div class="main-logo"></div>
+      <h1>RenGULAR</h1>
+    </a>
+    <span class="fill-remaining-space"></span>
+    <a mat-button href="https://github.com/chigix/rengular"
+      aria-label="GitHub Repository">
+      <img alt="github" class="docs-logo"
+        src="./assets/github-circle-white-transparent.svg">
+      GitHub
+    </a>
+  </mat-toolbar>
+</div>
 
-<main>
+<main class="homepage">
   <router-outlet></router-outlet>
 </main>
 
-<footer class="no-print mat-typography">
+<footer class="no-print mat-typography homepage">
   <p> RenGULAR ©2019. Code licensed under an <a href="license"
       title="License text">MIT-style License</a>. Documentation licensed under <a
       href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
