@@ -1,31 +1,39 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subject, BehaviorSubject, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Subject, BehaviorSubject, Observable, of, EMPTY } from 'rxjs';
+import { filter, catchError, first } from 'rxjs/operators';
 
 import { Scene, SimulationContext } from 'app/renpi';
-// TODO: replace with a base interface class
-// http://angular.io/guide/dependency-injection-navtree#find-a-parent-component-of-known-type
+import { SimulationServiceBase } from 'app/renpi/services';
 import { SimulationOutletComponent } from './simulation-outlet.component';
 
 interface SceneContext extends Scene {
   [key: string]: any;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class SimulationService implements OnDestroy {
+@Injectable()
+export class SimulationService implements OnDestroy, SimulationServiceBase {
 
-  /** TODO: REMOVE */
-  public outlet: SimulationOutletComponent;
+  private simulationContext: SimulationContext;
+
+  private outlet: SimulationOutletComponent;
 
   private destroySubject = new Subject<void>();
 
-  private tickSubject = new BehaviorSubject<SceneContext>(null);
+  private tick$ = new BehaviorSubject<SceneContext>(null);
 
-  private lastScene: SceneContext;
+  public readonly initObserve: Observable<SimulationContext>;
+  public readonly sceneObserve: Observable<SceneContext>;
 
-  constructor() { }
+  private init$ = new BehaviorSubject<SimulationContext>(null);
+
+  constructor(
+    private http: HttpClient,
+  ) {
+    this.initObserve = this.init$.pipe(filter(c => !!c));
+    this.sceneObserve = this.tick$.pipe(filter(s => !!s));
+  }
 
   /**
    * Completes the active subject, signalling to all other observables to complete.
@@ -35,26 +43,55 @@ export class SimulationService implements OnDestroy {
     this.destroySubject.complete();
   }
 
-  newScene(meta: SceneContext): void {
-    this.tickSubject.next(meta);
-    this.lastScene = meta;
+  public get context() {
+    return this.simulationContext;
   }
 
-  init(context: SimulationContext): void {
-    // this.newScene(meta);
+  setOutlet(outlet: SimulationOutletComponent) {
+    if (this.outlet) {
+      throw new Error('This Outlet has been activated.');
+    }
+    this.outlet = outlet;
+    this.initObserve.pipe(first()).subscribe(c => {
+      this.newSceneFromUrl(c.entryScene);
+    });
   }
 
-  observeScenes(): Observable<SceneContext> {
-    return this.tickSubject.pipe(filter(s => !!s));
+  init(context: SimulationContext | Observable<SimulationContext>): void {
+    (function ensureObservable() {
+      if (context instanceof Observable) {
+        return context;
+      }
+      return of(context);
+    })().pipe(first()).subscribe(ctx => {
+      this.simulationContext = ctx;
+      this.init$.next(ctx);
+    });
+  }
+
+  initFromUrl(contextUrl: string) {
+    return this.init(this.http.get<SimulationContext>(contextUrl));
+  }
+
+  newScene(meta: SceneContext | Observable<SceneContext>): void {
+    (function ensureObservable() {
+      if (meta instanceof Observable) {
+        return meta;
+      }
+      return of(meta);
+    })().pipe(
+      first(),
+      catchError(e => {
+        console.error(e);
+        // TODO: Throw Error Event as component output
+        return EMPTY;
+      })).subscribe(s => {
+        this.tick$.next(s);
+      });
+  }
+
+  newSceneFromUrl(sceneUrl: string) {
+    return this.newScene(this.http.get<SceneContext>(sceneUrl));
   }
 
 }
-
-/**
- * TODO:
- * * make children components get simulation service
- *   from parent outlet(/simulation) component, instead of injecting
- *   simulation service directly into component constructor.
- * * Replace `SimulationOutletComponent` to a base interface class, which
- *   is expected to be provided from common package, `renpi`.
- */

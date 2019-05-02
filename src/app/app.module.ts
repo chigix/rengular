@@ -1,10 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, isDevMode } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaruQuestScriptDB } from './shared/maru-quest-script.db';
 
 import {
   MatToolbarModule,
@@ -52,6 +54,14 @@ import { ChoiceMenuModule } from './modules/choice-menu/choice-menu.module';
     TextboxModule,
     OarsPocketModule,
     ChoiceMenuModule,
+    // DEMO Game Script DB
+    HttpClientInMemoryWebApiModule.forRoot(
+      MaruQuestScriptDB, {
+        rootPath: 'renpi/maru-quest',
+        dataEncapsulation: false,
+        passThruUnknownUrl: true,
+        put204: false,
+      }),
   ],
   providers: [],
   entryComponents: [SimpleEntryComponent, SimpleNaviComponent],

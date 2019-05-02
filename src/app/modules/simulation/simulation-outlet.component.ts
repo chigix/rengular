@@ -5,7 +5,7 @@ import {
 import { SimulationService } from './simulation.service';
 import { SceneHostDirective } from './scene-host.directive';
 import { Resolution } from './resolutions';
-import { ComponentsRegistryService } from 'app/renpi/services';
+import { ComponentsRegistryService, SimulationServiceBase } from 'app/renpi/services';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { filter } from 'rxjs/operators';
 
@@ -24,7 +24,7 @@ export class SimulationOutletComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private componentFactoryResolver: ComponentFactoryResolver,
     private componentRegistry: ComponentsRegistryService,
-    private simulationService: SimulationService,
+    private simulationService: SimulationServiceBase,
   ) {
     this.breakpointObserver.observe([
       Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium])
@@ -36,11 +36,13 @@ export class SimulationOutletComponent implements OnInit {
     this.breakpointObserver.observe(Breakpoints.XLarge)
       .pipe(filter(result => result.matches))
       .subscribe(result => this.resolution = { width: 1920, height: 1080 });
-    simulationService.outlet = this;
+    if (simulationService instanceof SimulationService) {
+      simulationService.setOutlet(this);
+    }
   }
 
   ngOnInit() {
-    this.simulationService.observeScenes().subscribe(scene => {
+    this.simulationService.sceneObserve.subscribe(scene => {
       const sceneMeta = this.componentRegistry.getMeta(scene.component);
       const sceneHostRef = this.sceneHost.viewContainerRef;
       sceneHostRef.clear();

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SimulationServiceBase } from 'app/renpi/services';
+
 @Component({
   selector: 'ren-simple-entry',
   templateUrl: './simple-entry.component.html',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimpleEntryComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private simulationService: SimulationServiceBase,
+  ) { }
+
+  public get context() {
+    return this.simulationService.context;
+  }
 
   ngOnInit() {
   }

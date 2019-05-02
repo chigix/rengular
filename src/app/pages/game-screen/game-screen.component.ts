@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ComponentsRegistryService } from 'app/renpi/services';
+import { ComponentsRegistryService, SimulationServiceBase } from 'app/renpi/services';
 import { SimulationService } from 'app/modules/simulation';
 import { SimpleEntryComponent } from 'app/modules/simple-entry';
 import { SimpleNaviComponent } from 'app/modules/simple-navi';
@@ -8,12 +8,15 @@ import { SimpleNaviComponent } from 'app/modules/simple-navi';
 @Component({
   selector: 'app-game-screen',
   templateUrl: './game-screen.component.html',
-  styleUrls: ['./game-screen.component.scss']
+  styleUrls: ['./game-screen.component.scss'],
+  providers: [{ provide: SimulationServiceBase, useClass: SimulationService }],
 })
 export class GameScreenComponent implements OnInit {
 
+  private simulationService: SimulationService;
+
   constructor(
-    private simulationService: SimulationService,
+    simulationServiceBase: SimulationServiceBase,
     private componentRegistry: ComponentsRegistryService,
   ) {
     this.componentRegistry.register({
@@ -26,13 +29,11 @@ export class GameScreenComponent implements OnInit {
         inputs: {},
       },
     });
+    this.simulationService = simulationServiceBase as SimulationService;
   }
 
   ngOnInit() {
-    // instead, init service should be applied here
-    this.simulationService.newScene({
-      component: 'simpleEntry',
-    });
+    this.simulationService.initFromUrl('/renpi/maru-quest/context/1');
   }
 
 }
