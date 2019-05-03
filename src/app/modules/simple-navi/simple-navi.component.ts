@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SimulationServiceBase as SimulationService } from 'app/renpi/services';
 
 @Component({
   selector: 'ren-simple-navi',
@@ -7,19 +8,29 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SimpleNaviComponent implements OnInit {
 
-  @Output() exit = new EventEmitter();
-
   @Input() topGap?: number;
+  @Input() i18n = {
+    start: 'Start',
+    load: 'Load',
+    pref: 'Preferences',
+    about: 'About',
+    help: 'Help',
+    leave: 'Quit',
+  };
 
   @Input() absoluteInViewport = false;
 
-  constructor() { }
+  @Input() startScene: string;
+  @Input() loadScene?: string;
+  @Input() prefScene?: string;
+  @Input() aboutScene?: string;
+  @Input() helpScene?: string;
+
+  constructor(
+    private simulation: SimulationService,
+  ) { }
 
   ngOnInit() {
-  }
-
-  onQuit() {
-    this.exit.emit();
   }
 
 }

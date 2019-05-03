@@ -1,10 +1,20 @@
-<mat-list [style.position]="absoluteInViewport ? 'absolute' : 'relative'"
+<mat-nav-list [style.position]="absoluteInViewport ? 'absolute' : 'relative'"
   [style.top.px]="absoluteInViewport ? topGap : undefined"
   [style.margin-top.px]="absoluteInViewport ? undefined : topGap">
-  <a mat-list-item matRipple>Start</a>
-  <a mat-list-item matRipple>Load</a>
-  <a mat-list-item matRipple>Preferences</a>
-  <a mat-list-item matRipple>About</a>
-  <a mat-list-item matRipple>Help</a>
-  <a mat-list-item matRipple (click)="onQuit()">Quit</a>
-</mat-list>
+  <a mat-list-item (click)="simulation.gekijoFromIRI(startScene, 'startScene')">
+    {{ i18n.start }} </a>
+  <a mat-list-item *ngIf="loadScene"
+    (click)="simulation.gekijoFromIRI(loadScene, 'loadScene')">
+    {{ i18n.load }} </a>
+  <a mat-list-item *ngIf="prefScene"
+    (click)="simulation.gekijoFromIRI(prefScene, 'loadScene')">
+    {{ i18n.pref }} </a>
+  <a mat-list-item *ngIf="aboutScene"
+    (click)="simulation.gekijoFromIRI(aboutScene, 'aboutScene')">
+    {{ i18n.about }} </a>
+  <a mat-list-item *ngIf="helpScene"
+    (click)="simulation.gekijoFromIRI(helpScene, 'helpScene')">
+    {{ i18n.help }} </a>
+  <a mat-list-item (click)="simulation.leave()">
+    {{ i18n.leave }} </a>
+</mat-nav-list>

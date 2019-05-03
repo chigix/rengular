@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatListModule,
-  MatRippleModule,
 } from '@angular/material';
 import { SimpleNaviComponent } from './simple-navi.component';
 
@@ -12,7 +11,6 @@ import { SimpleNaviComponent } from './simple-navi.component';
   imports: [
     CommonModule,
     MatListModule,
-    MatRippleModule,
   ],
   exports: [
     SimpleNaviComponent,
