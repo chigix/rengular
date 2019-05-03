@@ -3,18 +3,24 @@ import { Type } from '@angular/core';
 
 export class UnknownComponent extends Error { }
 
+export interface ComponentMeta {
+  component: Type<any>;
+  inputs: {
+    [name: string]: string,
+  };
+  children: {
+    /** value as other registered component name reference */
+    [name: string]: string,
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ComponentsRegistryService {
 
   private registry: {
-    [name: string]: {
-      component: Type<any>,
-      inputs: {
-        [name: string]: string,
-      },
-    },
+    [name: string]: ComponentMeta,
   } = {};
 
   constructor() { }
@@ -28,12 +34,7 @@ export class ComponentsRegistryService {
   }
 
   register(mapping: {
-    [name: string]: {
-      component: Type<any>,
-      inputs: {
-        [name: string]: string,
-      },
-    },
+    [name: string]: ComponentMeta,
   }) {
     this.registry = { ...this.registry, ...mapping };
   }

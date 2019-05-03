@@ -1,4 +1,6 @@
-<mat-list>
+<mat-list [style.position]="absoluteInViewport ? 'absolute' : 'relative'"
+  [style.top.px]="absoluteInViewport ? topGap : undefined"
+  [style.margin-top.px]="absoluteInViewport ? undefined : topGap">
   <a mat-list-item matRipple>Start</a>
   <a mat-list-item matRipple>Load</a>
   <a mat-list-item matRipple>Preferences</a>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ren-simple-navi',
@@ -8,6 +8,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class SimpleNaviComponent implements OnInit {
 
   @Output() exit = new EventEmitter();
+
+  @Input() topGap?: number;
+
+  @Input() absoluteInViewport = false;
 
   constructor() { }
 

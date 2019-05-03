@@ -25,11 +25,16 @@ export class GameScreenComponent implements OnInit {
       simpleEntry: {
         component: SimpleEntryComponent,
         inputs: {},
+        children: { simpleNavi: 'simpleNavi' },
       },
       simpleNavi: {
         component: SimpleNaviComponent,
-        inputs: {},
-      },
+        inputs: {
+          topGap: 'number',
+          absoluteInViewport: 'boolean',
+        },
+        children: {},
+      }
     });
     this.simulationService = simulationServiceBase as SimulationService;
   }

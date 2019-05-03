@@ -1,6 +1,6 @@
 export interface SimulationContext {
   /** The [IRI](https://www.w3.org/TR/json-ld/#dfn-iri) denoting this context */
-  id: string;
+  '@id': string;
   /** Project Code Name, alphanumerics are recommended. */
   name: string;
   /** Project Title for presenting. */
@@ -15,8 +15,12 @@ export interface SimulationContext {
 
 export interface Scene {
   /** The [IRI](https://www.w3.org/TR/json-ld/#dfn-iri) denoting this scene */
-  id: string;
+  '@id': string;
   /** The component's type or registered name */
-  component: string;
+  '@component': string;
+  '@style'?: {
+    matchMedia: string;
+    [property: string]: string;
+  }[];
 }
 
