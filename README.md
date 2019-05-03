@@ -10,6 +10,41 @@ variety of smart devices upon the modern Web Components standards embracing the
 
 ![rengular-design](./src/assets/simulation.png)
 
+### Scene Program in a Scene(Renaming to Gekijo is in plan)
+
+* Initially, there is one set including one `@program` and one scene(Stage/Gekijo).
+* A `GekijoDirective` is with the data structure inherited from the scene itself,
+  where the scene data are made modifiable, excepting `@` mark initialled properties.
+* `GekijoDirective` would be sent sequentially to the stage from the `@program`.
+* If a `GekijoDirective` was sent to Scene(Stage/Gekijo), it would be performed
+  immediately.
+* The only parameter to arrange the timing for `GekijoDirective` triggering is
+  through the sharing property, `delay`, which is default as 0 millisecond and
+  optional for an event definition.
+
+* Empty Event
+  `{ delay: 0 }`
+* Common Event
+  `{ delay: 0, textbox: '.....', menu: ['yes', 'no'], ... }`
+
+[Sample Program](https://evangelion.fandom.com/wiki/Episode:06#cite_ref-1):
+
+```javascript
+{
+  ...
+  '@program': [
+    { textbox: { text: 'Are you all right? Ayanami! ...' } },
+    { textbox: { text: "Don't ever say that ! Just don't say that you have nothing else!" } },
+    { delay: 1000, textbox: {
+      text: "And don't say goodbye when you leave for a mission, it's just too sad."}},
+    { textbox: {
+      text: "Why are you crying? I'm very sorry I don't know what I should do or feel at a time like this"}},
+    { delay: 2000, textbox: 'Smile is all~' },
+  ],
+  ...
+}
+```
+
 ## TODO
 
 * Schematics for generate a RenGULAR game boilerplate.
@@ -37,6 +72,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Story
+
+Inspired by [Ren'Py](https://www.renpy.org/).
 
 ## License
 

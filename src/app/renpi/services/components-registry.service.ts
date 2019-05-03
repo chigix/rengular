@@ -1,7 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Type } from '@angular/core';
 
-export class UnknownComponent extends Error { }
+export class UnknownComponent extends Error {
+  constructor(name: string) { super(`Component name [${name}] is not registered.`); }
+}
 
 export interface ComponentMeta {
   component: Type<any>;
@@ -28,7 +30,7 @@ export class ComponentsRegistryService {
   getMeta(name: string) {
     const component = this.registry[name];
     if (!component) {
-      throw new UnknownComponent();
+      throw new UnknownComponent(name);
     }
     return component;
   }

@@ -22,5 +22,10 @@ export interface Scene {
     matchMedia: string;
     [property: string]: string;
   }[];
+  '@program'?: GekijoDirective[];
+}
+
+export interface GekijoDirective {
+  delay?: number;
 }
 
