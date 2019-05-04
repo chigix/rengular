@@ -7,6 +7,7 @@ import {
   ComponentCreation,
 } from 'app/renpi';
 import { ActionDef as ChoiceMenuAction } from 'app/modules/choice-menu';
+import { ImageResource } from 'app/modules/layered-image';
 
 const TRANSLATION = {
   simpleEntry: {
@@ -138,13 +139,57 @@ const scene = [
     backgroundImageUrl: '/assets/demo-bg/bg_h08.jpg',
     program: [],
   }),
-  wrapRecord<Scene>({
+  wrapRecord<BaseScene>({
     /** Happy End */
-    '@id': '4', '@component': 'simpleEntry'
+    '@id': '4', '@component': 'scene',
+    appendToTop: [
+      {
+        name: 'heroine', '@createAs': 'layeredImage',
+        imgUrl: '/assets/demo-bg/ki_1_05.png',
+        '@style': [{
+          matchMedia: 'ALL',
+          left: '10%',
+        }],
+      } as ComponentCreation & ImageResource,
+      {
+        name: 'textbox', '@createAs': 'textbox',
+        text: 'Thank you ~~ Happy RenGULAR',
+        '@style': [{ ...bottomTextStyle, ...{ textAlign: 'center' } }],
+      },
+      {
+        name: 'oarsPocket', '@createAs': 'oarsPocket',
+        nextScene: '/renpi/simple-quest/scene/1',
+        prevScene: '/renpi/simple-quest/scene/2',
+        // i18n: TRANSLATION.oarsPocket,
+        i18n: {
+          skip: 'Next',
+        },
+        '@style': [oarsPocketStyle],
+      },
+    ],
+    backgroundImageUrl: '/assets/demo-bg/bg_h06.jpg',
   }),
-  wrapRecord<Scene>({
+  wrapRecord<BaseScene>({
     /** Bad End */
-    '@id': '5', '@component': 'simpleEntry'
+    '@id': '5', '@component': 'scene',
+    appendToTop: [
+      {
+        name: 'textbox', '@createAs': 'textbox',
+        text: 'Thank you ~~ Happy RenGULAR',
+        '@style': [bottomTextStyle],
+      },
+      {
+        name: 'oarsPocket', '@createAs': 'oarsPocket',
+        nextScene: '/renpi/simple-quest/scene/1',
+        prevScene: '/renpi/simple-quest/scene/2',
+        // i18n: TRANSLATION.oarsPocket,
+        i18n: {
+          skip: 'Next',
+        },
+        '@style': [oarsPocketStyle],
+      },
+    ],
+    backgroundImageUrl: '/assets/demo-bg/cg_ki_05.png',
   }),
 ];
 
