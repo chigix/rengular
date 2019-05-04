@@ -27,6 +27,7 @@ import { SimpleNaviModule, SimpleNaviComponent } from './modules/simple-navi';
 import { TextboxModule, TextboxComponent } from './modules/textbox';
 import { OarsPocketModule, OarsPocketComponent } from './modules/oars-pocket';
 import { ChoiceMenuModule, ChoiceMenuComponent } from './modules/choice-menu';
+import { LayeredImageModule, LayeredImageComponent } from './modules/layered-image';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ChoiceMenuModule, ChoiceMenuComponent } from './modules/choice-menu';
     TextboxModule,
     OarsPocketModule,
     ChoiceMenuModule,
+    LayeredImageModule,
     // DEMO Game Script DB
     HttpClientInMemoryWebApiModule.forRoot(
       SimpleQuestScriptDB, {
@@ -68,6 +70,7 @@ import { ChoiceMenuModule, ChoiceMenuComponent } from './modules/choice-menu';
     SceneComponent,
     SimpleEntryComponent, SimpleNaviComponent,
     TextboxComponent, OarsPocketComponent, ChoiceMenuComponent,
+    LayeredImageComponent,
   ],
   bootstrap: [AppComponent]
 })

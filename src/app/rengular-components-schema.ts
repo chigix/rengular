@@ -5,6 +5,7 @@ import { SceneComponent } from './modules/scene';
 import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
 import { ChoiceMenuComponent } from './modules/choice-menu';
+import { LayeredImageComponent } from './modules/layered-image';
 
 const REGULAR_REGISTRY: {
   [componentAlias: string]: ComponentMeta,
@@ -54,6 +55,16 @@ const REGULAR_REGISTRY: {
     component: ChoiceMenuComponent,
     inputs: {
       choices: 'array',
+    },
+    children: {},
+  },
+  layeredImage: {
+    component: LayeredImageComponent,
+    inputs: {
+      name: 'string',
+      imgUrl: 'string',
+      width: 'number',
+      height: 'number',
     },
     children: {},
   },
