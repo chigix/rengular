@@ -56,7 +56,6 @@ function assignSceneStyles(
   if (!style) {
     return;
   }
-  console.log(ele);
   for (const property in style) {
     if (style.hasOwnProperty(property) && style[property]) {
       ele.style[property] = style[property];

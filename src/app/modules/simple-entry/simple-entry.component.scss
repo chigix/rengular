@@ -1,5 +1,6 @@
 :host {
-  display: block;
+  display: flex;
+  flex: 1 1 auto;
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
@@ -7,15 +8,8 @@
   background-position: center;
 }
 
-div.main {
-  display: flex;
-  flex: 1 1 auto;
-  width: 100%;
-  height: 100%;
-
-  .left-menu {
-    width: 30%;
-  }
+.left-menu {
+  width: 30%;
 }
 
 div.footer {
