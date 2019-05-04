@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 
 import { ComponentsRegistryService, SimulationServiceBase } from 'app/renpi/services';
 import { SimulationService } from 'app/modules/simulation';
-import { SimpleEntryComponent } from 'app/modules/simple-entry';
-import { SimpleNaviComponent } from 'app/modules/simple-navi';
+import RENGULAR from 'app/rengular-components-reg';
 
 @Component({
   selector: 'app-game-screen',
@@ -21,21 +20,7 @@ export class GameScreenComponent implements OnInit {
     simulationServiceBase: SimulationServiceBase,
     private componentRegistry: ComponentsRegistryService,
   ) {
-    this.componentRegistry.register({
-      simpleEntry: {
-        component: SimpleEntryComponent,
-        inputs: {},
-        children: { simpleNavi: 'simpleNavi' },
-      },
-      simpleNavi: {
-        component: SimpleNaviComponent,
-        inputs: {
-          topGap: 'number',
-          absoluteInViewport: 'boolean',
-        },
-        children: {},
-      }
-    });
+    this.componentRegistry.register(RENGULAR);
     this.simulationService = simulationServiceBase as SimulationService;
   }
 

@@ -21,11 +21,11 @@ import { LicenseComponent } from './pages/license/license.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { SimulationModule } from './modules/simulation';
-import { SceneModule } from './modules/scene/scene.module';
+import { SceneModule, SceneComponent } from './modules/scene';
 import { SimpleEntryModule, SimpleEntryComponent } from './modules/simple-entry';
 import { SimpleNaviModule, SimpleNaviComponent } from './modules/simple-navi';
-import { TextboxModule } from './modules/textbox/textbox.module';
-import { OarsPocketModule } from './modules/oars-pocket/oars-pocket.module';
+import { TextboxModule, TextboxComponent } from './modules/textbox';
+import { OarsPocketModule, OarsPocketComponent } from './modules/oars-pocket';
 import { ChoiceMenuModule } from './modules/choice-menu/choice-menu.module';
 
 @NgModule({
@@ -64,7 +64,11 @@ import { ChoiceMenuModule } from './modules/choice-menu/choice-menu.module';
       }),
   ],
   providers: [],
-  entryComponents: [SimpleEntryComponent, SimpleNaviComponent],
+  entryComponents: [
+    SceneComponent,
+    SimpleEntryComponent, SimpleNaviComponent,
+    TextboxComponent, OarsPocketComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
