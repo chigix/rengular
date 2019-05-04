@@ -7,3 +7,10 @@
   background-size: 100%;
   background-position: center;
 }
+
+.standard-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
