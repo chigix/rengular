@@ -15,7 +15,7 @@ import { Resolution } from './resolutions';
 
 function assignComponentProperty(
   registry: ComponentsRegistryService,
-  meta: ComponentMeta & { isAssigned?: boolean }, componentRef: any, data: any) {
+  meta: ComponentMeta & { isAssigned?: boolean }, component: any, data: any) {
   if (!meta.isAssigned) {
     for (const key in meta.inputs) {
       if (meta.inputs.hasOwnProperty(key)) {
@@ -23,10 +23,10 @@ function assignComponentProperty(
         if (!type || !data[key]) {
           continue;
         }
-        if (['map'].indexOf(type) > -1 && componentRef[key]) {
-          data[key] = Object.assign(componentRef[key], data[key]);
+        if (['map'].indexOf(type) > -1 && component[key]) {
+          data[key] = Object.assign(component[key], data[key]);
         } else {
-          componentRef[key] = data[key];
+          component[key] = data[key];
         }
       }
     }
@@ -34,12 +34,32 @@ function assignComponentProperty(
   meta.isAssigned = true;
   for (const name in meta.children) {
     if (meta.children.hasOwnProperty(name)) {
-      const childComponent = registry.getMeta(meta.children[name]);
-      const childComponentRef = componentRef[name];
-      if (!childComponent || !childComponentRef || !data[name]) {
+      const childMeta = registry.getMeta(meta.children[name]);
+      const childComponent = component[name];
+      if (!childMeta || !childComponent || !data[name]) {
         continue;
       }
-      assignComponentProperty(registry, childComponent, childComponentRef, data[name]);
+      assignComponentProperty(registry, childMeta, childComponent, data[name]);
+    }
+  }
+}
+
+function assignSceneStyles(
+  styles: {
+    matchMedia: string;
+    [property: string]: string;
+  }[],
+  ele: HTMLElement,
+) {
+  // TODO: Material CDK layout service
+  const style = styles[0];
+  if (!style) {
+    return;
+  }
+  console.log(ele);
+  for (const property in style) {
+    if (style.hasOwnProperty(property) && style[property]) {
+      ele.style[property] = style[property];
     }
   }
 }
@@ -95,6 +115,9 @@ export class SimulationOutletComponent implements OnInit {
     const sceneMeta = this.componentRegistry.getMeta(scene['@component']);
     assignComponentProperty(this.componentRegistry,
       sceneMeta, this.currentScene.instance, scene);
+    if (this.currentScene.location.nativeElement) {
+      assignSceneStyles(scene['@style'] || [], this.currentScene.location.nativeElement);
+    }
   }
 
 }

@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+@mixin simple-entry-component-theme($theme) {
+  $primary: map-get($theme, 'primary');
+  $foreground: map-get($theme, foreground);
+
+  ren-simple-entry {
+    background-color: mat-color($primary);
+
+    .left-menu {
+      background: mat-color($primary, 900, 0.54);
+      color: mat-color($foreground, secondary-text);
+    }
+
+    div.footer {
+      color: mat-color($foreground, text);
+    }
+  }
+}
