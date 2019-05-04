@@ -8,7 +8,28 @@ variety of smart devices upon the modern Web Components standards embracing the
 
 ## Design Overview
 
+### RenGULAR Simulation Framework
+
 ![rengular-design](./src/assets/simulation.png)
+
+### Component Theming and Typography
+
+This feature is not required but recommended and currently implemented by default
+provided `SimulationService`.
+
+Sample Component:
+
+```javascript
+{
+  ...
+  textbox: {
+    // Use Material Dark Theming and Default Typography
+    '@theming' : ['mat-dark-theming', 'mat-typography'],
+    ...
+  },
+  ...
+}
+```
 
 ### Scene Program in a Scene(Renaming to Gekijo is in plan)
 
