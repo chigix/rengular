@@ -2,19 +2,22 @@ import { Injectable, ViewContainerRef, ComponentFactoryResolver, ComponentRef } 
 import { BehaviorSubject, concat } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 import { ComponentCreation } from '../defs';
+import { assignComponentProperty, assignSceneStyles } from '../utils';
 import { ComponentsRegistryService } from './components-registry.service';
 
 @Injectable()
 export class GekijoProgramService {
 
-  private currentContainer$ = new BehaviorSubject<ViewContainerRef>(null);
+  private currentContainer$ = new BehaviorSubject<{
+    ref: ViewContainerRef, component: any
+  }>(null);
 
   private childrenComponents: {
     [name: string]: ComponentRef<any>
   } = {};
 
   constructor(
-    private componentsRegistry: ComponentsRegistryService,
+    private componentRegistry: ComponentsRegistryService,
     private componentFactoryResolver: ComponentFactoryResolver,
   ) {
     concat(
@@ -22,8 +25,10 @@ export class GekijoProgramService {
     );
   }
 
-  setCurrentGekijo(container: ViewContainerRef) {
-    this.currentContainer$.next(container);
+  setCurrentGekijo(container: ViewContainerRef, component: any) {
+    this.currentContainer$.next({
+      ref: container, component,
+    });
     this.currentContainer$.complete();
   }
 
@@ -32,12 +37,16 @@ export class GekijoProgramService {
       throw new Error(`'@createAs' is not defined in: [${directive}]`);
     }
     return this.currentContainer$.pipe(filter(c => !!c), first()).toPromise()
-      .then(container => {
-        const component = container.createComponent(
+      .then(con => {
+        const componentRef = con.ref.createComponent(
           this.componentFactoryResolver.resolveComponentFactory(
-            this.componentsRegistry.getMeta(directive['@createAs']).component));
-        this.childrenComponents[directive.name] = component;
-        return component;
+            this.componentRegistry.getMeta(directive['@createAs']).component));
+        this.childrenComponents[directive.name] = componentRef;
+        con.component[directive.name] = componentRef.instance;
+        const componentMeta = this.componentRegistry.getMeta(directive['@createAs']);
+        assignComponentProperty(this.componentRegistry,
+          componentMeta, componentRef.instance, directive);
+        return componentRef;
       });
   }
 }

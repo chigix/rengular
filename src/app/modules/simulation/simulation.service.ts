@@ -14,7 +14,7 @@ interface SceneContext extends Scene {
 
 class GekijoIRIEmptyError extends Error {
   constructor(name?: string) {
-    super(`GekijoIRI is not EMPTY: [${name}]`);
+    super(`GekijoIRI is EMPTY: [${name}]`);
   }
 }
 
