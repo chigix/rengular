@@ -22,15 +22,18 @@ export interface Scene {
     matchMedia: string;
     [property: string]: string;
   }[];
-  '@program'?: GekijoDirective[];
-  [property: string]: ComponentInside | any;
+}
+
+export interface Gekijo extends Scene {
+  program: GekijoDirective[];
 }
 
 export interface GekijoDirective {
   delay?: number;
-  [property: string]: ComponentInside | any;
+  [property: string]: any;
 }
 
-export interface ComponentInside {
-  '@createAs'?: string;
+export interface ComponentCreation {
+  '@createAs': string;
+  name: string;
 }

@@ -3,11 +3,28 @@
 @mixin scene-component-theme($theme) {
   $primary: map-get($theme, 'primary');
 
-  .mat-list-item.active {
-    color: mat-color($primary);
-  }
+  ren-scene,
+  ren-novel-text-scene,
+  ren-bottom-text-scene {
+    $primary: map-get($theme, 'primary');
+    $foreground: map-get($theme, foreground);
 
-  .ui-scene {
     background-color: mat-color($primary);
+    .left-menu {
+      background: mat-color($primary, 900, 0.54);
+      color: mat-color($foreground, secondary-text);
+    }
+
+    div.footer {
+      color: mat-color($foreground, text);
+    }
+
+    .mat-list-item.active {
+      color: mat-color($primary);
+    }
+
+    .ui-scene {
+      background-color: mat-color($primary);
+    }
   }
 }
