@@ -16,12 +16,18 @@ import { SceneHostDirective } from './scene-host.directive';
 })
 export class SceneComponent implements OnInit, Gekijo {
 
+  private backgroundImageStyle: string;
+
   constructor(
     private gekijo: GekijoProgramService,
     private simulation: SimulationService,
   ) { }
 
   @ViewChild(SceneHostDirective) sceneHost: SceneHostDirective;
+
+  @Input() set backgroundImageUrl(url: string) {
+    this.backgroundImageStyle = `url(${url})`;
+  }
 
   @Input() nextScene?: string;
   // @Input() set bottomFill(directives: ComponentCreation[]) { }

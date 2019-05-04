@@ -45,6 +45,7 @@ export class GekijoProgramService {
         const componentMeta = this.componentRegistry.getMeta(directive['@createAs']);
         assignComponentProperty(this.componentRegistry,
           componentMeta, componentRef.instance, directive);
+        assignComponentStyle(directive['@style'] || [], componentRef.location.nativeElement);
         return componentRef;
       });
   }

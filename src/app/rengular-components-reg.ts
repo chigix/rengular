@@ -1,10 +1,13 @@
+import { ComponentMeta } from './renpi/services';
 import { SimpleEntryComponent } from './modules/simple-entry';
 import { SimpleNaviComponent } from './modules/simple-navi';
 import { SceneComponent } from './modules/scene';
 import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
 
-const REGULAR_REGISTRY = {
+const REGULAR_REGISTRY: {
+  [componentAlias: string]: ComponentMeta,
+} = {
   simpleEntry: {
     component: SimpleEntryComponent,
     inputs: {},
@@ -25,6 +28,7 @@ const REGULAR_REGISTRY = {
     inputs: {
       appendToTop: 'array',
       program: 'array',
+      backgroundImageUrl: 'string',
     },
     children: {},
   },

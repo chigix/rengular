@@ -1,4 +1,9 @@
 .ui-scene {
+  // Still not sure is this overflow here best practice?
+  overflow: hidden;
   width: 100%;
   height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
 }

@@ -36,4 +36,8 @@ export interface GekijoDirective {
 export interface ComponentCreation {
   '@createAs': string;
   name: string;
+  '@style'?: {
+    matchMedia: string;
+    [property: string]: string;
+  }[];
 }

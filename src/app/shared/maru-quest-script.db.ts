@@ -27,6 +27,20 @@ const TRANSLATION = {
   },
 };
 
+const oarsPocketStyle = {
+  matchMedia: 'ALL',
+  width: '330px',
+  position: 'absolute',
+  marginTop: '-45px',
+  right: '0',
+  color: 'cornsilk',
+};
+
+const bottomTextStyle = {
+  matchMedia: 'ALL',
+  marginTop: '507px',
+};
+
 type SimpleEntryScene = Scene & {
   simpleNavi: {
     topGap?: number, absoluteInViewport?: boolean,
@@ -41,6 +55,7 @@ type BaseScene = Scene & {
   textbox?: {
     text: string,
   };
+  backgroundImageUrl?: string,
 };
 
 type GekijoScene = Gekijo & BaseScene;
@@ -55,7 +70,7 @@ const context = [wrapRecord<SimulationContext>({
   title: 'RenGULAR DEMO Script: Maru Quest',
   version: '1.0.0',
   interfaceVersion: 1,
-  entryScene: '/renpi/maru-quest/scene/1',
+  entryScene: '/renpi/maru-quest/scene/2',
 })];
 
 const scene = [
@@ -77,28 +92,36 @@ const scene = [
     appendToTop: [
       {
         name: 'textbox', '@createAs': 'textbox',
-        text: 'The Goal is try to save the princess against the Devil.'
+        text: 'The Goal is to save the princess against the Devil.',
+        '@style': [bottomTextStyle],
       },
       {
         name: 'oarsPocket', '@createAs': 'oarsPocket',
         nextScene: '/renpi/maru-quest/scene/3',
         // i18n: TRANSLATION.oarsPocket,
+        '@style': [oarsPocketStyle],
       },
     ],
+    backgroundImageUrl: '/assets/demo-bg/bg_h08.jpg',
   }),
+  // TODO: This scene could be merged into scene#2 as a gekijo program.
   wrapRecord<GekijoScene>({
     '@id': '3', '@component': 'scene',
     appendToTop: [
       {
         name: 'textbox', '@createAs': 'textbox',
-        text: 'Game Finished.'
+        text: 'Which door should I enter?',
+        '@style': [bottomTextStyle],
       },
       {
         name: 'oarsPocket', '@createAs': 'oarsPocket',
         nextScene: '/renpi/maru-quest/scene/1',
+        prevScene: '/renpi/maru-quest/scene/2',
         // i18n: TRANSLATION.oarsPocket,
+        '@style': [oarsPocketStyle],
       },
     ],
+    backgroundImageUrl: '/assets/demo-bg/bg_h08.jpg',
     program: [],
   }),
   wrapRecord<Scene>({ '@id': '4', '@component': 'simpleEntry' }),
