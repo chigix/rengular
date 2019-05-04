@@ -6,7 +6,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaruQuestScriptDB } from './shared/maru-quest-script.db';
+import { SimpleQuestScriptDB } from './shared/simple-quest-script.db';
 
 import {
   MatToolbarModule,
@@ -56,7 +56,7 @@ import { ChoiceMenuModule } from './modules/choice-menu/choice-menu.module';
     ChoiceMenuModule,
     // DEMO Game Script DB
     HttpClientInMemoryWebApiModule.forRoot(
-      MaruQuestScriptDB, {
+      SimpleQuestScriptDB, {
         rootPath: 'renpi/maru-quest',
         dataEncapsulation: false,
         passThruUnknownUrl: true,

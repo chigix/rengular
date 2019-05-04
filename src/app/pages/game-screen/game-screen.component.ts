@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { ComponentsRegistryService, SimulationServiceBase } from 'app/renpi/services';
 import { SimulationService } from 'app/modules/simulation';
-import RENGULAR from 'app/rengular-components-reg';
+import RENGULAR from 'app/rengular-components-schema';
 
 @Component({
   selector: 'app-game-screen',

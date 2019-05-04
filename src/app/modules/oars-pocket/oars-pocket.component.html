@@ -14,7 +14,7 @@
   <!-- <button mat-button [class.mat-list-item]="!horizontal"> Save </button>
   <button mat-button [class.mat-list-item]="!horizontal"> Q.Save </button>
   <button mat-button [class.mat-list-item]="!horizontal"> Q.Load </button> -->
-  <button mat-button [class.mat-list-item]="!horizontal"
+  <button mat-button [class.mat-list-item]="!horizontal" [disabled]="!prefsScene"
     (click)="simulation.gekijoFromIRI(prefsScene, 'prefsScene')">
     {{ i18n.prefs }} </button>
 </mat-list>

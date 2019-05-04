@@ -66,11 +66,11 @@ function wrapRecord<T extends { '@id': string }>(data: T): T & { id: string } {
 
 const context = [wrapRecord<SimulationContext>({
   '@id': '1',
-  name: 'maru-quest',
-  title: 'RenGULAR DEMO Script: Maru Quest',
+  name: 'simple-quest',
+  title: 'RenGULAR DEMO Script: Simple Quest',
   version: '1.0.0',
   interfaceVersion: 1,
-  entryScene: '/renpi/maru-quest/scene/2',
+  entryScene: '/renpi/simple-quest/scene/2',
 })];
 
 const scene = [
@@ -78,7 +78,7 @@ const scene = [
     '@id': '1', '@component': 'simpleEntry',
     simpleNavi: {
       topGap: 50,
-      startScene: '/renpi/maru-quest/scene/2',
+      startScene: '/renpi/simple-quest/scene/2',
       i18n: TRANSLATION.simpleEntry,
     },
     '@style': [{
@@ -97,8 +97,10 @@ const scene = [
       },
       {
         name: 'oarsPocket', '@createAs': 'oarsPocket',
-        nextScene: '/renpi/maru-quest/scene/3',
-        // i18n: TRANSLATION.oarsPocket,
+        nextScene: '/renpi/simple-quest/scene/3',
+        i18n: {
+          skip: 'next',
+        },
         '@style': [oarsPocketStyle],
       },
     ],
@@ -115,9 +117,12 @@ const scene = [
       },
       {
         name: 'oarsPocket', '@createAs': 'oarsPocket',
-        nextScene: '/renpi/maru-quest/scene/1',
-        prevScene: '/renpi/maru-quest/scene/2',
+        nextScene: '/renpi/simple-quest/scene/1',
+        prevScene: '/renpi/simple-quest/scene/2',
         // i18n: TRANSLATION.oarsPocket,
+        i18n: {
+          skip: 'next',
+        },
         '@style': [oarsPocketStyle],
       },
     ],
@@ -131,7 +136,7 @@ const scene = [
 @Injectable({
   providedIn: 'root'
 })
-export class MaruQuestScriptDB implements InMemoryDbService {
+export class SimpleQuestScriptDB implements InMemoryDbService {
   createDb() {
     return {
       context,
