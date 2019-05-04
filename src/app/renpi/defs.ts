@@ -23,9 +23,14 @@ export interface Scene {
     [property: string]: string;
   }[];
   '@program'?: GekijoDirective[];
+  [property: string]: ComponentInside | any;
 }
 
 export interface GekijoDirective {
   delay?: number;
+  [property: string]: ComponentInside | any;
 }
 
+export interface ComponentInside {
+  '@createAs'?: string;
+}

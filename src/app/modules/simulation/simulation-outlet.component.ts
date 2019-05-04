@@ -20,7 +20,12 @@ function assignComponentProperty(
     for (const key in meta.inputs) {
       if (meta.inputs.hasOwnProperty(key)) {
         const type = meta.inputs[key];
-        if (type && data[key]) {
+        if (!type || !data[key]) {
+          continue;
+        }
+        if (['map'].indexOf(type) > -1 && componentRef[key]) {
+          data[key] = Object.assign(componentRef[key], data[key]);
+        } else {
           componentRef[key] = data[key];
         }
       }
@@ -31,7 +36,7 @@ function assignComponentProperty(
     if (meta.children.hasOwnProperty(name)) {
       const childComponent = registry.getMeta(meta.children[name]);
       const childComponentRef = componentRef[name];
-      if (!childComponent || !childComponentRef) {
+      if (!childComponent || !childComponentRef || !data[name]) {
         continue;
       }
       assignComponentProperty(registry, childComponent, childComponentRef, data[name]);

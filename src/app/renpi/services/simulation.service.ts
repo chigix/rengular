@@ -8,4 +8,5 @@ export abstract class SimulationServiceBase {
   public readonly context: SimulationContext;
   abstract init(context: SimulationContext | Observable<SimulationContext>): void;
   abstract leave(): void;
+  abstract gekijoFromIRI(iri: string, name?: string): void;
 }

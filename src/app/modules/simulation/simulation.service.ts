@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Subject, BehaviorSubject, Observable, of, EMPTY } from 'rxjs';
-import { filter, catchError, first } from 'rxjs/operators';
+import { filter, catchError, first, tap } from 'rxjs/operators';
 
 import { Scene, SimulationContext } from 'app/renpi';
 import { SimulationServiceBase } from 'app/renpi/services';
@@ -10,6 +10,12 @@ import { SimulationOutletComponent } from './simulation-outlet.component';
 
 interface SceneContext extends Scene {
   [key: string]: any;
+}
+
+class GekijoIRIEmptyError extends Error {
+  constructor(name?: string) {
+    super(`GekijoIRI is not EMPTY: [${name}]`);
+  }
 }
 
 @Injectable()
@@ -60,7 +66,7 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
     }
     this.outlet = outlet;
     this.initObserve.pipe(first()).subscribe(c => {
-      this.newSceneFromUrl(c.entryScene);
+      this.gekijoFromIRI(c.entryScene, 'initialGekijo');
     });
   }
 
@@ -97,7 +103,10 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
       });
   }
 
-  newSceneFromUrl(sceneUrl: string) {
+  gekijoFromIRI(sceneUrl: string, name?: string) {
+    if (!sceneUrl) {
+      throw new GekijoIRIEmptyError(name);
+    }
     return this.newScene(this.http.get<SceneContext>(sceneUrl));
   }
 
