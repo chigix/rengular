@@ -4,23 +4,20 @@ import {
 
 export function assignComponentProperty(
   registry: ComponentsRegistryService,
-  meta: ComponentMeta & { isAssigned?: boolean }, component: any, data: any) {
-  if (!meta.isAssigned) {
-    for (const key in meta.inputs) {
-      if (meta.inputs.hasOwnProperty(key)) {
-        const type = meta.inputs[key];
-        if (!type || !data[key]) {
-          continue;
-        }
-        if (['map'].indexOf(type) > -1 && component[key]) {
-          data[key] = Object.assign(component[key], data[key]);
-        } else {
-          component[key] = data[key];
-        }
+  meta: ComponentMeta, component: any, data: any) {
+  for (const key in meta.inputs) {
+    if (meta.inputs.hasOwnProperty(key)) {
+      const type = meta.inputs[key];
+      if (!type || !data[key]) {
+        continue;
+      }
+      if (['map'].indexOf(type) > -1 && component[key]) {
+        data[key] = Object.assign(component[key], data[key]);
+      } else {
+        component[key] = data[key];
       }
     }
   }
-  meta.isAssigned = true;
   for (const name in meta.children) {
     if (meta.children.hasOwnProperty(name)) {
       const childMeta = registry.getMeta(meta.children[name]);
@@ -33,7 +30,7 @@ export function assignComponentProperty(
   }
 }
 
-export function assignSceneStyles(
+export function assignComponentStyle(
   styles: {
     matchMedia: string;
     [property: string]: string;

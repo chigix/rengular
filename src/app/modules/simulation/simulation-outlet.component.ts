@@ -8,7 +8,7 @@ import {
   ComponentsRegistryService, SimulationServiceBase
 } from 'app/renpi/services';
 import { Scene } from 'app/renpi';
-import { assignComponentProperty, assignSceneStyles } from 'app/renpi/utils';
+import { assignComponentProperty, assignComponentStyle } from 'app/renpi/utils';
 
 import { SimulationService } from './simulation.service';
 import { SceneHostDirective } from './scene-host.directive';
@@ -66,7 +66,7 @@ export class SimulationOutletComponent implements OnInit {
     assignComponentProperty(this.componentRegistry,
       sceneMeta, this.currentScene.instance, scene);
     if (this.currentScene.location.nativeElement) {
-      assignSceneStyles(scene['@style'] || [], this.currentScene.location.nativeElement);
+      assignComponentStyle(scene['@style'] || [], this.currentScene.location.nativeElement);
     }
   }
 

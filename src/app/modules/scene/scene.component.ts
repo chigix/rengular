@@ -8,10 +8,6 @@ import { Gekijo } from 'app/renpi/components';
 
 import { SceneHostDirective } from './scene-host.directive';
 
-// TODO: REMOVE
-import { OarsPocketComponent } from '../oars-pocket/oars-pocket.component';
-import { TextboxComponent } from '../textbox/textbox.component';
-
 @Component({
   selector: 'ren-scene',
   templateUrl: './scene.component.html',
@@ -35,13 +31,9 @@ export class SceneComponent implements OnInit, Gekijo {
     });
   }
 
-  @ViewChild(OarsPocketComponent) oarsPocket: OarsPocketComponent;
-  @ViewChild(TextboxComponent) textbox: TextboxComponent;
-
-  program: GekijoDirective[];
 
   ngOnInit() {
-    this.gekijo.setCurrentGekijo(this.sceneHost.viewContainerRef);
+    this.gekijo.setCurrentGekijo(this.sceneHost.viewContainerRef, this);
   }
 
 }

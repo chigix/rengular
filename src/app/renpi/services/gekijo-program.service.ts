@@ -1,8 +1,11 @@
-import { Injectable, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
-import { BehaviorSubject, concat } from 'rxjs';
+import {
+  Injectable, ViewContainerRef, ComponentFactoryResolver,
+  ComponentRef
+} from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 import { ComponentCreation } from '../defs';
-import { assignComponentProperty, assignSceneStyles } from '../utils';
+import { assignComponentProperty, assignComponentStyle } from '../utils';
 import { ComponentsRegistryService } from './components-registry.service';
 
 @Injectable()
@@ -19,11 +22,7 @@ export class GekijoProgramService {
   constructor(
     private componentRegistry: ComponentsRegistryService,
     private componentFactoryResolver: ComponentFactoryResolver,
-  ) {
-    concat(
-      this.currentContainer$.pipe(filter(c => !!c)),
-    );
-  }
+  ) { }
 
   setCurrentGekijo(container: ViewContainerRef, component: any) {
     this.currentContainer$.next({
@@ -49,4 +48,5 @@ export class GekijoProgramService {
         return componentRef;
       });
   }
+
 }
