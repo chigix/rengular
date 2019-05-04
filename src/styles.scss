@@ -3,6 +3,7 @@
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
 @import 'app/pages/navigation.component.scss-theme.scss';
+@import 'app/modules/choice-menu/choice-menu.component.scss-theme.scss';
 @import 'app/modules/scene/scene.component.scss-theme.scss';
 @import 'app/modules/simple-entry/simple-entry.component.scss-theme.scss';
 
@@ -55,6 +56,7 @@
   // Alternatively, you can import and @include the theme mixins for each component
   // that you are using.
   @include angular-material-theme($rengular-theme);
+  @include choice-menu-component-theme($rengular-theme);
   @include scene-component-theme($rengular-theme);
   @include simple-entry-component-theme($rengular-theme);
 }

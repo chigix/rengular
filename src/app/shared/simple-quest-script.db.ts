@@ -6,14 +6,15 @@ import {
   SimulationContext,
   ComponentCreation,
 } from 'app/renpi';
+import { ActionDef as ChoiceMenuAction } from 'app/modules/choice-menu';
 
 const TRANSLATION = {
   simpleEntry: {
-    start: 'スタート',
+    start: 'スタート（Start）',
     load: 'ロード',
     pref: '環境設定',
     help: 'ヘルプ',
-    leave: '終了',
+    leave: '終了（Exit）',
   },
   oarsPocket: {
     back: '巻き戻し',
@@ -70,7 +71,7 @@ const context = [wrapRecord<SimulationContext>({
   title: 'RenGULAR DEMO Script: Simple Quest',
   version: '1.0.0',
   interfaceVersion: 1,
-  entryScene: '/renpi/simple-quest/scene/2',
+  entryScene: '/renpi/simple-quest/scene/1',
 })];
 
 const scene = [
@@ -99,7 +100,7 @@ const scene = [
         name: 'oarsPocket', '@createAs': 'oarsPocket',
         nextScene: '/renpi/simple-quest/scene/3',
         i18n: {
-          skip: 'next',
+          skip: 'Next',
         },
         '@style': [oarsPocketStyle],
       },
@@ -108,8 +109,16 @@ const scene = [
   }),
   // TODO: This scene could be merged into scene#2 as a gekijo program.
   wrapRecord<GekijoScene>({
+    /** Choice Menu Sample */
     '@id': '3', '@component': 'scene',
     appendToTop: [
+      {
+        name: 'choices', '@createAs': 'choiceMenu',
+        choices: [
+          { title: 'Left Door', jumpToScene: '/renpi/simple-quest/scene/4' },
+          { title: 'Right Door', jumpToScene: '/renpi/simple-quest/scene/5' },
+        ] as ChoiceMenuAction[],
+      },
       {
         name: 'textbox', '@createAs': 'textbox',
         text: 'Which door should I enter?',
@@ -121,7 +130,7 @@ const scene = [
         prevScene: '/renpi/simple-quest/scene/2',
         // i18n: TRANSLATION.oarsPocket,
         i18n: {
-          skip: 'next',
+          skip: 'Next',
         },
         '@style': [oarsPocketStyle],
       },
@@ -129,19 +138,17 @@ const scene = [
     backgroundImageUrl: '/assets/demo-bg/bg_h08.jpg',
     program: [],
   }),
-  wrapRecord<Scene>({ '@id': '4', '@component': 'simpleEntry' }),
-  wrapRecord<Scene>({ '@id': '5', '@component': 'simpleEntry' }),
+  wrapRecord<Scene>({
+    /** Happy End */
+    '@id': '4', '@component': 'simpleEntry'
+  }),
+  wrapRecord<Scene>({
+    /** Bad End */
+    '@id': '5', '@component': 'simpleEntry'
+  }),
 ];
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class SimpleQuestScriptDB implements InMemoryDbService {
-  createDb() {
-    return {
-      context,
-      scene,
-    };
-  }
-
+  createDb = () => ({ context, scene });
 }

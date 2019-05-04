@@ -4,6 +4,7 @@ import { SimpleNaviComponent } from './modules/simple-navi';
 import { SceneComponent } from './modules/scene';
 import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
+import { ChoiceMenuComponent } from './modules/choice-menu';
 
 const REGULAR_REGISTRY: {
   [componentAlias: string]: ComponentMeta,
@@ -46,6 +47,13 @@ const REGULAR_REGISTRY: {
     component: TextboxComponent,
     inputs: {
       text: 'string',
+    },
+    children: {},
+  },
+  choiceMenu: {
+    component: ChoiceMenuComponent,
+    inputs: {
+      choices: 'array',
     },
     children: {},
   },

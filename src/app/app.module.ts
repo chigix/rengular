@@ -26,7 +26,7 @@ import { SimpleEntryModule, SimpleEntryComponent } from './modules/simple-entry'
 import { SimpleNaviModule, SimpleNaviComponent } from './modules/simple-navi';
 import { TextboxModule, TextboxComponent } from './modules/textbox';
 import { OarsPocketModule, OarsPocketComponent } from './modules/oars-pocket';
-import { ChoiceMenuModule } from './modules/choice-menu/choice-menu.module';
+import { ChoiceMenuModule, ChoiceMenuComponent } from './modules/choice-menu';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,7 @@ import { ChoiceMenuModule } from './modules/choice-menu/choice-menu.module';
   entryComponents: [
     SceneComponent,
     SimpleEntryComponent, SimpleNaviComponent,
-    TextboxComponent, OarsPocketComponent,
+    TextboxComponent, OarsPocketComponent, ChoiceMenuComponent,
   ],
   bootstrap: [AppComponent]
 })

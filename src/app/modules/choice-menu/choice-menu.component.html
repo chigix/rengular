@@ -1,0 +1,19 @@
+<ng-template #mainList>
+  <mat-grid-list [cols]="gridCols" [rowHeight]="rowHeight" gutterSize="20px">
+    <mat-grid-tile *ngFor="let button of buttons">
+      <button mat-raised-button
+        (click)="simulationService.gekijoFromIRI(button.jumpToScene)">{{ button.title }}</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-template>
+
+<mat-card *ngIf="title">
+  <mat-card-header></mat-card-header>
+  <mat-card-content>
+    <ng-container *ngTemplateOutlet="mainList"></ng-container>
+  </mat-card-content>
+  <mat-card-actions></mat-card-actions>
+</mat-card>
+<mat-card *ngIf="!title">
+  <ng-container *ngTemplateOutlet="mainList"></ng-container>
+</mat-card>
