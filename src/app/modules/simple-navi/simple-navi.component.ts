@@ -27,7 +27,7 @@ export class SimpleNaviComponent implements OnInit {
   @Input() helpScene?: string;
 
   constructor(
-    private simulation: SimulationService,
+    public simulation: SimulationService,
   ) { }
 
   ngOnInit() {

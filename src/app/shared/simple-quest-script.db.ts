@@ -85,7 +85,7 @@ const scene = [
     },
     '@style': [{
       matchMedia: 'ALL',
-      'background-image': 'url(/assets/demo-bg/quest-entry.png)',
+      'background-image': 'url(assets/demo-bg/quest-entry.png)',
       'background-position': 'bottom',
     }],
   }),
@@ -106,7 +106,7 @@ const scene = [
         '@style': [oarsPocketStyle],
       },
     ],
-    backgroundImageUrl: '/assets/demo-bg/bg_h08.jpg',
+    backgroundImageUrl: 'assets/demo-bg/bg_h08.jpg',
   }),
   // TODO: This scene could be merged into scene#2 as a gekijo program.
   wrapRecord<GekijoScene>({
@@ -136,7 +136,7 @@ const scene = [
         '@style': [oarsPocketStyle],
       },
     ],
-    backgroundImageUrl: '/assets/demo-bg/bg_h08.jpg',
+    backgroundImageUrl: 'assets/demo-bg/bg_h08.jpg',
     program: [],
   }),
   wrapRecord<BaseScene>({
@@ -145,7 +145,7 @@ const scene = [
     appendToTop: [
       {
         name: 'heroine', '@createAs': 'layeredImage',
-        imgUrl: '/assets/demo-bg/ki_1_05.png',
+        imgUrl: 'assets/demo-bg/ki_1_05.png',
         '@style': [{
           matchMedia: 'ALL',
           left: '10%',
@@ -167,7 +167,7 @@ const scene = [
         '@style': [oarsPocketStyle],
       },
     ],
-    backgroundImageUrl: '/assets/demo-bg/bg_h06.jpg',
+    backgroundImageUrl: 'assets/demo-bg/bg_h06.jpg',
   }),
   wrapRecord<BaseScene>({
     /** Bad End */
@@ -189,7 +189,7 @@ const scene = [
         '@style': [oarsPocketStyle],
       },
     ],
-    backgroundImageUrl: '/assets/demo-bg/cg_ki_05.png',
+    backgroundImageUrl: 'assets/demo-bg/cg_ki_05.png',
   }),
 ];
 

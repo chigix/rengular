@@ -27,7 +27,7 @@ export class OarsPocketComponent implements OnInit {
   };
 
   constructor(
-    private simulation: SimulationService,
+    public simulation: SimulationService,
   ) { }
 
   ngOnInit() {
