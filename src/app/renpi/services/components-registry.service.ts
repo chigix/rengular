@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Type } from '@angular/core';
 
 export class UnknownComponent extends Error {

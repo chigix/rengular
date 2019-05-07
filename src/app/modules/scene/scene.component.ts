@@ -16,7 +16,7 @@ import { SceneHostDirective } from './scene-host.directive';
 })
 export class SceneComponent implements OnInit, Gekijo {
 
-  private backgroundImageStyle: string;
+  backgroundImageStyle: string;
 
   constructor(
     private gekijo: GekijoProgramService,
@@ -30,13 +30,16 @@ export class SceneComponent implements OnInit, Gekijo {
   }
 
   @Input() nextScene?: string;
-  // @Input() set bottomFill(directives: ComponentCreation[]) { }
   @Input() set appendToTop(directives: ComponentCreation[]) {
     directives.forEach(directive => {
       this.gekijo.createComponent(directive);
     });
   }
 
+  @Input() set program(directives: GekijoDirective[]) {
+    // console.log(directives);
+    throw new Error('Not Implemented yet');
+  }
 
   ngOnInit() {
     this.gekijo.setCurrentGekijo(this.sceneHost.viewContainerRef, this);

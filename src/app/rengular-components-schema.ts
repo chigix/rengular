@@ -29,7 +29,7 @@ const REGULAR_REGISTRY: {
     component: SceneComponent,
     inputs: {
       appendToTop: 'array',
-      program: 'array',
+      // program: 'array',
       backgroundImageUrl: 'string',
     },
     children: {},
