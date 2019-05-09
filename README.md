@@ -31,7 +31,7 @@ Sample Component:
 }
 ```
 
-### Scene Program in a Scene(Renaming to Gekijo is in plan)
+### Scene Program in a Scene (Renaming to Gekijo is in plan)
 
 * Initially, there is one set including one `@program` and one scene(Stage/Gekijo).
 * A `GekijoDirective` is with the data structure inherited from the scene itself,
@@ -66,14 +66,32 @@ Sample Component:
 }
 ```
 
-### RenGULAR Programming Interface
+## RenGULAR Programming Interface (RenPI)
 
-There is a pure json repository designed to be used as a starter template or
+Initially, RenPI is designed using [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF) with [JSON-LD](https://json-ld.org/) in default.
+
+### DEMO: Simple Quest JSON Repository
+
+There is a [pure json repository](https://github.com/chigix/rengular-api-starter) designed to be used as a starter template or
 understanding RenGULAR Programing Interface, deeply representing the core concept
 and possible practice on:
 
 * RenGULAR Simulation Framework
 * RenGULAR Gekijo Container
+
+### Why JSON-LD
+
+* Simulation Framework design makes the data describing scenes as json linking data.
+* JSON-LD makes components data self-describing:
+  * Given Objects types
+  * Associate properties with IRIs
+  * Use [terms](https://w3c.github.io/json-ld-syntax/#dfn-term) defined in a referenced context
+  * Property types are specified in context
+  * Subject Chaining Definition, Subject Reference, Single Value to Unordered Values,
+  terms shorting property names, `@type` coercion, Named Graphs defined in Language
+  Feature.
+* [Compaction, Expansion, Flattening and Framing](https://w3c.github.io/json-ld-syntax/#forms-of-json-ld)
+  designed in json-ld makes RenPI both developer and machine understanding friendly.
 
 ## TODO
 
