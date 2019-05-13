@@ -1,0 +1,157 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "http://rengular.js.org/schema/Context",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The Context for a RenGULAR Simulation.",
+      "rdfs:label": "Context",
+      "rdfs:subClassOf": {
+        "@id": "https://schema.org/CreativeWork"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/Component",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The most generic type of component in rengular.",
+      "rdfs:label": "Component",
+      "rdfs:subClassOf": {
+        "@id": "http://schema.org/Thing"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/nextScene",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": [
+        {
+          "@id": "http://rengular.js.org/schema/Component"
+        },
+        {
+          "@id": "http://rengular.js.org/schema/Context"
+        }
+      ],
+      "http://schema.org/rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        },
+        {
+          "@id": "http://schema.org/URL"
+        }
+      ],
+      "rdfs:comment": "The Next Scene IRI or dedicator.",
+      "rdfs:label": "nextScene"
+    },
+    {
+      "@id": "http://rengular.js.org/schema/Scene",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "A Generic Scene or mostly derived as Gekijoes.",
+      "rdfs:label": "Scene",
+      "rdfs:subClassOf": [
+        {
+          "@id": "http://rengular.js.org/schema/Component"
+        },
+        {
+          "@id": "http://schema.org/Episode"
+        }
+      ]
+    },
+    {
+      "@id": "http://rengular.js.org/schema/ComponentAction",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The act of creating components",
+      "rdfs:label": "ComponentAction",
+      "rdfs:subClassOf": {
+        "@id": "http://schema.org/CreateAction"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/StyleAction",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The act of installing given styles.",
+      "rdfs:label": "StyleAction",
+      "rdfs:subClassOf": {
+        "@id": "http://schema.org/ConsumeAction"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/styleList",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://rengular.js.org/schema/StyleAction"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://schema.org/PropertyValue"
+      },
+      "rdfs:comment": "An list of styles to be applied on target component through StyleAction.",
+      "rdfs:label": "styleList"
+    },
+    {
+      "@id": "http://rengular.js.org/schema/ChoiceMenu",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The ChoiceMenu Component provided by RenGULAR.",
+      "rdfs:label": "ChoiceMenu",
+      "rdfs:subClassOf": {
+        "@id": "http://rengular.js.org/schema/Component"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/LayeredImage",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The LayeredImage Component provided by RenGULAR.",
+      "rdfs:label": "ChoiceMenu",
+      "rdfs:subClassOf": {
+        "@id": "http://rengular.js.org/schema/Component"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/OarsPocket",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The LayeredImage Component provided by RenGULAR.",
+      "rdfs:label": "ChoiceMenu",
+      "rdfs:subClassOf": {
+        "@id": "http://rengular.js.org/schema/Component"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/Textbox",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The Textbox Component provided by RenGULAR.",
+      "rdfs:label": "ChoiceMenu",
+      "rdfs:subClassOf": {
+        "@id": "http://rengular.js.org/schema/Component"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/SimpleEntry",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The Simple Entry Scene provided by RenGULAR.",
+      "rdfs:label": "ChoiceMenu",
+      "rdfs:subClassOf": {
+        "@id": "http://rengular.js.org/schema/Scene"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/SimpleNavi",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The Simple Navi Component in SimpleEntry provided by RenGULAR.",
+      "rdfs:label": "ChoiceMenu",
+      "rdfs:subClassOf": {
+        "@id": "http://rengular.js.org/schema/Component"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/Gekijo",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The Gekijo Scene provided by RenGULAR.",
+      "rdfs:label": "ChoiceMenu",
+      "rdfs:subClassOf": {
+        "@id": "http://rengular.js.org/schema/Scene"
+      }
+    }
+  ],
+  "@id": "http://rengular.js.org/schema/#0.5"
+}
