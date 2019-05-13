@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "type": "@type",
+    "id": "@id",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "http://schema.org/",
+    "SimpleEntry": "http://rengular.js.org/schema/SimpleEntry",
+    "name": "http://rengular.js.org/schema/contextName",
+    "title": "http://rengular.js.org/schema/contextTitle",
+    "interfaceVersion": "https://schema.org/schemaVersion",
+    "entryScene": "http://rengular.js.org/schema/nextScene",
+    "version": "https://schema.org/version"
+  }
+}
