@@ -25,7 +25,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/schema.jsonld"
+              "src/schema.jsonld",
+              "src/context"
             ],
             "styles": [
               "src/styles.scss"
