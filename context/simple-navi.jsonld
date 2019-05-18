@@ -1,0 +1,10 @@
+{
+  "@context": {
+    "type": "@type",
+    "id": "@id",
+    "SimpleEntry": "http://rengular.js.org/schema/SimpleEntry",
+    "SimpleNavi": "http://rengular.js.org/schema/SimpleNavi",
+    "styleList": "http://rengular.js.org/schema/styleList",
+    "navi": "http://rengular.js.org/schema/SimpleEntry/navi"
+  }
+}

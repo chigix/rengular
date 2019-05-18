@@ -6,6 +6,7 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "http://schema.org/",
+    "Context": {"@id": "http://rengular.js.org/schema/Context"},
     "name": "http://rengular.js.org/schema/contextName",
     "title": "http://rengular.js.org/schema/contextTitle",
     "interfaceVersion": "https://schema.org/schemaVersion",
