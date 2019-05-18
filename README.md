@@ -93,6 +93,25 @@ and possible practice on:
 * [Compaction, Expansion, Flattening and Framing](https://w3c.github.io/json-ld-syntax/#forms-of-json-ld)
   designed in json-ld makes RenPI both developer and machine understanding friendly.
 
+### Component Level Styling
+
+`http://rengular.js.org/schema/StyleAction` is provided for directly applying
+CSS styles onto target component element. However this styling feature is exactly
+restricted to very few components which are created and managed by RenGULAR only.
+
+## RenGULAR Primitive Components (RenCom)
+
+* ChoiceMenu
+* LayeredImage
+* OarsPocket
+* Scene
+* Textbox
+
+## RenGULAR Simple Components (RenSimCom)
+
+* SimpleEntry
+* SimpleNavi
+
 ## TODO
 
 * Schematics for generate a RenGULAR game boilerplate.

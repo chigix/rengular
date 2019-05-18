@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "type": "@type",
+    "id": "@id",
+    "StyleAction": { "@id": "ren:StyleAction" },
+    "styleList": { "@id": "ren:styleList" },
+    "matchMedia": { "@id": "ren:matchMedia" },
+    "color": "http://rengular.js.org/schema/CssStyle#color",
+    "position": "http://rengular.js.org/schema/CssStyle#position",
+    "target": "http://rengular.js.org/schema/CssStyle#target",
+    "width": "http://rengular.js.org/schema/CssStyle#width",
+    "height": "http://rengular.js.org/schema/CssStyle#height",
+    "@vocab": "http://rengular.js.org/schema/CssStyle#"
+  }
+}

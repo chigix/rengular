@@ -11,7 +11,7 @@
       "rdfs:comment": "The Context for a RenGULAR Simulation.",
       "rdfs:label": "Context",
       "rdfs:subClassOf": {
-        "@id": "https://schema.org/CreativeWork"
+        "@id": "http://schema.org/CreativeWork"
       }
     },
     {
@@ -36,7 +36,7 @@
       ],
       "http://schema.org/rangeIncludes": [
         {
-          "@id": "https://schema.org/Text"
+          "@id": "http://schema.org/Text"
         },
         {
           "@id": "http://schema.org/URL"
@@ -44,6 +44,23 @@
       ],
       "rdfs:comment": "The Next Scene IRI or dedicator.",
       "rdfs:label": "nextScene"
+    },
+    {
+      "@id": "http://rengular.js.org/schema/backgroundImage",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://rengular.js.org/schema/Component"
+      },
+      "http://schema.org/rangeIncludes": [
+        {
+          "@id": "http://schema.org/ImageObject"
+        },
+        {
+          "@id": "http://schema.org/URL"
+        }
+      ],
+      "rdfs:comment": "The Background image of a Component.",
+      "rdfs:label": "backgroundImage"
     },
     {
       "@id": "http://rengular.js.org/schema/Scene",
@@ -88,6 +105,18 @@
       },
       "rdfs:comment": "An list of styles to be applied on target component through StyleAction.",
       "rdfs:label": "styleList"
+    },
+    {
+      "@id": "http://rengular.js.org/schema/matchMedia",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://rengular.js.org/schema/StyleAction"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://schema.org/URL"
+      },
+      "rdfs:comment": "The breakpoints for evaluating media queries.",
+      "rdfs:label": "matchMedia"
     },
     {
       "@id": "http://rengular.js.org/schema/ChoiceMenu",
@@ -135,6 +164,18 @@
       }
     },
     {
+      "@id": "http://rengular.js.org/schema/SimpleEntry/navi",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://rengular.js.org/schema/SimpleEntry"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://rengular.js.org/schema/SimpleNavi"
+      },
+      "rdfs:comment": "The navi Component inside SimpleEntry.",
+      "rdfs:label": "navi"
+    },
+    {
       "@id": "http://rengular.js.org/schema/SimpleNavi",
       "@type": "rdfs:Class",
       "rdfs:comment": "The Simple Navi Component in SimpleEntry provided by RenGULAR.",
@@ -151,6 +192,18 @@
       "rdfs:subClassOf": {
         "@id": "http://rengular.js.org/schema/Scene"
       }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/program",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://rengular.js.org/schema/Gekijo"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://schema.org/ListItem"
+      },
+      "rdfs:comment": "A list of GekijoDirectives used by GekijoScene.",
+      "rdfs:label": "gekijoProgram"
     }
   ],
   "@id": "http://rengular.js.org/schema/#0.5"

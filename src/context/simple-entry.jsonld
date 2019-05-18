@@ -2,15 +2,14 @@
   "@context": {
     "type": "@type",
     "id": "@id",
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "schema": "http://schema.org/",
+    "ren": "http://rengular.js.org/schema/",
     "SimpleEntry": "http://rengular.js.org/schema/SimpleEntry",
-    "name": "http://rengular.js.org/schema/contextName",
-    "title": "http://rengular.js.org/schema/contextTitle",
-    "interfaceVersion": "https://schema.org/schemaVersion",
-    "entryScene": "http://rengular.js.org/schema/nextScene",
-    "version": "https://schema.org/version"
+    "SimpleNavi": "http://rengular.js.org/schema/SimpleNavi",
+    "navi": "http://rengular.js.org/schema/SimpleEntry/navi",
+    "StyleAction": {"@id": "ren:StyleAction"},
+    "styleList": {"@id": "ren:styleList"},
+    "matchMedia": {"@id": "ren:matchMedia"},
+    "stylingTo": { "@id": "schema:target"},
+    "css": {"@id": "ren:CssStyle#"}
   }
 }

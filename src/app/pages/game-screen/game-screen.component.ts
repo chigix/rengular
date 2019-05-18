@@ -20,7 +20,7 @@ export class GameScreenComponent implements OnInit {
     simulationServiceBase: SimulationServiceBase,
     private componentRegistry: ComponentsRegistryService,
   ) {
-    this.componentRegistry.register(RENGULAR);
+    this.componentRegistry.registerClass(RENGULAR);
     this.simulationService = simulationServiceBase as SimulationService;
   }
 

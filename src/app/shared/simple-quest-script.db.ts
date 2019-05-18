@@ -1,13 +1,44 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import {
-  Gekijo,
-  Scene,
-  SimulationContext,
-  ComponentCreation,
+  GekijoLd,
+  SceneLd,
+  SimulationContextLd,
+  CssLd,
+} from 'app/renpi/rdf-schema';
+import {
+  SimpleEntry,
+  SimpleNavi,
 } from 'app/renpi';
-import { ActionDef as ChoiceMenuAction } from 'app/modules/choice-menu';
-import { ImageResource } from 'app/modules/layered-image';
+import { ChoiceMenuLd } from 'app/modules/choice-menu';
+import { LayeredImageLd } from 'app/modules/layered-image';
+import { OarsPocketLd } from 'app/modules/oars-pocket';
+import { TextboxLd } from 'app/modules/textbox';
+
+interface SimpleEntryLd extends SimpleEntry {
+  '@context': [
+    'http://rengular.js.org/context/simple-entry.jsonld',
+    {
+      simpleNavi: 'http://rengular.js.org/schema/SimpleEntry/navi',
+      ren: 'http://rengular.js.org/schema/',
+    }
+  ];
+  '@type': 'http://rengular.js.org/schema/SimpleEntry';
+  simpleNavi: SimpleNavi & {
+    '@type': 'http://rengular.js.org/schema/SimpleNavi';
+    '@context': {
+      Navi: 'http://rengular.js.org/schema/SimpleNavi',
+      topGap: 'Navi:#topGap',
+      absoluteInViewport?: 'Navi:#absoluteInViewport',
+      startScene: 'Navi:#startScene',
+      loadScene: 'Navi:#loadScene',
+      prefScene: 'Navi:#prefScene',
+      aboutScene: 'Navi:#aboutScene',
+      helpScene: 'Navi:#helpScene',
+      labels: 'Navi:#labels',
+    };
+  };
+}
 
 const TRANSLATION = {
   simpleEntry: {
@@ -29,168 +60,372 @@ const TRANSLATION = {
   },
 };
 
-const oarsPocketStyle = {
-  matchMedia: 'ALL',
-  width: '330px',
-  position: 'absolute',
-  marginTop: '-45px',
-  right: '0',
-  color: 'cornsilk',
+const STYLES = {
+  test: {
+    '@context': {
+      StyleAction: { '@id': 'ren:StyleAction' },
+      styleList: { '@id': 'ren:styleList' },
+      matchMedia: { '@id': 'ren:matchMedia' },
+      color: 'http://rengular.js.org/schema/CssStyle#color',
+      position: 'http://rengular.js.org/schema/CssStyle#position',
+      target: 'http://rengular.js.org/schema/CssStyle#target',
+      width: 'http://rengular.js.org/schema/CssStyle#width',
+      height: 'http://rengular.js.org/schema/CssStyle#height',
+      '@vocab': 'http://rengular.js.org/schema/CssStyle#'
+    },
+    '@type': 'StyleAction',
+    matchMedia: 'ALL',
+    'background-image': 'url(assets/demo-bg/quest-entry.png)',
+    'background-position': 'bottom',
+  } as CssLd,
+  oarsPocket: {
+    '@context': {
+      StyleAction: { '@id': 'ren:StyleAction' },
+      styleList: { '@id': 'ren:styleList' },
+      matchMedia: { '@id': 'ren:matchMedia' },
+      color: 'http://rengular.js.org/schema/CssStyle#color',
+      position: 'http://rengular.js.org/schema/CssStyle#position',
+      target: 'http://rengular.js.org/schema/CssStyle#target',
+      width: 'http://rengular.js.org/schema/CssStyle#width',
+      height: 'http://rengular.js.org/schema/CssStyle#height',
+      '@vocab': 'http://rengular.js.org/schema/CssStyle#'
+    },
+    '@type': 'StyleAction',
+    matchMedia: 'ALL',
+    width: '330px',
+    position: 'absolute',
+    marginTop: '-45px',
+    right: '0',
+    color: 'cornsilk',
+  } as CssLd,
+  bottomText: {
+    '@context': {
+      StyleAction: { '@id': 'ren:StyleAction' },
+      styleList: { '@id': 'ren:styleList' },
+      matchMedia: { '@id': 'ren:matchMedia' },
+      color: 'http://rengular.js.org/schema/CssStyle#color',
+      position: 'http://rengular.js.org/schema/CssStyle#position',
+      target: 'http://rengular.js.org/schema/CssStyle#target',
+      width: 'http://rengular.js.org/schema/CssStyle#width',
+      height: 'http://rengular.js.org/schema/CssStyle#height',
+      '@vocab': 'http://rengular.js.org/schema/CssStyle#'
+    },
+    '@type': 'StyleAction',
+    matchMedia: 'ALL',
+    marginTop: '507px',
+  } as CssLd,
 };
 
-const bottomTextStyle = {
-  matchMedia: 'ALL',
-  marginTop: '507px',
-};
-
-type SimpleEntryScene = Scene & {
-  simpleNavi: {
-    topGap?: number, absoluteInViewport?: boolean,
-  }
-};
-
-type BaseScene = Scene & {
-  appendToTop: (ComponentCreation & { [prop: string]: any })[];
-  oarsPocket?: {
-    nextScene?: string,
-  };
-  textbox?: {
-    text: string,
-  };
-  backgroundImageUrl?: string,
-};
-
-type GekijoScene = Gekijo & BaseScene;
-
-function wrapRecord<T extends { '@id': string }>(data: T): T & { id: string } {
-  return Object.assign({ id: data['@id'] }, data);
-}
-
-const context = [wrapRecord<SimulationContext>({
-  '@id': '1',
+const context: SimulationContextLd[] = [{
+  '@context': 'http://rengular.js.org/context/init.jsonld',
+  id: '1',
   name: 'simple-quest',
   title: 'RenGULAR DEMO Script: Simple Quest',
   version: '1.0.0',
   interfaceVersion: 1,
   entryScene: '/renpi/simple-quest/scene/1',
-})];
+}];
 
 const scene = [
-  wrapRecord<SimpleEntryScene>({
-    '@id': '1', '@component': 'simpleEntry',
+  {
+    id: '1',
+    '@context': [
+      'http://rengular.js.org/context/simple-entry.jsonld',
+      {
+        simpleNavi: 'http://rengular.js.org/schema/SimpleEntry/navi',
+        ren: 'http://rengular.js.org/schema/',
+      },
+    ],
+    '@type': 'http://rengular.js.org/schema/SimpleEntry',
     simpleNavi: {
+      '@context': {
+        Navi: 'http://rengular.js.org/schema/SimpleNavi',
+        topGap: 'Navi:#topGap',
+        absoluteInViewport: 'Navi:#absoluteInViewport',
+        startScene: 'Navi:#startScene',
+        loadScene: 'Navi:#loadScene',
+        prefScene: 'Navi:#prefScene',
+        aboutScene: 'Navi:#aboutScene',
+        helpScene: 'Navi:#helpScene',
+        labels: 'Navi:#labels',
+      },
+      '@type': 'http://rengular.js.org/schema/SimpleNavi',
       topGap: 50,
       startScene: '/renpi/simple-quest/scene/2',
-      i18n: TRANSLATION.simpleEntry,
+      labels: JSON.stringify(TRANSLATION.simpleEntry),
     },
-    '@style': [{
-      matchMedia: 'ALL',
-      'background-image': 'url(assets/demo-bg/quest-entry.png)',
-      'background-position': 'bottom',
+    '@reverse': {
+      'schema:target': [{
+        '@context': {
+          StyleAction: { '@id': 'ren:StyleAction' },
+          styleList: { '@id': 'ren:styleList' },
+          matchMedia: { '@id': 'ren:matchMedia' },
+          color: 'http://rengular.js.org/schema/CssStyle#color',
+          position: 'http://rengular.js.org/schema/CssStyle#position',
+          target: 'http://rengular.js.org/schema/CssStyle#target',
+          width: 'http://rengular.js.org/schema/CssStyle#width',
+          height: 'http://rengular.js.org/schema/CssStyle#height',
+          '@vocab': 'http://rengular.js.org/schema/CssStyle#'
+        },
+        '@type': 'StyleAction',
+        matchMedia: 'ALL',
+        'background-image': 'url(assets/demo-bg/quest-entry.png)',
+        'background-position': 'bottom',
+      } as CssLd],
+    },
+  } as SimpleEntryLd,
+  {
+    id: '2',
+    '@context': ['http://rengular.js.org/context/common.jsonld', {
+      stylingTo: { '@id': 'schema:target' },
     }],
-  }),
-  wrapRecord<BaseScene>({
-    '@id': '2', '@component': 'scene',
-    appendToTop: [
-      {
-        name: 'textbox', '@createAs': 'textbox',
-        text: 'The Goal is to save the princess against the Devil.',
-        '@style': [bottomTextStyle],
-      },
-      {
-        name: 'oarsPocket', '@createAs': 'oarsPocket',
-        nextScene: '/renpi/simple-quest/scene/3',
-        i18n: {
-          skip: 'Next',
-        },
-        '@style': [oarsPocketStyle],
-      },
-    ],
-    backgroundImageUrl: 'assets/demo-bg/bg_h08.jpg',
-  }),
+    '@type': 'http://rengular.js.org/schema/Scene',
+    '@reverse': {
+      'schema:target': [
+        {
+          '@type': 'ComponentAction',
+          object: {
+            '@context': ['http://rengular.js.org/context/common.jsonld', {
+              stylingTo: { '@id': 'schema:target' },
+            }],
+            id: './textbox',
+            '@type': 'Textbox',
+            text: 'The Goal is to save the princess against the Devil.',
+            '@reverse': {
+              stylingTo: [STYLES.bottomText],
+            },
+          } as TextboxLd,
+        }, {
+          '@type': 'ComponentAction',
+          object: {
+            '@context': ['http://rengular.js.org/context/common.jsonld', {
+              stylingTo: { '@id': 'schema:target' },
+              nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
+              prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
+              labels: 'OarsPocket/labels',
+            }],
+            id: './oarsPocket',
+            '@type': 'OarsPocket',
+            nextScene: '/renpi/simple-quest/scene/3',
+            labels: JSON.stringify({ skip: 'Next' }),
+            '@reverse': {
+              stylingTo: [STYLES.oarsPocket],
+            },
+          } as OarsPocketLd,
+        }
+      ],
+    },
+    'http://rengular.js.org/schema/backgroundImage': 'assets/demo-bg/bg_h08.jpg',
+  } as SceneLd,
   // TODO: This scene could be merged into scene#2 as a gekijo program.
-  wrapRecord<GekijoScene>({
+  {
     /** Choice Menu Sample */
-    '@id': '3', '@component': 'scene',
-    appendToTop: [
-      {
-        name: 'choices', '@createAs': 'choiceMenu',
-        choices: [
-          { title: 'Left Door', jumpToScene: '/renpi/simple-quest/scene/4' },
-          { title: 'Right Door', jumpToScene: '/renpi/simple-quest/scene/5' },
-        ] as ChoiceMenuAction[],
-      },
-      {
-        name: 'textbox', '@createAs': 'textbox',
-        text: 'Which door should I enter?',
-        '@style': [bottomTextStyle],
-      },
-      {
-        name: 'oarsPocket', '@createAs': 'oarsPocket',
-        nextScene: '/renpi/simple-quest/scene/1',
-        prevScene: '/renpi/simple-quest/scene/2',
-        // i18n: TRANSLATION.oarsPocket,
-        i18n: {
-          skip: 'Next',
-        },
-        '@style': [oarsPocketStyle],
-      },
-    ],
-    backgroundImageUrl: 'assets/demo-bg/bg_h08.jpg',
+    '@context': ['http://rengular.js.org/context/common.jsonld', {
+      stylingTo: { '@id': 'schema:target' },
+    }],
+    id: '3',
+    '@type': 'http://rengular.js.org/schema/Gekijo',
+    '@reverse': {
+      createComponent: [{
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+            choices: 'http://rengular.js.org/schema/ChoiceMenu/choices',
+            title: 'schema:text',
+            jumpToScene: {
+              '@id': 'http://rengular.js.org/schema/nextScene', '@type': '@id',
+            },
+          }],
+          id: './choices',
+          '@type': 'ChoiceMenu',
+          choices: [
+            { title: 'Left Door', jumpToScene: '/renpi/simple-quest/scene/4' },
+            { title: 'Right Door', jumpToScene: '/renpi/simple-quest/scene/5' },
+          ],
+        } as ChoiceMenuLd,
+      }, {
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+          }],
+          id: './textbox',
+          '@type': 'Textbox',
+          text: 'Which door should I enter?',
+          '@reverse': {
+            stylingTo: [STYLES.bottomText],
+          },
+        } as TextboxLd,
+      }, {
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+            nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
+            prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
+            labels: 'OarsPocket/labels',
+          }],
+          id: './oarsPocket',
+          '@type': 'OarsPocket',
+          nextScene: '/renpi/simple-quest/scene/1',
+          prevScene: '/renpi/simple-quest/scene/2',
+          labels: JSON.stringify({ skip: 'Next' }),
+          '@reverse': {
+            stylingTo: [STYLES.oarsPocket],
+          },
+        } as OarsPocketLd,
+      }],
+    },
+    'http://rengular.js.org/schema/backgroundImage': 'assets/demo-bg/bg_h08.jpg',
     program: [],
-  }),
-  wrapRecord<BaseScene>({
+  } as GekijoLd,
+  {
     /** Happy End */
-    '@id': '4', '@component': 'scene',
-    appendToTop: [
-      {
-        name: 'heroine', '@createAs': 'layeredImage',
-        imgUrl: 'assets/demo-bg/ki_1_05.png',
-        '@style': [{
-          matchMedia: 'ALL',
-          left: '10%',
-        }],
-      } as ComponentCreation & ImageResource,
-      {
-        name: 'textbox', '@createAs': 'textbox',
-        text: 'Thank you ~~ Happy RenGULAR',
-        '@style': [{ ...bottomTextStyle, ...{ textAlign: 'center' } }],
-      },
-      {
-        name: 'oarsPocket', '@createAs': 'oarsPocket',
-        nextScene: '/renpi/simple-quest/scene/1',
-        prevScene: '/renpi/simple-quest/scene/2',
-        // i18n: TRANSLATION.oarsPocket,
-        i18n: {
-          skip: 'Next',
-        },
-        '@style': [oarsPocketStyle],
-      },
-    ],
-    backgroundImageUrl: 'assets/demo-bg/bg_h06.jpg',
-  }),
-  wrapRecord<BaseScene>({
+    '@context': ['http://rengular.js.org/context/common.jsonld', {
+      stylingTo: { '@id': 'schema:target' },
+    }],
+    id: '4',
+    '@type': 'http://rengular.js.org/schema/Scene',
+    '@reverse': {
+      'schema:target': [{
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+            imgUrl: { '@id': 'schema:image', '@type': '@id' },
+          }],
+          id: './heroine',
+          '@type': 'LayeredImage',
+          imgUrl: 'assets/demo-bg/ki_1_05.png',
+          '@reverse': {
+            stylingTo: [{
+              '@context': {
+                StyleAction: { '@id': 'ren:StyleAction' },
+                styleList: { '@id': 'ren:styleList' },
+                matchMedia: { '@id': 'ren:matchMedia' },
+                color: 'http://rengular.js.org/schema/CssStyle#color',
+                position: 'http://rengular.js.org/schema/CssStyle#position',
+                target: 'http://rengular.js.org/schema/CssStyle#target',
+                width: 'http://rengular.js.org/schema/CssStyle#width',
+                height: 'http://rengular.js.org/schema/CssStyle#height',
+                '@vocab': 'http://rengular.js.org/schema/CssStyle#'
+              },
+              '@type': 'StyleAction',
+              matchMedia: 'ALL',
+              left: '10%',
+            }],
+          },
+        } as LayeredImageLd,
+      }, {
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+          }],
+          id: './textbox',
+          '@type': 'Textbox',
+          text: 'Thank you ~~ Happy RenGULAR',
+          '@reverse': {
+            stylingTo: [{ ...STYLES.bottomText, ...{ textAlign: 'center' } }],
+          },
+        } as TextboxLd,
+      }, {
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+            nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
+            prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
+            labels: 'OarsPocket/labels',
+          }],
+          id: './oarsPocket',
+          '@type': 'OarsPocket',
+          nextScene: '/renpi/simple-quest/scene/1',
+          prevScene: '/renpi/simple-quest/scene/2',
+          // labels: TRANSLATION.oarsPocket,
+          labels: JSON.stringify({ skip: 'Next' }),
+          '@reverse': {
+            stylingTo: [STYLES.oarsPocket],
+          },
+        } as OarsPocketLd,
+      }],
+    },
+    'http://rengular.js.org/schema/backgroundImage': 'assets/demo-bg/bg_h06.jpg',
+  } as SceneLd,
+  {
     /** Bad End */
-    '@id': '5', '@component': 'scene',
-    appendToTop: [
-      {
-        name: 'textbox', '@createAs': 'textbox',
-        text: 'Thank you ~~ Happy RenGULAR',
-        '@style': [bottomTextStyle],
-      },
-      {
-        name: 'oarsPocket', '@createAs': 'oarsPocket',
-        nextScene: '/renpi/simple-quest/scene/1',
-        prevScene: '/renpi/simple-quest/scene/2',
-        // i18n: TRANSLATION.oarsPocket,
-        i18n: {
-          skip: 'Next',
-        },
-        '@style': [oarsPocketStyle],
-      },
-    ],
-    backgroundImageUrl: 'assets/demo-bg/cg_ki_05.png',
-  }),
+    '@context': ['http://rengular.js.org/context/common.jsonld', {
+      stylingTo: { '@id': 'schema:target' },
+    }],
+    id: '5',
+    '@type': 'http://rengular.js.org/schema/Scene',
+    '@reverse': {
+      'schema:target': [{
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+            imgUrl: { '@id': 'schema:image', '@type': '@id' },
+          }],
+          id: './heroine',
+          '@type': 'LayeredImage',
+          imgUrl: 'assets/demo-bg/ki_1_05.png',
+          '@reverse': {
+            stylingTo: [{
+              '@context': {
+                StyleAction: { '@id': 'ren:StyleAction' },
+                styleList: { '@id': 'ren:styleList' },
+                matchMedia: { '@id': 'ren:matchMedia' },
+                color: 'http://rengular.js.org/schema/CssStyle#color',
+                position: 'http://rengular.js.org/schema/CssStyle#position',
+                target: 'http://rengular.js.org/schema/CssStyle#target',
+                width: 'http://rengular.js.org/schema/CssStyle#width',
+                height: 'http://rengular.js.org/schema/CssStyle#height',
+                '@vocab': 'http://rengular.js.org/schema/CssStyle#'
+              },
+              '@type': 'StyleAction',
+              matchMedia: 'ALL',
+              left: '10%',
+            }],
+          }
+        } as LayeredImageLd,
+      }, {
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+          }],
+          id: './textbox',
+          '@type': 'Textbox',
+          text: 'Thank you ~~ Happy RenGULAR',
+          '@reverse': {
+            stylingTo: [{ ...STYLES.bottomText, ...{ textAlign: 'center' } }],
+          }
+        } as TextboxLd,
+      }, {
+        '@type': 'ComponentAction',
+        object: {
+          '@context': ['http://rengular.js.org/context/common.jsonld', {
+            stylingTo: { '@id': 'schema:target' },
+            nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
+            prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
+            labels: 'OarsPocket/labels',
+          }],
+          id: './oarsPocket',
+          '@type': 'OarsPocket',
+          nextScene: '/renpi/simple-quest/scene/1',
+          prevScene: '/renpi/simple-quest/scene/2',
+          // labels: TRANSLATION.oarsPocket,
+          labels: JSON.stringify({ skip: 'Next' }),
+          '@reverse': {
+            stylingTo: [STYLES.oarsPocket],
+          }
+        } as OarsPocketLd,
+      }],
+    },
+    'http://rengular.js.org/schema/backgroundImage': 'assets/demo-bg/cg_ki_05.png',
+  } as SceneLd,
 ];
 
 @Injectable({ providedIn: 'root' })

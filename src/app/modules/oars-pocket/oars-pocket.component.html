@@ -1,12 +1,12 @@
 <mat-list [class.mat-action-list]="!horizontal">
   <button mat-button [class.mat-list-item]="!horizontal" [disabled]="!prevScene"
-    (click)="simulation.gekijoFromIRI(prevScene, 'prevScene')"> {{ i18n.back }}
+    (click)="simulation.sceneFromIRI(prevScene, 'prevScene')"> {{ i18n.back }}
   </button>
   <button mat-button [class.mat-list-item]="!horizontal"
-    (click)="simulation.gekijoFromIRI(historyScene, 'historyScene')">
+    (click)="simulation.sceneFromIRI(historyScene, 'historyScene')">
     {{ i18n.history }} </button>
   <button mat-button [class.mat-list-item]="!horizontal" [disabled]="!nextScene"
-    (click)="simulation.gekijoFromIRI(nextScene, 'nextScene')">
+    (click)="simulation.sceneFromIRI(nextScene, 'nextScene')">
     {{ i18n.skip }} </button>
   <!-- TODO: `Auto` Need new Feature Design on SimulationService -->
   <!-- <button mat-button [class.mat-list-item]="!horizontal"> Auto </button> -->
@@ -15,6 +15,6 @@
   <button mat-button [class.mat-list-item]="!horizontal"> Q.Save </button>
   <button mat-button [class.mat-list-item]="!horizontal"> Q.Load </button> -->
   <button mat-button [class.mat-list-item]="!horizontal" [disabled]="!prefsScene"
-    (click)="simulation.gekijoFromIRI(prefsScene, 'prefsScene')">
+    (click)="simulation.sceneFromIRI(prefsScene, 'prefsScene')">
     {{ i18n.prefs }} </button>
 </mat-list>

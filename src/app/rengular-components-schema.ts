@@ -4,70 +4,105 @@ import { SimpleNaviComponent } from './modules/simple-navi';
 import { SceneComponent } from './modules/scene';
 import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
-import { ChoiceMenuComponent } from './modules/choice-menu';
+import { ActionDef, ChoiceMenuComponent } from './modules/choice-menu';
 import { LayeredImageComponent } from './modules/layered-image';
 
-const REGULAR_REGISTRY: {
-  [componentAlias: string]: ComponentMeta,
+const RENGULAR_REGISTRY: {
+  [classIRI: string]: ComponentMeta<any>,
 } = {
-  simpleEntry: {
+  'http://rengular.js.org/schema/SimpleEntry': {
     component: SimpleEntryComponent,
+    isScene: true,
     inputs: {},
-    children: { simpleNavi: 'simpleNavi' },
-  },
-  simpleNavi: {
+    children: {
+      'http://rengular.js.org/schema/SimpleEntry/navi': 'simpleNavi',
+    },
+  } as ComponentMeta<SimpleEntryComponent>,
+  'http://rengular.js.org/schema/SimpleNavi': {
     component: SimpleNaviComponent,
     inputs: {
-      topGap: 'number',
-      absoluteInViewport: 'boolean',
-      i18n: 'map',
-      startScene: 'string',
+      'http://rengular.js.org/schema/SimpleNavi#topGap': 'topGap',
+      'http://rengular.js.org/schema/SimpleNavi#absoluteInViewport': 'absoluteInViewport',
+      'http://rengular.js.org/schema/SimpleNavi#startScene': 'startScene',
+      'http://rengular.js.org/schema/SimpleNavi#labels': (component, labels) => {
+        labels = JSON.parse(labels);
+        for (const label in labels) {
+          if (labels.hasOwnProperty(label)) {
+            const element = labels[label];
+            component.i18n[label] = labels[label];
+          }
+        }
+      },
     },
     children: {},
-  },
-  scene: {
+  } as ComponentMeta<SimpleNaviComponent>,
+  'http://rengular.js.org/schema/Scene': {
     component: SceneComponent,
+    isScene: true,
     inputs: {
-      appendToTop: 'array',
-      // program: 'array',
-      backgroundImageUrl: 'string',
+      'http://rengular.js.org/schema/backgroundImage': 'backgroundImageUrl',
     },
     children: {},
-  },
-  oarsPocket: {
+  } as ComponentMeta<SceneComponent>,
+  'http://rengular.js.org/schema/Gekijo': {
+    component: SceneComponent,
+    isScene: true,
+    inputs: {
+      // program: 'array',
+      'http://rengular.js.org/schema/backgroundImage': 'backgroundImageUrl',
+    },
+    children: {},
+  } as ComponentMeta<SceneComponent>,
+  'http://rengular.js.org/schema/OarsPocket': {
     component: OarsPocketComponent,
     inputs: {
       horizontal: 'boolean',
-      prevScene: 'string',
-      nextScene: 'string',
-      i18n: 'map',
+      'http://rengular.js.org/schema/nextScene': 'nextScene',
+      'http://rengular.js.org/schema/prevScene': 'prevScene',
+      'http://rengular.js.org/schema/historyScene': 'historyScene',
+      'http://rengular.js.org/schema/prefsScene': 'prefsScene',
+      'http://rengular.js.org/schema/horizontal': 'horizontal',
+      'http://schema.org/OarsPocket/labels': (component, label) => {
+        const labels = JSON.parse(label);
+        for (const key in labels) {
+          if (labels.hasOwnProperty(key)) {
+            component.i18n[key] = labels[key];
+          }
+        }
+      },
     },
     children: {},
-  },
-  textbox: {
+  } as ComponentMeta<OarsPocketComponent>,
+  'http://rengular.js.org/schema/Textbox': {
     component: TextboxComponent,
     inputs: {
-      text: 'string',
+      'http://schema.org/text': 'text',
     },
     children: {},
-  },
-  choiceMenu: {
+  } as ComponentMeta<TextboxComponent>,
+  'http://rengular.js.org/schema/ChoiceMenu': {
     component: ChoiceMenuComponent,
     inputs: {
-      choices: 'array',
+      'http://rengular.js.org/schema/ChoiceMenu/choices': (component, data) => {
+        component.choices = data.map(tuple => ({
+          name: tuple['http://schema.org/name'],
+          title: tuple['http://schema.org/text'],
+          jumpToScene: tuple['http://rengular.js.org/schema/nextScene']['@id'],
+        } as ActionDef));
+      },
     },
     children: {},
-  },
-  layeredImage: {
+  } as ComponentMeta<ChoiceMenuComponent>,
+  'http://rengular.js.org/schema/LayeredImage': {
     component: LayeredImageComponent,
     inputs: {
-      name: 'string',
-      imgUrl: 'string',
-      width: 'number',
-      height: 'number',
+      'http://schema.org/name': 'name',
+      'http://schema.org/width': 'width',
+      'http://schema.org/height': 'height',
+      'http://schema.org/image': 'imgUrl',
     },
     children: {},
-  },
+  } as ComponentMeta<LayeredImageComponent>,
 };
 
-export default REGULAR_REGISTRY;
+export default RENGULAR_REGISTRY;

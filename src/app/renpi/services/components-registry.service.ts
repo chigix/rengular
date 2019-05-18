@@ -1,19 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Type } from '@angular/core';
 
-export class UnknownComponent extends Error {
-  constructor(name: string) { super(`Component name [${name}] is not registered.`); }
+export type typeIRI = string;
+export type propertyIRI = string;
+export type propertyName = string;
+
+export class UnknownType extends Error {
+  constructor(name: string) { super(`Type [${name}] is not registered.`); }
 }
 
-export interface ComponentMeta {
-  component: Type<any>;
+export class UnknownComponent extends Error {
+  constructor(componentName: string) { super(`No Type registered for Component:${componentName}`); }
+}
+
+export interface ComponentMeta<T> {
+  component: Type<T>;
+  isScene?: boolean;
   inputs: {
-    [name: string]: string,
+    [propertyIRI: string]: propertyName | ((component: T, value: any) => void),
   };
   children: {
-    /** value as other registered component name reference */
-    [name: string]: string,
+    [propertyIRI: string]: propertyName,
   };
+}
+
+function setInto(value: any, arr: any[]) {
+  if (arr.indexOf(value) >= 0) {
+    return;
+  }
+  arr.push(value);
 }
 
 @Injectable({
@@ -22,23 +37,58 @@ export interface ComponentMeta {
 export class ComponentsRegistryService {
 
   private registry: {
-    [name: string]: ComponentMeta,
+    [name: string]: ComponentMeta<any>,
   } = {};
+
+  private readonly sceneTypes = [
+    'http://rengular.js.org/schema/Scene',
+    'http://rengular.js.org/schema/Gekijo'
+  ];
+
+
+  private readonly cssActionTypes = ['http://rengular.js.org/schema/StyleAction'];
 
   constructor() { }
 
-  getMeta(name: string) {
+  getMeta<T>(name: string): ComponentMeta<T> {
     const component = this.registry[name];
     if (!component) {
-      throw new UnknownComponent(name);
+      throw new UnknownType(name);
     }
     return component;
   }
 
-  register(mapping: {
-    [name: string]: ComponentMeta,
+  registerClass(mapping: {
+    [typeIRI: string]: ComponentMeta<any>,
   }) {
+    for (const typeIRI in mapping) {
+      if (mapping.hasOwnProperty(typeIRI)) {
+        if (mapping[typeIRI].isScene) {
+          setInto(typeIRI, this.sceneTypes);
+        }
+      }
+    }
     this.registry = { ...this.registry, ...mapping };
+  }
+
+  getSceneTypes() {
+    return this.sceneTypes;
+  }
+
+  getCssActionTypes() {
+    return this.cssActionTypes;
+  }
+
+  searchMetaByComponent(component: any, label: string) {
+    for (const typeIRI in this.registry) {
+      if (this.registry.hasOwnProperty(typeIRI)) {
+        const meta = this.registry[typeIRI];
+        if (component instanceof meta.component) {
+          return meta;
+        }
+      }
+    }
+    throw new UnknownComponent(label);
   }
 
 }

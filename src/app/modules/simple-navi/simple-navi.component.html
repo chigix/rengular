@@ -1,19 +1,19 @@
 <mat-nav-list [style.position]="absoluteInViewport ? 'absolute' : 'relative'"
   [style.top.px]="absoluteInViewport ? topGap : undefined"
   [style.margin-top.px]="absoluteInViewport ? undefined : topGap">
-  <a mat-list-item (click)="simulation.gekijoFromIRI(startScene, 'startScene')">
+  <a mat-list-item (click)="simulation.sceneFromIRI(startScene, 'startScene')">
     {{ i18n.start }} </a>
   <a mat-list-item *ngIf="loadScene"
-    (click)="simulation.gekijoFromIRI(loadScene, 'loadScene')">
+    (click)="simulation.sceneFromIRI(loadScene, 'loadScene')">
     {{ i18n.load }} </a>
   <a mat-list-item *ngIf="prefScene"
-    (click)="simulation.gekijoFromIRI(prefScene, 'loadScene')">
+    (click)="simulation.sceneFromIRI(prefScene, 'loadScene')">
     {{ i18n.pref }} </a>
   <a mat-list-item *ngIf="aboutScene"
-    (click)="simulation.gekijoFromIRI(aboutScene, 'aboutScene')">
+    (click)="simulation.sceneFromIRI(aboutScene, 'aboutScene')">
     {{ i18n.about }} </a>
   <a mat-list-item *ngIf="helpScene"
-    (click)="simulation.gekijoFromIRI(helpScene, 'helpScene')">
+    (click)="simulation.sceneFromIRI(helpScene, 'helpScene')">
     {{ i18n.help }} </a>
   <a mat-list-item (click)="simulation.leave()">
     {{ i18n.leave }} </a>
