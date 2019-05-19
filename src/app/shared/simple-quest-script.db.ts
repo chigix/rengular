@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import {
-  GekijoLd,
-  SceneLd,
-  SimulationContextLd,
-  CssLd,
+  GekijoLd, SceneLd, SimulationContextLd, CssLd,
 } from 'app/renpi/rdf-schema';
-import {
-  SimpleEntry,
-  SimpleNavi,
-} from 'app/renpi';
+import { SimpleEntry, SimpleNavi } from 'app/renpi';
 import { ChoiceMenuLd } from 'app/modules/choice-menu';
 import { LayeredImageLd } from 'app/modules/layered-image';
 import { OarsPocketLd } from 'app/modules/oars-pocket';
@@ -133,9 +127,7 @@ const scene = [
   // TODO: This scene could be merged into scene#2 as a gekijo program.
   {
     /** Choice Menu Sample */
-    '@context': ['https://rengular.js.org/context/common.jsonld', {
-      createComponent: { '@reverse': 'schema:target' }
-    }],
+    '@context': 'https://rengular.js.org/context/common.jsonld',
     id: '3',
     '@type': 'http://rengular.js.org/schema/Gekijo',
     createComponent: [{
