@@ -62,7 +62,7 @@ const RENGULAR_REGISTRY: {
       'http://rengular.js.org/schema/historyScene': 'historyScene',
       'http://rengular.js.org/schema/prefsScene': 'prefsScene',
       'http://rengular.js.org/schema/horizontal': 'horizontal',
-      'http://schema.org/OarsPocket#labels': (component, label) => {
+      'http://rengular.js.org/schema/OarsPocket#labels': (component, label) => {
         const labels = JSON.parse(label);
         for (const key in labels) {
           if (labels.hasOwnProperty(key)) {

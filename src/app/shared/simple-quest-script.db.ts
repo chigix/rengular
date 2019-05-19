@@ -126,7 +126,7 @@ const scene = [
             id: './oarsPocket',
             '@type': 'OarsPocket',
             nextScene: '/renpi/simple-quest/scene/3',
-            'OarsPocket#labels': JSON.stringify({ skip: 'Next' }),
+            'OarsPocket:#labels': JSON.stringify({ skip: 'Next' }),
             '@reverse': {
               stylingTo: [STYLES.oarsPocket],
             },
@@ -175,7 +175,7 @@ const scene = [
           '@type': 'OarsPocket',
           nextScene: '/renpi/simple-quest/scene/1',
           prevScene: '/renpi/simple-quest/scene/2',
-          'OarsPocket#labels': JSON.stringify({ skip: 'Next' }),
+          'OarsPocket:#labels': JSON.stringify({ skip: 'Next' }),
           '@reverse': {
             stylingTo: [STYLES.oarsPocket],
           },
@@ -229,7 +229,7 @@ const scene = [
           nextScene: '/renpi/simple-quest/scene/1',
           prevScene: '/renpi/simple-quest/scene/2',
           // labels: TRANSLATION.oarsPocket,
-          'OarsPocket#labels': JSON.stringify({ skip: 'Next' }),
+          'OarsPocket:#labels': JSON.stringify({ skip: 'Next' }),
           '@reverse': {
             stylingTo: [STYLES.oarsPocket],
           },
@@ -282,7 +282,7 @@ const scene = [
           nextScene: '/renpi/simple-quest/scene/1',
           prevScene: '/renpi/simple-quest/scene/2',
           // labels: TRANSLATION.oarsPocket,
-          'OarsPocket#labels': JSON.stringify({ skip: 'Next' }),
+          'OarsPocket:#labels': JSON.stringify({ skip: 'Next' }),
           '@reverse': {
             stylingTo: [STYLES.oarsPocket],
           }
