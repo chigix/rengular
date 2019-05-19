@@ -17,7 +17,7 @@ import { TextboxLd } from 'app/modules/textbox';
 
 interface SimpleEntryLd extends SimpleEntry {
   '@context': [
-    'http://rengular.js.org/context/simple-entry.jsonld',
+    'https://rengular.js.org/context/simple-entry.jsonld',
     {
       simpleNavi: 'http://rengular.js.org/schema/SimpleEntry/navi',
       ren: 'http://rengular.js.org/schema/',
@@ -130,7 +130,7 @@ const scene = [
   {
     id: '1',
     '@context': [
-      'http://rengular.js.org/context/simple-entry.jsonld',
+      'https://rengular.js.org/context/simple-entry.jsonld',
       {
         simpleNavi: 'http://rengular.js.org/schema/SimpleEntry/navi',
         ren: 'http://rengular.js.org/schema/',
