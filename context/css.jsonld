@@ -2,14 +2,15 @@
   "@context": {
     "type": "@type",
     "id": "@id",
+    "ren": "http://rengular.js.org/schema/",
     "StyleAction": { "@id": "ren:StyleAction" },
     "styleList": { "@id": "ren:styleList" },
     "matchMedia": { "@id": "ren:matchMedia" },
-    "color": "http://rengular.js.org/schema/CssStyle#color",
-    "position": "http://rengular.js.org/schema/CssStyle#position",
-    "target": "http://rengular.js.org/schema/CssStyle#target",
-    "width": "http://rengular.js.org/schema/CssStyle#width",
-    "height": "http://rengular.js.org/schema/CssStyle#height",
-    "@vocab": "http://rengular.js.org/schema/CssStyle#"
+    "color": "ren:CssStyle#color",
+    "position": "ren:CssStyle#position",
+    "target": "ren:CssStyle#target",
+    "width": "ren:CssStyle#width",
+    "height": "ren:CssStyle#height",
+    "@vocab": "ren:CssStyle#"
   }
 }

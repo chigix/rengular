@@ -5,6 +5,14 @@
     "SimpleEntry": "http://rengular.js.org/schema/SimpleEntry",
     "SimpleNavi": "http://rengular.js.org/schema/SimpleNavi",
     "styleList": "http://rengular.js.org/schema/styleList",
-    "navi": "http://rengular.js.org/schema/SimpleEntry/navi"
+    "navi": "http://rengular.js.org/schema/SimpleEntry/navi",
+    "topGap": "SimpleNavi:#topGap",
+    "absoluteInViewport": "SimpleNavi:#absoluteInViewport",
+    "startScene": "SimpleNavi:#startScene",
+    "loadScene": "SimpleNavi:#loadScene",
+    "prefScene": "SimpleNavi:#prefScene",
+    "aboutScene": "SimpleNavi:#aboutScene",
+    "helpScene": "SimpleNavi:#helpScene",
+    "labels": "SimpleNavi:#labels"
   }
 }
