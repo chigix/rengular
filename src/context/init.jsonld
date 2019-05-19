@@ -9,8 +9,8 @@
     "Context": {"@id": "http://rengular.js.org/schema/Context"},
     "name": "http://rengular.js.org/schema/contextName",
     "title": "http://rengular.js.org/schema/contextTitle",
-    "interfaceVersion": "https://schema.org/schemaVersion",
+    "interfaceVersion": "http://schema.org/schemaVersion",
     "entryScene": "http://rengular.js.org/schema/nextScene",
-    "version": "https://schema.org/version"
+    "version": "http://schema.org/version"
   }
 }
