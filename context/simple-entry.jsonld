@@ -3,6 +3,7 @@
     "type": "@type",
     "id": "@id",
     "ren": "http://rengular.js.org/schema/",
+    "schema": "http://schema.org/",
     "SimpleEntry": "http://rengular.js.org/schema/SimpleEntry",
     "SimpleNavi": "http://rengular.js.org/schema/SimpleNavi",
     "navi": "http://rengular.js.org/schema/SimpleEntry/navi",
