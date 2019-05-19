@@ -4,7 +4,7 @@ import { ActionDef } from './choice-menu.component';
 interface ChoiceMenuActionLd extends ActionDef { }
 
 export interface ChoiceMenuLd extends ComponentSchema {
-  '@context': ['http://rengular.js.org/context/common.jsonld', {
+  '@context': ['https://rengular.js.org/context/common.jsonld', {
     stylingTo: { '@id': 'schema:target' },
     choices: 'http://rengular.js.org/schema/ChoiceMenu/choices',
     title: 'schema:text',

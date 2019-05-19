@@ -1,7 +1,7 @@
 import { ComponentSchema, json } from 'app/renpi/rdf-schema';
 
 export interface OarsPocketLd extends ComponentSchema {
-  '@context': ['http://rengular.js.org/context/common.jsonld', {
+  '@context': ['https://rengular.js.org/context/common.jsonld', {
     stylingTo: { '@id': 'schema:target' },
     nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
     prevScene: { '@id': 'ren:prevScene', '@type': '@id' },

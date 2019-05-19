@@ -117,7 +117,7 @@ const STYLES = {
 };
 
 const context: SimulationContextLd[] = [{
-  '@context': 'http://rengular.js.org/context/init.jsonld',
+  '@context': 'https://rengular.js.org/context/init.jsonld',
   id: '1',
   name: 'simple-quest',
   title: 'RenGULAR DEMO Script: Simple Quest',
@@ -176,7 +176,7 @@ const scene = [
   } as SimpleEntryLd,
   {
     id: '2',
-    '@context': ['http://rengular.js.org/context/common.jsonld', {
+    '@context': ['https://rengular.js.org/context/common.jsonld', {
       stylingTo: { '@id': 'schema:target' },
     }],
     '@type': 'http://rengular.js.org/schema/Scene',
@@ -185,7 +185,7 @@ const scene = [
         {
           '@type': 'ComponentAction',
           object: {
-            '@context': ['http://rengular.js.org/context/common.jsonld', {
+            '@context': ['https://rengular.js.org/context/common.jsonld', {
               stylingTo: { '@id': 'schema:target' },
             }],
             id: './textbox',
@@ -198,7 +198,7 @@ const scene = [
         }, {
           '@type': 'ComponentAction',
           object: {
-            '@context': ['http://rengular.js.org/context/common.jsonld', {
+            '@context': ['https://rengular.js.org/context/common.jsonld', {
               stylingTo: { '@id': 'schema:target' },
               nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
               prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
@@ -220,7 +220,7 @@ const scene = [
   // TODO: This scene could be merged into scene#2 as a gekijo program.
   {
     /** Choice Menu Sample */
-    '@context': ['http://rengular.js.org/context/common.jsonld', {
+    '@context': ['https://rengular.js.org/context/common.jsonld', {
       stylingTo: { '@id': 'schema:target' },
     }],
     id: '3',
@@ -229,7 +229,7 @@ const scene = [
       createComponent: [{
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
             choices: 'http://rengular.js.org/schema/ChoiceMenu/choices',
             title: 'schema:text',
@@ -247,7 +247,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
           }],
           id: './textbox',
@@ -260,7 +260,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
             nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
             prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
@@ -282,7 +282,7 @@ const scene = [
   } as GekijoLd,
   {
     /** Happy End */
-    '@context': ['http://rengular.js.org/context/common.jsonld', {
+    '@context': ['https://rengular.js.org/context/common.jsonld', {
       stylingTo: { '@id': 'schema:target' },
     }],
     id: '4',
@@ -291,7 +291,7 @@ const scene = [
       'schema:target': [{
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
             imgUrl: { '@id': 'schema:image', '@type': '@id' },
           }],
@@ -320,7 +320,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
           }],
           id: './textbox',
@@ -333,7 +333,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
             nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
             prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
@@ -355,7 +355,7 @@ const scene = [
   } as SceneLd,
   {
     /** Bad End */
-    '@context': ['http://rengular.js.org/context/common.jsonld', {
+    '@context': ['https://rengular.js.org/context/common.jsonld', {
       stylingTo: { '@id': 'schema:target' },
     }],
     id: '5',
@@ -364,7 +364,7 @@ const scene = [
       'schema:target': [{
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
             imgUrl: { '@id': 'schema:image', '@type': '@id' },
           }],
@@ -393,7 +393,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
           }],
           id: './textbox',
@@ -406,7 +406,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['http://rengular.js.org/context/common.jsonld', {
+          '@context': ['https://rengular.js.org/context/common.jsonld', {
             stylingTo: { '@id': 'schema:target' },
             nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
             prevScene: { '@id': 'ren:prevScene', '@type': '@id' },

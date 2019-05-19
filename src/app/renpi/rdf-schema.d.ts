@@ -4,7 +4,7 @@ import { GekijoDirective } from './directives';
 export type json = string;
 
 export type SimulationContextLd = SimulationContext
-  & { '@context': 'http://rengular.js.org/context/init.jsonld' };
+  & { '@context': 'https://rengular.js.org/context/init.jsonld' };
 
 export type CssLd = {
   '@context': {
@@ -23,7 +23,7 @@ export type CssLd = {
 };
 
 export interface ComponentSchema {
-  '@context': ['http://rengular.js.org/context/common.jsonld', {
+  '@context': ['https://rengular.js.org/context/common.jsonld', {
     stylingTo: { '@id': 'schema:target' },
   }];
   /** The [IRI](https://www.w3.org/TR/json-ld/#dfn-iri) denoting this component */
@@ -53,7 +53,7 @@ export interface SceneLd extends SceneBase {
 }
 
 export type GekijoDirectiveLd = GekijoDirective & {
-  '@context': 'http://rengular.js.org/context/common.jsonld',
+  '@context': 'https://rengular.js.org/context/common.jsonld',
 };
 
 export interface GekijoLd extends SceneBase {
