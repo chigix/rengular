@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Subject, BehaviorSubject, Observable, of, EMPTY } from 'rxjs';
+import { concat, from, Subject, BehaviorSubject, Observable, of, EMPTY } from 'rxjs';
 import { filter, catchError, first } from 'rxjs/operators';
 
 import { ComponentDirective, SimulationContext } from 'app/renpi';
@@ -50,7 +50,8 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
   private leave$ = new BehaviorSubject<SimulationContext>(null);
 
   private currentScene: SceneContext;
-  private currentSceneDirective$ = new BehaviorSubject<ComponentDirective>(null);
+  private currentSceneDirective$ = new BehaviorSubject<ComponentDirective & { finished?: boolean }>(null);
+  private currentSceneDirectiveHistory: (ComponentDirective & { finished?: boolean })[] = [];
 
   constructor(
     private http: HttpClient,
@@ -78,7 +79,8 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
   }
 
   public observeDirectives() {
-    return this.currentSceneDirective$.pipe(filter(d => !!d));
+    return concat(from(this.currentSceneDirectiveHistory), this.currentSceneDirective$)
+      .pipe(filter(d => !!d), filter(d => !d.finished));
   }
 
   setOutlet(outlet: SimulationOutletComponent) {
@@ -146,6 +148,7 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
               throw new SceneIRINotAvailableError('currentScene');
             }
             this.currentSceneDirective$ = new BehaviorSubject<ComponentDirective>(null);
+            this.currentSceneDirectiveHistory = [];
             const sceneMeta = (Array.isArray(doc['@type']) ?
               doc['@type'] as string[] : [doc['@type'] as string])
               .map(type => this.componentRegistry.getMeta(type))[0];
@@ -194,13 +197,16 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
                   throw new UnknownType(objectDoc['@id']);
                 }
                 // TODO: dispatch directive to specific target IRI
-                this.currentSceneDirective$.next({
+                const directive: NewComponentDirective & { finished?: boolean } = {
                   '@type': 'http://rengular.js.org/schema/ComponentAction',
                   meta, componentId: objectDoc['@id'],
                   finish: () => {
+                    directive.finished = true;
                     resolve({ meta, iri: objectDoc['@id'], data: objectDoc });
                   },
-                } as NewComponentDirective);
+                };
+                this.currentSceneDirectiveHistory.push(directive);
+                this.currentSceneDirective$.next(directive);
               })).then(ctx => assignComponentProperty(
                 this.componentRegistry, ctx.meta,
                 this.currentScene.componentsIRI[ctx.iri], ctx.data))
