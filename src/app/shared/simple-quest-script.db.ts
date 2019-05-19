@@ -247,24 +247,6 @@ const scene = [
       'schema:target': [{
         '@type': 'ComponentAction',
         object: {
-          '@context': ['https://rengular.js.org/context/common.jsonld', {
-            imgUrl: { '@id': 'schema:image', '@type': '@id' },
-          }],
-          id: './heroine',
-          '@type': 'LayeredImage',
-          imgUrl: 'assets/demo-bg/ki_1_05.png',
-          '@reverse': {
-            stylingTo: [{
-              '@context': 'https://rengular.js.org/context/css.jsonld',
-              '@type': 'StyleAction',
-              matchMedia: 'ALL',
-              left: '10%',
-            }],
-          }
-        } as LayeredImageLd,
-      }, {
-        '@type': 'ComponentAction',
-        object: {
           '@context': 'https://rengular.js.org/context/common.jsonld',
           id: './textbox',
           '@type': 'Textbox',
