@@ -20,21 +20,16 @@ export interface ComponentSchema {
   /** The ComponentDef Type this node representing */
   '@type': string;
   backgroundImage?: string;
-  '@reverse': {
-    /* TODO: rename to createComponent */
-    'schema:target'?: {
-      '@type': 'ComponentAction',
-      /** The component id would be used as the property in Scene */
-      object: ComponentSchema,
-    }[],
-    /* TODO: rename to stylingTo */
-    stylingTo?: CssLd[],
-  };
+  stylingTo?: CssLd[],
 }
 
 interface SceneBase extends ComponentSchema {
   /** The [IRI](https://www.w3.org/TR/json-ld/#dfn-iri) denoting this scene */
   id: string;
+  createComponent?: {
+    '@type': 'ComponentAction',
+    object: ComponentSchema,
+  }[];
 }
 
 export interface SceneLd extends SceneBase {
