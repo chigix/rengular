@@ -11,6 +11,6 @@
     "target": "ren:CssStyle#target",
     "width": "ren:CssStyle#width",
     "height": "ren:CssStyle#height",
-    "@vocab": "http://rengular.js.org/schema/CssStyle#",
+    "@vocab": "http://rengular.js.org/schema/CssStyle#"
   }
 }
