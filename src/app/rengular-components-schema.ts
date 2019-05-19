@@ -62,7 +62,7 @@ const RENGULAR_REGISTRY: {
       'http://rengular.js.org/schema/historyScene': 'historyScene',
       'http://rengular.js.org/schema/prefsScene': 'prefsScene',
       'http://rengular.js.org/schema/horizontal': 'horizontal',
-      'http://schema.org/OarsPocket/labels': (component, label) => {
+      'http://schema.org/OarsPocket#labels': (component, label) => {
         const labels = JSON.parse(label);
         for (const key in labels) {
           if (labels.hasOwnProperty(key)) {
@@ -83,10 +83,10 @@ const RENGULAR_REGISTRY: {
   'http://rengular.js.org/schema/ChoiceMenu': {
     component: ChoiceMenuComponent,
     inputs: {
-      'http://rengular.js.org/schema/ChoiceMenu/choices': (component, data) => {
+      'http://rengular.js.org/schema/ChoiceMenu#choices': (component, data) => {
         component.choices = data.map(tuple => ({
           name: tuple['http://schema.org/name'],
-          title: tuple['http://schema.org/text'],
+          title: tuple['http://schema.org/title'],
           jumpToScene: tuple['http://rengular.js.org/schema/nextScene']['@id'],
         } as ActionDef));
       },

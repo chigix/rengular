@@ -16,27 +16,11 @@ import { OarsPocketLd } from 'app/modules/oars-pocket';
 import { TextboxLd } from 'app/modules/textbox';
 
 interface SimpleEntryLd extends SimpleEntry {
-  '@context': [
-    'https://rengular.js.org/context/simple-entry.jsonld',
-    {
-      simpleNavi: 'http://rengular.js.org/schema/SimpleEntry/navi',
-      ren: 'http://rengular.js.org/schema/',
-    }
-  ];
+  '@context': 'https://rengular.js.org/context/simple-entry.jsonld';
   '@type': 'http://rengular.js.org/schema/SimpleEntry';
   simpleNavi: SimpleNavi & {
     '@type': 'http://rengular.js.org/schema/SimpleNavi';
-    '@context': {
-      Navi: 'http://rengular.js.org/schema/SimpleNavi',
-      topGap: 'Navi:#topGap',
-      absoluteInViewport?: 'Navi:#absoluteInViewport',
-      startScene: 'Navi:#startScene',
-      loadScene: 'Navi:#loadScene',
-      prefScene: 'Navi:#prefScene',
-      aboutScene: 'Navi:#aboutScene',
-      helpScene: 'Navi:#helpScene',
-      labels: 'Navi:#labels',
-    };
+    '@context': 'https://rengular.js.org/context/simple-navi.jsonld';
   };
 }
 
@@ -62,34 +46,14 @@ const TRANSLATION = {
 
 const STYLES = {
   test: {
-    '@context': {
-      StyleAction: { '@id': 'ren:StyleAction' },
-      styleList: { '@id': 'ren:styleList' },
-      matchMedia: { '@id': 'ren:matchMedia' },
-      color: 'http://rengular.js.org/schema/CssStyle#color',
-      position: 'http://rengular.js.org/schema/CssStyle#position',
-      target: 'http://rengular.js.org/schema/CssStyle#target',
-      width: 'http://rengular.js.org/schema/CssStyle#width',
-      height: 'http://rengular.js.org/schema/CssStyle#height',
-      '@vocab': 'http://rengular.js.org/schema/CssStyle#'
-    },
+    '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
     'background-image': 'url(assets/demo-bg/quest-entry.png)',
     'background-position': 'bottom',
   } as CssLd,
   oarsPocket: {
-    '@context': {
-      StyleAction: { '@id': 'ren:StyleAction' },
-      styleList: { '@id': 'ren:styleList' },
-      matchMedia: { '@id': 'ren:matchMedia' },
-      color: 'http://rengular.js.org/schema/CssStyle#color',
-      position: 'http://rengular.js.org/schema/CssStyle#position',
-      target: 'http://rengular.js.org/schema/CssStyle#target',
-      width: 'http://rengular.js.org/schema/CssStyle#width',
-      height: 'http://rengular.js.org/schema/CssStyle#height',
-      '@vocab': 'http://rengular.js.org/schema/CssStyle#'
-    },
+    '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
     width: '330px',
@@ -99,17 +63,7 @@ const STYLES = {
     color: 'cornsilk',
   } as CssLd,
   bottomText: {
-    '@context': {
-      StyleAction: { '@id': 'ren:StyleAction' },
-      styleList: { '@id': 'ren:styleList' },
-      matchMedia: { '@id': 'ren:matchMedia' },
-      color: 'http://rengular.js.org/schema/CssStyle#color',
-      position: 'http://rengular.js.org/schema/CssStyle#position',
-      target: 'http://rengular.js.org/schema/CssStyle#target',
-      width: 'http://rengular.js.org/schema/CssStyle#width',
-      height: 'http://rengular.js.org/schema/CssStyle#height',
-      '@vocab': 'http://rengular.js.org/schema/CssStyle#'
-    },
+    '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
     marginTop: '507px',
@@ -129,26 +83,10 @@ const context: SimulationContextLd[] = [{
 const scene = [
   {
     id: '1',
-    '@context': [
-      'https://rengular.js.org/context/simple-entry.jsonld',
-      {
-        simpleNavi: 'http://rengular.js.org/schema/SimpleEntry/navi',
-        ren: 'http://rengular.js.org/schema/',
-      },
-    ],
+    '@context': 'https://rengular.js.org/context/simple-entry.jsonld',
     '@type': 'http://rengular.js.org/schema/SimpleEntry',
     simpleNavi: {
-      '@context': {
-        Navi: 'http://rengular.js.org/schema/SimpleNavi',
-        topGap: 'Navi:#topGap',
-        absoluteInViewport: 'Navi:#absoluteInViewport',
-        startScene: 'Navi:#startScene',
-        loadScene: 'Navi:#loadScene',
-        prefScene: 'Navi:#prefScene',
-        aboutScene: 'Navi:#aboutScene',
-        helpScene: 'Navi:#helpScene',
-        labels: 'Navi:#labels',
-      },
+      '@context': 'https://rengular.js.org/context/simple-navi.jsonld',
       '@type': 'http://rengular.js.org/schema/SimpleNavi',
       topGap: 50,
       startScene: '/renpi/simple-quest/scene/2',
@@ -156,17 +94,7 @@ const scene = [
     },
     '@reverse': {
       'schema:target': [{
-        '@context': {
-          StyleAction: { '@id': 'ren:StyleAction' },
-          styleList: { '@id': 'ren:styleList' },
-          matchMedia: { '@id': 'ren:matchMedia' },
-          color: 'http://rengular.js.org/schema/CssStyle#color',
-          position: 'http://rengular.js.org/schema/CssStyle#position',
-          target: 'http://rengular.js.org/schema/CssStyle#target',
-          width: 'http://rengular.js.org/schema/CssStyle#width',
-          height: 'http://rengular.js.org/schema/CssStyle#height',
-          '@vocab': 'http://rengular.js.org/schema/CssStyle#'
-        },
+        '@context': 'https://rengular.js.org/context/css.jsonld',
         '@type': 'StyleAction',
         matchMedia: 'ALL',
         'background-image': 'url(assets/demo-bg/quest-entry.png)',
@@ -176,18 +104,14 @@ const scene = [
   } as SimpleEntryLd,
   {
     id: '2',
-    '@context': ['https://rengular.js.org/context/common.jsonld', {
-      stylingTo: { '@id': 'schema:target' },
-    }],
+    '@context': 'https://rengular.js.org/context/common.jsonld',
     '@type': 'http://rengular.js.org/schema/Scene',
     '@reverse': {
       'schema:target': [
         {
           '@type': 'ComponentAction',
           object: {
-            '@context': ['https://rengular.js.org/context/common.jsonld', {
-              stylingTo: { '@id': 'schema:target' },
-            }],
+            '@context': 'https://rengular.js.org/context/common.jsonld',
             id: './textbox',
             '@type': 'Textbox',
             text: 'The Goal is to save the princess against the Devil.',
@@ -198,16 +122,11 @@ const scene = [
         }, {
           '@type': 'ComponentAction',
           object: {
-            '@context': ['https://rengular.js.org/context/common.jsonld', {
-              stylingTo: { '@id': 'schema:target' },
-              nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
-              prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
-              labels: 'OarsPocket/labels',
-            }],
+            '@context': 'https://rengular.js.org/context/common.jsonld',
             id: './oarsPocket',
             '@type': 'OarsPocket',
             nextScene: '/renpi/simple-quest/scene/3',
-            labels: JSON.stringify({ skip: 'Next' }),
+            'OarsPocket#labels': JSON.stringify({ skip: 'Next' }),
             '@reverse': {
               stylingTo: [STYLES.oarsPocket],
             },
@@ -220,9 +139,7 @@ const scene = [
   // TODO: This scene could be merged into scene#2 as a gekijo program.
   {
     /** Choice Menu Sample */
-    '@context': ['https://rengular.js.org/context/common.jsonld', {
-      stylingTo: { '@id': 'schema:target' },
-    }],
+    '@context': 'https://rengular.js.org/context/common.jsonld',
     id: '3',
     '@type': 'http://rengular.js.org/schema/Gekijo',
     '@reverse': {
@@ -230,16 +147,11 @@ const scene = [
         '@type': 'ComponentAction',
         object: {
           '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
-            choices: 'http://rengular.js.org/schema/ChoiceMenu/choices',
-            title: 'schema:text',
-            jumpToScene: {
-              '@id': 'http://rengular.js.org/schema/nextScene', '@type': '@id',
-            },
+            jumpToScene: { '@id': 'http://rengular.js.org/schema/nextScene', '@type': '@id' }
           }],
           id: './choices',
           '@type': 'ChoiceMenu',
-          choices: [
+          'ChoiceMenu:#choices': [
             { title: 'Left Door', jumpToScene: '/renpi/simple-quest/scene/4' },
             { title: 'Right Door', jumpToScene: '/renpi/simple-quest/scene/5' },
           ],
@@ -247,9 +159,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
-          }],
+          '@context': 'https://rengular.js.org/context/common.jsonld',
           id: './textbox',
           '@type': 'Textbox',
           text: 'Which door should I enter?',
@@ -260,31 +170,24 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
-            nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
-            prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
-            labels: 'OarsPocket/labels',
-          }],
+          '@context': 'https://rengular.js.org/context/common.jsonld',
           id: './oarsPocket',
           '@type': 'OarsPocket',
           nextScene: '/renpi/simple-quest/scene/1',
           prevScene: '/renpi/simple-quest/scene/2',
-          labels: JSON.stringify({ skip: 'Next' }),
+          'OarsPocket#labels': JSON.stringify({ skip: 'Next' }),
           '@reverse': {
             stylingTo: [STYLES.oarsPocket],
           },
         } as OarsPocketLd,
       }],
     },
-    'http://rengular.js.org/schema/backgroundImage': 'assets/demo-bg/bg_h08.jpg',
+    backgroundImage: 'assets/demo-bg/bg_h08.jpg',
     program: [],
   } as GekijoLd,
   {
     /** Happy End */
-    '@context': ['https://rengular.js.org/context/common.jsonld', {
-      stylingTo: { '@id': 'schema:target' },
-    }],
+    '@context': 'https://rengular.js.org/context/common.jsonld',
     id: '4',
     '@type': 'http://rengular.js.org/schema/Scene',
     '@reverse': {
@@ -292,7 +195,6 @@ const scene = [
         '@type': 'ComponentAction',
         object: {
           '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
             imgUrl: { '@id': 'schema:image', '@type': '@id' },
           }],
           id: './heroine',
@@ -300,17 +202,7 @@ const scene = [
           imgUrl: 'assets/demo-bg/ki_1_05.png',
           '@reverse': {
             stylingTo: [{
-              '@context': {
-                StyleAction: { '@id': 'ren:StyleAction' },
-                styleList: { '@id': 'ren:styleList' },
-                matchMedia: { '@id': 'ren:matchMedia' },
-                color: 'http://rengular.js.org/schema/CssStyle#color',
-                position: 'http://rengular.js.org/schema/CssStyle#position',
-                target: 'http://rengular.js.org/schema/CssStyle#target',
-                width: 'http://rengular.js.org/schema/CssStyle#width',
-                height: 'http://rengular.js.org/schema/CssStyle#height',
-                '@vocab': 'http://rengular.js.org/schema/CssStyle#'
-              },
+              '@context': 'https://rengular.js.org/context/css.jsonld',
               '@type': 'StyleAction',
               matchMedia: 'ALL',
               left: '10%',
@@ -320,9 +212,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
-          }],
+          '@context': 'https://rengular.js.org/context/common.jsonld',
           id: './textbox',
           '@type': 'Textbox',
           text: 'Thank you ~~ Happy RenGULAR',
@@ -333,31 +223,24 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
-            nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
-            prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
-            labels: 'OarsPocket/labels',
-          }],
+          '@context': 'https://rengular.js.org/context/common.jsonld',
           id: './oarsPocket',
           '@type': 'OarsPocket',
           nextScene: '/renpi/simple-quest/scene/1',
           prevScene: '/renpi/simple-quest/scene/2',
           // labels: TRANSLATION.oarsPocket,
-          labels: JSON.stringify({ skip: 'Next' }),
+          'OarsPocket#labels': JSON.stringify({ skip: 'Next' }),
           '@reverse': {
             stylingTo: [STYLES.oarsPocket],
           },
         } as OarsPocketLd,
       }],
     },
-    'http://rengular.js.org/schema/backgroundImage': 'assets/demo-bg/bg_h06.jpg',
+    backgroundImage: 'assets/demo-bg/bg_h06.jpg',
   } as SceneLd,
   {
     /** Bad End */
-    '@context': ['https://rengular.js.org/context/common.jsonld', {
-      stylingTo: { '@id': 'schema:target' },
-    }],
+    '@context': 'https://rengular.js.org/context/common.jsonld',
     id: '5',
     '@type': 'http://rengular.js.org/schema/Scene',
     '@reverse': {
@@ -365,7 +248,6 @@ const scene = [
         '@type': 'ComponentAction',
         object: {
           '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
             imgUrl: { '@id': 'schema:image', '@type': '@id' },
           }],
           id: './heroine',
@@ -373,17 +255,7 @@ const scene = [
           imgUrl: 'assets/demo-bg/ki_1_05.png',
           '@reverse': {
             stylingTo: [{
-              '@context': {
-                StyleAction: { '@id': 'ren:StyleAction' },
-                styleList: { '@id': 'ren:styleList' },
-                matchMedia: { '@id': 'ren:matchMedia' },
-                color: 'http://rengular.js.org/schema/CssStyle#color',
-                position: 'http://rengular.js.org/schema/CssStyle#position',
-                target: 'http://rengular.js.org/schema/CssStyle#target',
-                width: 'http://rengular.js.org/schema/CssStyle#width',
-                height: 'http://rengular.js.org/schema/CssStyle#height',
-                '@vocab': 'http://rengular.js.org/schema/CssStyle#'
-              },
+              '@context': 'https://rengular.js.org/context/css.jsonld',
               '@type': 'StyleAction',
               matchMedia: 'ALL',
               left: '10%',
@@ -393,9 +265,7 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
-          }],
+          '@context': 'https://rengular.js.org/context/common.jsonld',
           id: './textbox',
           '@type': 'Textbox',
           text: 'Thank you ~~ Happy RenGULAR',
@@ -406,25 +276,20 @@ const scene = [
       }, {
         '@type': 'ComponentAction',
         object: {
-          '@context': ['https://rengular.js.org/context/common.jsonld', {
-            stylingTo: { '@id': 'schema:target' },
-            nextScene: { '@id': 'ren:nextScene', '@type': '@id' },
-            prevScene: { '@id': 'ren:prevScene', '@type': '@id' },
-            labels: 'OarsPocket/labels',
-          }],
+          '@context': 'https://rengular.js.org/context/common.jsonld',
           id: './oarsPocket',
           '@type': 'OarsPocket',
           nextScene: '/renpi/simple-quest/scene/1',
           prevScene: '/renpi/simple-quest/scene/2',
           // labels: TRANSLATION.oarsPocket,
-          labels: JSON.stringify({ skip: 'Next' }),
+          'OarsPocket#labels': JSON.stringify({ skip: 'Next' }),
           '@reverse': {
             stylingTo: [STYLES.oarsPocket],
           }
         } as OarsPocketLd,
       }],
     },
-    'http://rengular.js.org/schema/backgroundImage': 'assets/demo-bg/cg_ki_05.png',
+    backgroundImage: 'assets/demo-bg/cg_ki_05.png',
   } as SceneLd,
 ];
 

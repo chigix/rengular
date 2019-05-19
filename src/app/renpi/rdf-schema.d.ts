@@ -7,30 +7,19 @@ export type SimulationContextLd = SimulationContext
   & { '@context': 'https://rengular.js.org/context/init.jsonld' };
 
 export type CssLd = {
-  '@context': {
-    StyleAction: { '@id': 'ren:StyleAction' },
-    styleList: { '@id': 'ren:styleList' },
-    matchMedia: { '@id': 'ren:matchMedia' },
-    color: 'http://rengular.js.org/schema/CssStyle#color',
-    position: 'http://rengular.js.org/schema/CssStyle#position',
-    target: 'http://rengular.js.org/schema/CssStyle#target',
-    width: 'http://rengular.js.org/schema/CssStyle#width',
-    height: 'http://rengular.js.org/schema/CssStyle#height',
-    '@vocab': 'http://rengular.js.org/schema/CssStyle#'
-  },
+  '@context': 'https://rengular.js.org/context/css.jsonld',
   '@type': 'StyleAction',
   [property: string]: any,
 };
 
 export interface ComponentSchema {
-  '@context': ['https://rengular.js.org/context/common.jsonld', {
-    stylingTo: { '@id': 'schema:target' },
-  }];
+  '@context': 'https://rengular.js.org/context/common.jsonld'
+  | ['https://rengular.js.org/context/common.jsonld', {}];
   /** The [IRI](https://www.w3.org/TR/json-ld/#dfn-iri) denoting this component */
   id: string;
   /** The ComponentDef Type this node representing */
   '@type': string;
-  'http://rengular.js.org/schema/backgroundImage'?: string;
+  backgroundImage?: string;
   '@reverse': {
     /* TODO: rename to createComponent */
     'schema:target'?: {

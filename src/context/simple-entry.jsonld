@@ -6,7 +6,7 @@
     "schema": "http://schema.org/",
     "SimpleEntry": "http://rengular.js.org/schema/SimpleEntry",
     "SimpleNavi": "http://rengular.js.org/schema/SimpleNavi",
-    "navi": "http://rengular.js.org/schema/SimpleEntry/navi",
+    "simpleNavi": "http://rengular.js.org/schema/SimpleEntry/navi",
     "StyleAction": {"@id": "ren:StyleAction"},
     "styleList": {"@id": "ren:styleList"},
     "matchMedia": {"@id": "ren:matchMedia"},

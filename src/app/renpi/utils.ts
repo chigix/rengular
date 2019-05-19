@@ -9,20 +9,25 @@ export class UnknownChildren extends Error {
 export function assignComponentProperty(
   registry: ComponentsRegistryService,
   meta: ComponentMeta<any>, component: any, data: any) {
-  for (const key in meta.inputs) {
-    if (meta.inputs.hasOwnProperty(key)) {
+  for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+      const value = data[key];
+      if (key.startsWith('@') || meta.children.hasOwnProperty(key)) {
+        continue;
+      }
+      if (!meta.inputs.hasOwnProperty(key)) {
+        console.warn(`Unrecognized Property: ${key}`);
+        continue;
+      }
       const propertyAccessor = meta.inputs[key];
-      if (!propertyAccessor || !data[key]) {
-        continue;
-      }
       if (isFunction(propertyAccessor)) {
-        propertyAccessor(component, data[key]);
+        propertyAccessor(component, value);
         continue;
       }
-      if (data[key]['@id'] && !data[key]['@type']) {
-        component[propertyAccessor] = data[key]['@id'];
+      if (value['@id'] && !value['@type']) {
+        component[propertyAccessor] = value['@id'];
       } else {
-        component[propertyAccessor] = data[key];
+        component[propertyAccessor] = value;
       }
     }
   }
