@@ -46,7 +46,7 @@
     "Scene": {"@id": "ren:Scene"},
     "Gekijo": {"@id": "ren:Gekijo"},
     "program": {"@id": "ren:program"},
-    "staticSessions": {"@id": "ren:staticSessionConfig"},
+    "staticSession": {"@id": "ren:staticSessionConfig"},
     "GekijoDirective": {"@id": "ren:GekijoAction"},
     "3DModel": {"@id": "schema:3DModel"},
     "AMRadioChannel": {"@id": "schema:AMRadioChannel"},

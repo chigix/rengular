@@ -6,6 +6,7 @@
 @import 'app/modules/choice-menu/choice-menu.component.scss-theme.scss';
 @import 'app/modules/scene/scene.component.scss-theme.scss';
 @import 'app/modules/simple-entry/simple-entry.component.scss-theme.scss';
+@import 'app/modules/oars-pocket/oars-pocket.component.scss-theme.scss';
 
 .homepage {
   // Include the common styles for Angular Material. We include this here so that you only
@@ -59,6 +60,7 @@
   @include choice-menu-component-theme($rengular-theme);
   @include scene-component-theme($rengular-theme);
   @include simple-entry-component-theme($rengular-theme);
+  @include oars-pocket-component-theme($rengular-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */

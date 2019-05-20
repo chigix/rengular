@@ -1,4 +1,4 @@
-<mat-list [class.mat-action-list]="!horizontal">
+<mat-list class="ren-oars-pocket" [class.mat-action-list]="!horizontal">
   <button mat-button [class.mat-list-item]="!horizontal" [disabled]="!prevScene"
     (click)="simulation.sceneFromIRI(prevScene, 'prevScene')"> {{ i18n.back }}
   </button>
@@ -8,8 +8,9 @@
   <button mat-button [class.mat-list-item]="!horizontal" [disabled]="!nextScene"
     (click)="simulation.sceneFromIRI(nextScene, 'nextScene')">
     {{ i18n.skip }} </button>
-  <!-- TODO: `Auto` Need new Feature Design on SimulationService -->
-  <!-- <button mat-button [class.mat-list-item]="!horizontal"> Auto </button> -->
+  <button mat-button [class.mat-list-item]="!horizontal"
+    [class.disabled]="!autoContext.active" (click)="toggleAutoAcitve()">
+    Auto </button>
   <!-- TODO: Save Feature Design on SimulationService -->
   <!-- <button mat-button [class.mat-list-item]="!horizontal"> Save </button>
   <button mat-button [class.mat-list-item]="!horizontal"> Q.Save </button>

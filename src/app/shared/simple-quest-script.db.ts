@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import {
-  GekijoLd, SceneLd, SimulationContextLd, CssLd,
+  GekijoLd, SceneLd, SimulationContextLd, CssLd, StaticSessionConfigLd,
 } from 'app/renpi/rdf-schema';
 import { SimpleEntry, SimpleNavi } from 'app/renpi';
 import { ChoiceMenuLd } from 'app/modules/choice-menu';
@@ -16,6 +16,7 @@ interface SimpleEntryLd extends SimpleEntry {
     '@type': 'http://rengular.js.org/schema/SimpleNavi';
     '@context': 'https://rengular.js.org/context/simple-navi.jsonld';
   };
+  staticSession: StaticSessionConfigLd[];
 }
 
 const TRANSLATION = {
@@ -50,7 +51,7 @@ const STYLES = {
     '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
-    width: '330px',
+    width: '390px',
     position: 'absolute',
     marginTop: '-45px',
     right: '0',
@@ -86,6 +87,12 @@ const scene = [
       startScene: '/renpi/simple-quest/scene/2',
       labels: JSON.stringify(TRANSLATION.simpleEntry),
     },
+    staticSession: [{
+      '@type': 'http://rengular.js.org/schema/StaticSessionAction',
+      name: 'auto-delay',
+      value: '4000',
+      targetType: 'http://rengular.js.org/schema/OarsPocket',
+    }],
     '@reverse': {
       'schema:target': [{
         '@context': 'https://rengular.js.org/context/css.jsonld',

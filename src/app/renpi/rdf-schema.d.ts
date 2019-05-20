@@ -13,9 +13,6 @@ export type CssLd = {
 };
 
 export type StaticSessionConfigLd = {
-  '@context': {
-    'targetType': { '@id': 'ren:targetType', '@type': '@id' },
-  },
   '@type': 'http://rengular.js.org/schema/StaticSessionAction',
   name: string,
   value: any,
