@@ -11,6 +11,10 @@
     "styleList": {"@id": "ren:styleList"},
     "matchMedia": {"@id": "ren:matchMedia"},
     "stylingTo": { "@id": "schema:target"},
-    "css": {"@id": "ren:CssStyle#"}
+    "css": {"@id": "ren:CssStyle#"},
+    "StaticSessionAction": {"@id": "ren:StaticSessionAction"},
+    "targetType": {"@id": "ren:targetType", "@type": "@id"},
+    "staticSession": {"@id": "ren:staticSessionConfig"},
+    "@vocab": "http://schema.org/"
   }
 }
