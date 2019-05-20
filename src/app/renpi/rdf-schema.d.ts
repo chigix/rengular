@@ -12,6 +12,16 @@ export type CssLd = {
   [property: string]: any,
 };
 
+export type StaticSessionConfigLd = {
+  '@context': {
+    'targetType': { '@id': 'ren:targetType', '@type': '@id' },
+  },
+  '@type': 'http://rengular.js.org/schema/StaticSessionAction',
+  name: string,
+  value: any,
+  targetType?: string,
+};
+
 export interface ComponentSchema {
   '@context': 'https://rengular.js.org/context/common.jsonld'
   | ['https://rengular.js.org/context/common.jsonld', {}];
@@ -19,8 +29,7 @@ export interface ComponentSchema {
   id: string;
   /** The ComponentDef Type this node representing */
   '@type': string;
-  backgroundImage?: string;
-  stylingTo?: CssLd[],
+  stylingTo?: CssLd[];
 }
 
 interface SceneBase extends ComponentSchema {
@@ -30,6 +39,8 @@ interface SceneBase extends ComponentSchema {
     '@type': 'ComponentAction',
     object: ComponentSchema,
   }[];
+  backgroundImage?: string;
+  staticSession?: object[];
 }
 
 export interface SceneLd extends SceneBase {

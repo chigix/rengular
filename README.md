@@ -93,11 +93,15 @@ and possible practice on:
 * [Compaction, Expansion, Flattening and Framing](https://w3c.github.io/json-ld-syntax/#forms-of-json-ld)
   designed in json-ld makes RenPI both developer and machine understanding friendly.
 
-### Component Level Styling
+## RenGULAR Components v.s ANGULAR Components
 
-`http://rengular.js.org/schema/StyleAction` is provided for directly applying
-CSS styles onto target component element. However this styling feature is exactly
-restricted to very few components which are created and managed by RenGULAR only.
+Generally, ANGULAR Components, especially the Amazing Material Components set, are
+directly able to be installed and used in the whole RenGULAR environment, even
+through RenPI operations.
+
+However mostly RenGULAR Components are unable to be directly used onto other
+ANGULAR environments due to the dependency of RenGULAR Kernel Services and some
+common basic components, RenGULAR Primitive Components.
 
 ## RenGULAR Primitive Components (RenCom)
 
@@ -111,6 +115,18 @@ restricted to very few components which are created and managed by RenGULAR only
 
 * SimpleEntry
 * SimpleNavi
+
+## RenGULAR Context Actions
+
+* `http://rengular.js.org/schema/StyleAction`: Component Level Styling
+
+  provided for directly applying CSS styles onto target component element.
+  However this styling feature is exactly restricted to very few components
+  which are created and managed by RenGULAR only.
+
+* `http://rengular.js.org/schema/ComponentAction`: Load New Component
+* `http://rengular.js.org/schema/StaticSessionAction`: Store Information shared
+  by same type.
 
 ## TODO
 

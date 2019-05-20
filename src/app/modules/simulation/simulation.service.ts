@@ -13,7 +13,7 @@ import {
   ComponentMeta, ComponentsRegistryService,
   SimulationServiceBase,
 } from 'app/renpi/services';
-import { NewComponentDirective } from 'app/renpi/directives';
+import { NewComponentDirective, StaticSessionDirective } from 'app/renpi/directives';
 import { assignComponentProperty, assignComponentStyle, componentGraphScan } from 'app/renpi/utils';
 import { SimulationOutletComponent } from './simulation-outlet.component';
 
@@ -124,6 +124,9 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
     if (!this.outlet) {
       throw new Error('There is still no activated outlet for loading new scene component.');
     }
+    const oldDirectiveObservable = this.currentSceneDirective$;
+    this.currentSceneDirective$ = new BehaviorSubject<ComponentDirective>(null);
+    this.currentSceneDirectiveHistory = [];
     (function ensureObservable() {
       if (sceneLd instanceof Observable) {
         return sceneLd;
@@ -137,18 +140,39 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
       .then(doc => jsonld.flatten(doc, {}))
       .then(
         flattened => jsonld.frame(flattened, {
+          '@context': { '@version': 1.1 }, '@type': 'http://rengular.js.org/schema/StaticSessionAction',
+        }).then(doc => jsonld.expand(doc))
+          .then(expandedActions => Promise.all(
+            (Array.isArray(expandedActions) ? expandedActions : [expandedActions])
+              .map(
+                expandedAction => jsonld.compact(expandedAction, {
+                  targetType: { '@type': '@id', '@id': 'http://rengular.js.org/schema/targetType' },
+                  property: 'http://schema.org/name',
+                  value: 'http://schema.org/value',
+                }).then(
+                  (action: { targetType?: string, property: string, value: any, }) => {
+                    if (!action.targetType) {
+                      console.warn('http://rengular.js.org/schema/targetType is invalid: ' + action);
+                      return;
+                    }
+                    this.castDirective(new StaticSessionDirective(
+                      action.targetType, action.property, action.value));
+                  }))
+          )).then(_ => flattened))
+      .then(
+        flattened => jsonld.frame(flattened, {
           '@context': { '@version': 1.1 }, '@type': this.componentRegistry.getSceneTypes(),
         }).then(doc => jsonld.compact(doc, {}))
           /* Init current Scene with scene component instantiation */
           .then((doc: {
             '@id'?: string,
-            '@type': string[] | string, // `@type`is certain, because this doc is framed by type searching
+            '@type': string[] | string, // `@type`is certain, because this expandedActions is framed by type searching
           }) => {
             if (!doc['@id']) {
+              this.currentSceneDirective$ = oldDirectiveObservable;
               throw new SceneIRINotAvailableError('currentScene');
             }
-            this.currentSceneDirective$ = new BehaviorSubject<ComponentDirective>(null);
-            this.currentSceneDirectiveHistory = [];
+            oldDirectiveObservable.complete();
             const sceneMeta = (Array.isArray(doc['@type']) ?
               doc['@type'] as string[] : [doc['@type'] as string])
               .map(type => this.componentRegistry.getMeta(type))[0];
@@ -205,8 +229,7 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
                     resolve({ meta, iri: objectDoc['@id'], data: objectDoc });
                   },
                 };
-                this.currentSceneDirectiveHistory.push(directive);
-                this.currentSceneDirective$.next(directive);
+                this.castDirective(directive);
               })).then(ctx => assignComponentProperty(
                 this.componentRegistry, ctx.meta,
                 this.currentScene.componentsIRI[ctx.iri], ctx.data))
@@ -279,6 +302,16 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
     }
     this.currentScene.componentRefsIRI[id] = component;
     this.currentScene.componentsIRI[id] = component.instance;
+  }
+
+  private castDirective(directive: ComponentDirective & { finished?: boolean }) {
+    if (!directive.finish) {
+      directive.finish = () => {
+        directive.finished = true;
+      };
+    }
+    this.currentSceneDirectiveHistory.push(directive);
+    this.currentSceneDirective$.next(directive);
   }
 
 }

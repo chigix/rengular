@@ -12,7 +12,9 @@ export function assignComponentProperty(
   for (const key in data) {
     if (data.hasOwnProperty(key)) {
       const value = data[key];
-      if (key.startsWith('@') || meta.children.hasOwnProperty(key)) {
+      if (key.startsWith('@')
+        || ['http://rengular.js.org/schema/staticSessionConfig'].indexOf(key) > -1
+        || meta.children.hasOwnProperty(key)) {
         continue;
       }
       if (!meta.inputs.hasOwnProperty(key)) {

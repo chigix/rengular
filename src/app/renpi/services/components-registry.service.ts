@@ -14,6 +14,7 @@ export class UnknownComponent extends Error {
 }
 
 export interface ComponentMeta<T> {
+  typeIRI?: string;
   component: Type<T>;
   isScene?: boolean;
   inputs: {
@@ -63,6 +64,7 @@ export class ComponentsRegistryService {
   }) {
     for (const typeIRI in mapping) {
       if (mapping.hasOwnProperty(typeIRI)) {
+        mapping[typeIRI].typeIRI = typeIRI;
         if (mapping[typeIRI].isScene) {
           setInto(typeIRI, this.sceneTypes);
         }

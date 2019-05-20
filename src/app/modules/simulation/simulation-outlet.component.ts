@@ -5,7 +5,7 @@ import {
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { filter } from 'rxjs/operators';
 import {
-  ComponentsRegistryService, SimulationServiceBase
+  SimulationServiceBase, StaticSessionService,
 } from 'app/renpi/services';
 
 import { SimulationService } from './simulation.service';
@@ -15,7 +15,8 @@ import { Resolution } from './resolutions';
 @Component({
   selector: 'ren-simulation',
   templateUrl: './simulation-outlet.component.html',
-  styleUrls: ['./simulation-outlet.component.scss']
+  styleUrls: ['./simulation-outlet.component.scss'],
+  providers: [StaticSessionService],
 })
 export class SimulationOutletComponent implements OnInit {
 
@@ -27,9 +28,8 @@ export class SimulationOutletComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private componentRegistry: ComponentsRegistryService,
     private simulationService: SimulationServiceBase,
+    public staticSessionService: StaticSessionService,
   ) {
     this.breakpointObserver.observe([
       Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium])
