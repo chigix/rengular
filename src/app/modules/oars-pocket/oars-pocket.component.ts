@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 import {
   SimulationServiceBase as SimulationService,
@@ -10,13 +10,14 @@ import {
   templateUrl: './oars-pocket.component.html',
   styleUrls: ['./oars-pocket.component.scss']
 })
-export class OarsPocketComponent implements OnInit {
+export class OarsPocketComponent implements OnInit, OnDestroy {
 
   @Input() prevScene?: string;
   @Input() nextScene?: string;
   @Input() historyScene?: string;
   @Input() prefsScene?: string;
   @Input() horizontal = true;
+  private sceneFlag = false;
 
   @Input() i18n = {
     back: 'Back',
@@ -44,6 +45,10 @@ export class OarsPocketComponent implements OnInit {
     this.tryStartAuto();
   }
 
+  ngOnDestroy(): void {
+    this.sceneFlag = true;
+  }
+
   toggleAutoAcitve() {
     this.autoContext.active = !this.autoContext.active;
     this.staticSession.config(this, 'auto', this.autoContext.active);
@@ -58,7 +63,8 @@ export class OarsPocketComponent implements OnInit {
       setTimeout(() => {
         if (this.autoContext.active
           && currentTimeOutId === this.autoContext.timeOutId
-          && this.nextScene) {
+          && this.nextScene
+          && !this.sceneFlag) {
           this.simulation.sceneFromIRI(this.nextScene, 'nextScene');
         }
       }, seconds);
