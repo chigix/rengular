@@ -8,6 +8,10 @@ variety of smart devices upon the modern Web Components standards embracing the
 
 ## Design Overview
 
+Coping with Angular (´；ω；｀)ﾌﾞﾜｯ
+
+[![rengular-design](./src/assets/rengular-summary.png)](https://angulardoc.org/repos/detail/github/183480328/angular/%252Fsrc/summary)
+
 ### RenGULAR Simulation Framework
 
 ![rengular-design](./src/assets/simulation.png)
