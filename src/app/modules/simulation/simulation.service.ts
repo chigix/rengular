@@ -26,7 +26,7 @@ export interface SceneContext {
 
 class SceneIRINotAvailableError extends Error {
   constructor(name?: string) {
-    super(`SceneIRI is not available: [${name}]`);
+    super(`SceneIRI is not found: [${name}], '@id' is needed for a Scene Definition.`);
   }
 }
 
