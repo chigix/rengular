@@ -89,6 +89,9 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
     }
     this.outlet = outlet;
     this.initObserve.pipe(first()).subscribe(c => {
+      if (!c.entryScene) {
+        throw new Error('http://rengular.js.org/schema/entryScene is not provided.');
+      }
       this.sceneFromIRI(c.entryScene, 'initialGekijo');
     });
   }
