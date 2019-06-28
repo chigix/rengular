@@ -1,5 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -9,8 +10,8 @@ import { AppComponent } from './app.component';
 import { SimpleQuestScriptDB } from './shared/simple-quest-script.db';
 
 import {
-  MatToolbarModule,
-  MatButtonModule,
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatProgressBarModule, MatToolbarModule,
 } from '@angular/material';
 
 import { PagesRoutingModule } from './pages/pages-routing.module';
@@ -41,12 +42,13 @@ import { LayeredImageModule, LayeredImageComponent } from './modules/layered-ima
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     // Routing
     PagesRoutingModule,
     AppRoutingModule,
     // Material
-    MatToolbarModule,
-    MatButtonModule,
+    MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule,
+    MatProgressBarModule, MatToolbarModule,
     // RenGULAR Components
     SimulationModule,
     SceneModule,

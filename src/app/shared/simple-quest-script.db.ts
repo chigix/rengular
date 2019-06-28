@@ -67,7 +67,7 @@ const STYLES = {
 
 const context: SimulationContextLd[] = [{
   '@context': 'https://rengular.js.org/context/init.jsonld',
-  id: '1',
+  id: 'simple-quest',
   name: 'simple-quest',
   title: 'RenGULAR DEMO Script: Simple Quest',
   version: '1.0.0',

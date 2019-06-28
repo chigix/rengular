@@ -1,8 +1,23 @@
-.demo-entry {
-  text-align: center;
-  .ui-primary-button {
-    width: 300px;
-    height: 80px;
-    vertical-align: middle;
+header {
+  padding-top: 4em;
+  padding-bottom: 2em;
+}
+
+.ui-launch-bar {
+  margin: auto;
+  width: 50vw;
+  max-width: 100%;
+  margin-bottom: 2em;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .properties-table {
+    width: 100%;
+
+    td {
+      border: 1px solid rgba(0, 0, 0, .03);
+    }
   }
 }

@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+@mixin theming-helpers($theme) {
+  $primary: map-get($theme, 'primary');
+
+  .ren-background-primary {
+    background-color: mat-color($primary);
+  }
+
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+}

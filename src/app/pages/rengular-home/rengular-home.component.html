@@ -1,12 +1,74 @@
+<header>
+  <p [class.mat-display-1]="!(isHandset$ | async)"
+    [class.mat-headline]="isHandset$ | async">
+    Render interactive storytelling
+  </p>
+  <p>
+    The modern visual novel-style game engine leveraging the power of web and Angular</p>
+</header>
+<mat-card class="ui-launch-bar">
+  <mat-card-content>
+    <mat-progress-bar mode="indeterminate" *ngIf="isInRequest" color="accent">
+    </mat-progress-bar>
+    <mat-form-field appearance="fill" color="primary">
+      <mat-label> MY RenPI ENTRY </mat-label>
+      <input [ngModel]="entryIRI" (ngModelChange)="entryChanged($event)" matInput
+        placeholder="http(s)://">
+      <mat-icon matSuffix color="warn" *ngIf="isRequestError"> info </mat-icon>
+      <mat-icon matSuffix *ngIf="isRequestValid"> keyboard_return </mat-icon>
+      <mat-hint>The init endpoint providing <code>name</code>, <code>title</code> and
+        <code>entryScene</code>
+      </mat-hint>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-content>
+    <table class="properties-table" *ngIf="snapshot.entryConfig && isRequestValid">
+      <tbody>
+        <tr class="properties-row">
+          <td class="properties-name-cell"> Name </td>
+          <td class="property-description">
+            <p> snapshot.entryConfig.contextName </p>
+          </td>
+        </tr>
+        <tr class="properties-row">
+          <td class="properties-name-cell"> Title </td>
+          <td class="property-description">
+            <p> snapshot.entryConfig.contextTitle </p>
+          </td>
+        </tr>
+        <tr class="properties-row">
+          <td class="properties-name-cell"> Version </td>
+          <td class="property-description">
+            <p> snapshot.entryConfig.version </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+  <mat-toolbar color="warn" *ngIf="errorMsg"> {{ errorMsg }} </mat-toolbar>
+  <mat-card-actions style="display: flex">
+    <span class="fill-remaining-space"></span>
+    <button *ngIf="isRequestValid" mat-raised-button color="primary"
+      [routerLink]="['/game']" [queryParams]="{init: entryIRI}"> Launch Simulation
+    </button>
+    <button *ngIf="!entryIRI" mat-raised-button color="primary"
+      (click)="entryChanged(registeredIRI[0])">
+      Cherry-Pick
+    </button>
+  </mat-card-actions>
+</mat-card>
+
 <section class="mat-typography">
-  <p>The modern visual novel-style game engine leveraging the power of web and
-    Angular in ultimate stories -- open source and free to render interactive
+  <h2> Open Source </h2>
+  <p> RenGULAR is open source and free to render interactive
     storytelling on browsers acrossing variety of smart devices upon the modern
     Web Components standards embracing the New Generation of Internet and Web.</p>
-</section>
-
-<section class="demo-entry mat-typography">
-  <button mat-raised-button color="primary" class="ui-primary-button" routerLink="/game">
-    DEMO SIMULATION
-  </button>
+  <h2> Effort in Semantic Web </h2>
+  <p> RenGULAR employs RDF and recent web standards such as Web Components, mainly
+    benefited from <a href="https://angular.io/">Angular</a> , making the story described
+    in semantic web practicable and friendly for both creators contributing and machine
+    understanding, embracing
+    <a href="https://ieeexplore.ieee.org/document/4620089?arnumber=4620089">the New
+      Generation of Internet and Web</a>
+    .</p>
 </section>
