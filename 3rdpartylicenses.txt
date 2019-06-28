@@ -91,9 +91,15 @@ THE SOFTWARE.
 
 @angular/material/core
 
+@angular/material/form-field
+
 @angular/material/grid-list
 
+@angular/material/icon
+
 @angular/material/list
+
+@angular/material/progress-bar
 
 @angular/material/toolbar
 
