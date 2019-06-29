@@ -15,6 +15,7 @@
     "ScreenAspect": "http://rengular.js.org/schema/ScreenAspect",
     "width": "http://rengular.js.org/schema/screenAspectWidth",
     "height": "http://rengular.js.org/schema/screenAspectHeight",
-    "fontSize": "http://rengular.js.org/schema/screenAspectFontSize"
+    "fontSize": "http://rengular.js.org/schema/screenAspectFontSize",
+    "version": "http://schema.org/version"
   }
 }
