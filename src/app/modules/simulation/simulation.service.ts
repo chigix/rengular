@@ -113,6 +113,7 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
           screenAspect: 'ren:screenAspect',
           width: 'ren:screenAspectWidth',
           height: 'ren:screenAspectHeight',
+          fontSize: 'ren:screenAspectFontSize',
           version: 'http://schema.org/version',
           interfaceVersion: 'http://schema.org/schemaVersion',
         });

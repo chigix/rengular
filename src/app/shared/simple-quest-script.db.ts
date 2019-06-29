@@ -40,20 +40,13 @@ const TRANSLATION = {
 };
 
 const STYLES = {
-  test: {
-    '@context': 'https://rengular.js.org/context/css.jsonld',
-    '@type': 'StyleAction',
-    matchMedia: 'ALL',
-    'background-image': 'url(assets/demo-bg/quest-entry.png)',
-    'background-position': 'bottom',
-  } as CssLd,
   oarsPocket: {
     '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
     width: '390px',
     position: 'absolute',
-    marginTop: '-45px',
+    marginTop: '-3em',
     right: '0',
     color: 'cornsilk',
   } as CssLd,
@@ -61,7 +54,7 @@ const STYLES = {
     '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
-    marginTop: '507px',
+    marginTop: '30em',
   } as CssLd,
 };
 
@@ -73,7 +66,7 @@ const context: SimulationContextLd[] = [{
   version: '1.0.0',
   interfaceVersion: 1,
   entryScene: '/renpi/simple-quest/scene/1',
-  screenAspect: { width: 1066, height: 600 },
+  screenAspect: { width: 1066, height: 600, fontSize: 16 },
 }];
 
 const scene = [
@@ -84,7 +77,7 @@ const scene = [
     simpleNavi: {
       '@context': 'https://rengular.js.org/context/simple-navi.jsonld',
       '@type': 'http://rengular.js.org/schema/SimpleNavi',
-      topGap: 50,
+      topGap: 2,
       startScene: '/renpi/simple-quest/scene/2',
       labels: JSON.stringify(TRANSLATION.simpleEntry),
     },
@@ -189,9 +182,11 @@ const scene = [
         id: './heroine',
         '@type': 'LayeredImage',
         imgUrl: 'assets/demo-bg/ki_1_05.png',
+        height: 34,
         stylingTo: [{
           '@context': 'https://rengular.js.org/context/css.jsonld',
           '@type': 'StyleAction',
+          bottom: '0px',
           matchMedia: 'ALL',
           left: '10%',
         }],

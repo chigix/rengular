@@ -17,7 +17,7 @@ export class SimulationOutletComponent implements OnInit {
 
   @ViewChild(SceneHostDirective) sceneHost: SceneHostDirective;
 
-  resolution = { width: '100vw', height: '100vh' };
+  resolution = { width: '100vw', height: '100vh', fontSize: null as number };
 
   constructor(
     private simulationService: SimulationServiceBase,
@@ -40,18 +40,34 @@ export class SimulationOutletComponent implements OnInit {
         if (event.currentTarget.innerHeight > event.currentTarget.innerWidth) {
           this.resolution.height = '100vw';
           this.resolution.width = '100vw';
+          if (aspect.fontSize > 10) {
+            this.resolution.fontSize =
+              aspect.fontSize * event.currentTarget.innerWidth / aspect.width;
+          }
         } else {
           this.resolution.height = '100vh';
           this.resolution.width = '100vh';
+          if (aspect.fontSize > 10) {
+            this.resolution.fontSize =
+              aspect.fontSize * event.currentTarget.innerHeight / aspect.height;
+          }
         }
       } else if ((aspect.height - aspect.width) *
         (event.currentTarget.innerHeight - event.currentTarget.innerWidth) < 0) {
         if (event.currentTarget.innerHeight > event.currentTarget.innerWidth) {
           this.resolution.height = (aspect.height * event.currentTarget.innerWidth / aspect.width) + 'px';
           this.resolution.width = '100vw';
+          if (aspect.fontSize > 10) {
+            this.resolution.fontSize =
+              aspect.fontSize * event.currentTarget.innerWidth / aspect.width;
+          }
         } else {
           this.resolution.height = '100vh';
           this.resolution.width = (aspect.width * event.currentTarget.innerHeight / aspect.height) + 'px';
+          if (aspect.fontSize > 10) {
+            this.resolution.fontSize =
+              aspect.fontSize * event.currentTarget.innerHeight / aspect.height;
+          }
         }
       } else {
         const widthRate = event.currentTarget.innerWidth / aspect.width;
@@ -59,9 +75,11 @@ export class SimulationOutletComponent implements OnInit {
         if (widthRate < heightRate) {
           this.resolution.height = (aspect.height * widthRate) + 'px';
           this.resolution.width = '100vw';
+          if (aspect.fontSize > 10) { this.resolution.fontSize = aspect.fontSize * widthRate; }
         } else {
           this.resolution.height = '100vh';
           this.resolution.width = (aspect.width * heightRate) + 'px';
+          if (aspect.fontSize > 10) { this.resolution.fontSize = aspect.fontSize * heightRate; }
         }
       }
     });

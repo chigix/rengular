@@ -1,6 +1,6 @@
 <mat-nav-list [style.position]="absoluteInViewport ? 'absolute' : 'relative'"
-  [style.top.px]="absoluteInViewport ? topGap : undefined"
-  [style.margin-top.px]="absoluteInViewport ? undefined : topGap">
+  [style.top.em]="absoluteInViewport ? topGap : undefined"
+  [style.margin-top.em]="absoluteInViewport ? undefined : topGap">
   <a mat-list-item (click)="simulation.sceneFromIRI(startScene, 'startScene')">
     {{ i18n.start }} </a>
   <a mat-list-item *ngIf="loadScene"

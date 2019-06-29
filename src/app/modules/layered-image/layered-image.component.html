@@ -1,3 +1,4 @@
 <div *ngIf="!!imgUrl">
-  <img [attr.src]="imgUrl" [attr.alt]="name">
+  <img [attr.src]="imgUrl" [attr.alt]="name" [style.height.em]="height || 'auto'"
+    [style.width.em]="width || 'auto'">
 </div>
