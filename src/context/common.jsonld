@@ -25,6 +25,7 @@
     "xsd1": "http://www.w3.org/2001/XMLSchema#",
     "ren": "http://rengular.js.org/schema/",
     "Context": {"@id": "ren:Context"},
+    "screenAspect": "http://rengular.js.org/schema/screenAspect",
     "Component": {"@id": "ren:Component"},
     "ComponentAction": {"@id": "ren:ComponentAction"},
     "StaticSessionAction": {"@id": "ren:StaticSessionAction"},

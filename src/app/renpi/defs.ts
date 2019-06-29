@@ -10,6 +10,11 @@ export interface SimulationContext {
   /** Determining existed api version compliance */
   interfaceVersion: number;
   entryScene: string;
+  screenAspect: {
+    width: number,
+    height: number,
+    fontSize?: number,
+  };
 }
 
 export interface ComponentDirective {

@@ -73,6 +73,7 @@ const context: SimulationContextLd[] = [{
   version: '1.0.0',
   interfaceVersion: 1,
   entryScene: '/renpi/simple-quest/scene/1',
+  screenAspect: { width: 1066, height: 600 },
 }];
 
 const scene = [

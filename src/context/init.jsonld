@@ -11,6 +11,10 @@
     "title": "http://rengular.js.org/schema/contextTitle",
     "interfaceVersion": "http://schema.org/schemaVersion",
     "entryScene": "http://rengular.js.org/schema/nextScene",
-    "version": "http://schema.org/version"
+    "screenAspect": "http://rengular.js.org/schema/screenAspect",
+    "ScreenAspect": "http://rengular.js.org/schema/ScreenAspect",
+    "width": "http://rengular.js.org/schema/screenAspectWidth",
+    "height": "http://rengular.js.org/schema/screenAspectHeight",
+    "fontSize": "http://rengular.js.org/schema/screenAspectFontSize"
   }
 }
