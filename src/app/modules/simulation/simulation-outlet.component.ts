@@ -1,16 +1,11 @@
-import {
-  Component, OnInit, ComponentFactoryResolver,
-  ViewChild, ComponentRef,
-} from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { filter } from 'rxjs/operators';
+import { Component, OnInit, ViewChild, ComponentRef, HostListener } from '@angular/core';
+import { first, filter, map } from 'rxjs/operators';
 import {
   SimulationServiceBase, StaticSessionService,
 } from 'app/renpi/services';
 
 import { SimulationService } from './simulation.service';
 import { SceneHostDirective } from './scene-host.directive';
-import { Resolution } from './resolutions';
 
 @Component({
   selector: 'ren-simulation',
@@ -22,31 +17,54 @@ export class SimulationOutletComponent implements OnInit {
 
   @ViewChild(SceneHostDirective) sceneHost: SceneHostDirective;
 
-  private currentScene: ComponentRef<any>;
-
-  resolution: Resolution;
+  resolution = { width: '100vw', height: '100vh' };
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
     private simulationService: SimulationServiceBase,
     public staticSessionService: StaticSessionService,
-  ) {
-    this.breakpointObserver.observe([
-      Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium])
-      .pipe(filter(result => result.matches))
-      .subscribe(result => this.resolution = { width: 1066, height: 600 });
-    this.breakpointObserver.observe(Breakpoints.Large)
-      .pipe(filter(result => result.matches))
-      .subscribe(result => this.resolution = { width: 1280, height: 720 });
-    this.breakpointObserver.observe(Breakpoints.XLarge)
-      .pipe(filter(result => result.matches))
-      .subscribe(result => this.resolution = { width: 1920, height: 1080 });
-  }
+  ) { }
 
   ngOnInit() {
     if (this.simulationService instanceof SimulationService) {
       this.simulationService.setOutlet(this);
     }
+    this.onResize({ currentTarget: window });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: { currentTarget: { innerWidth: number, innerHeight: number } }) {
+    this.simulationService.initObserve.pipe(
+      first(), map(init => init.screenAspect), filter(aspect => !!aspect)
+    ).subscribe(aspect => {
+      if (aspect.height === aspect.width) {
+        if (event.currentTarget.innerHeight > event.currentTarget.innerWidth) {
+          this.resolution.height = '100vw';
+          this.resolution.width = '100vw';
+        } else {
+          this.resolution.height = '100vh';
+          this.resolution.width = '100vh';
+        }
+      } else if ((aspect.height - aspect.width) *
+        (event.currentTarget.innerHeight - event.currentTarget.innerWidth) < 0) {
+        if (event.currentTarget.innerHeight > event.currentTarget.innerWidth) {
+          this.resolution.height = (aspect.height * event.currentTarget.innerWidth / aspect.width) + 'px';
+          this.resolution.width = '100vw';
+        } else {
+          this.resolution.height = '100vh';
+          this.resolution.width = (aspect.width * event.currentTarget.innerHeight / aspect.height) + 'px';
+        }
+      } else {
+        const widthRate = event.currentTarget.innerWidth / aspect.width;
+        const heightRate = event.currentTarget.innerHeight / aspect.height;
+        if (widthRate < heightRate) {
+          this.resolution.height = (aspect.height * widthRate) + 'px';
+          this.resolution.width = '100vw';
+        } else {
+          this.resolution.height = '100vh';
+          this.resolution.width = (aspect.width * heightRate) + 'px';
+        }
+      }
+    });
   }
 
 }

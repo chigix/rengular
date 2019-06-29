@@ -110,6 +110,9 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
           name: 'ren:contextName',
           title: 'ren:contextTitle',
           entryScene: 'ren:nextScene',
+          screenAspect: 'ren:screenAspect',
+          width: 'ren:screenAspectWidth',
+          height: 'ren:screenAspectHeight',
           version: 'http://schema.org/version',
           interfaceVersion: 'http://schema.org/schemaVersion',
         });
