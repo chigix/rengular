@@ -19,8 +19,7 @@ export class RengularHomeComponent implements OnInit {
   private inputSubject = new BehaviorSubject<string>(null);
   isInRequest = false;
   isRequestError = false;
-  isRequestValid = false;
-  entryIRI = '';
+  inputIRI = '';
   registeredIRI = ['simple-quest'];
   snapshot = {
     entryConfig: null as {
@@ -29,6 +28,7 @@ export class RengularHomeComponent implements OnInit {
       entryScene: string,
       version: string,
     },
+    entryIRI: null as string,
   };
 
   constructor(
@@ -37,57 +37,60 @@ export class RengularHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.inputSubject.pipe(
-      tap(_ => this.isRequestValid = false),
-      filter(str => !!str),
-      map(str => str.trim().length > 0 ? str.trim() : null),
-      filter(str => !!str),
+    const inputIRI$ = this.inputSubject.pipe(
+      tap(_ => this.snapshot.entryIRI = null),
+      tap(_ => this.errorMsg = null),
+      map(str => (str && str.trim().length > 0) ? str.trim() : null),
+    );
+    inputIRI$.pipe(filter(str => !str)).subscribe(_ => {
+      this.isRequestError = false;
+    });
+    inputIRI$.pipe(filter(str => !!str),
       tap(_ => this.isInRequest = true),
       map(str => {
         return ['http://', 'https://']
           .findIndex(scheme => str.indexOf(scheme) === 0) >= 0 ?
           str : `/renpi/maru-quest/context/${str}`;
       }),
-      tap(url => this.entryIRI = url),
       concatMap(url => this.http.get(url).pipe(
         catchError(err => {
           this.isRequestError = true;
-          this.isRequestValid = false;
           return of(null);
-        }))),
-    ).subscribe(async doc => {
-      if (!doc) { return; }
-      this.isInRequest = false;
-      this.isRequestError = false;
-      const docExpanded = await jsonld.flatten(doc, {});
-      if (docExpanded['@graph'] && docExpanded['@graph'][0]) {
-        const docFlatten = docExpanded['@graph'][0];
-        if (!docFlatten['http://rengular.js.org/schema/contextName']) {
-          this.errorMsg = 'contextName is not configured';
-        } else if (!docFlatten['http://rengular.js.org/schema/contextTitle']) {
-          this.errorMsg = 'contextTitle is not configured';
-        } else if (!docFlatten['http://rengular.js.org/schema/nextScene']) {
-          this.errorMsg = 'entryScene is not configured';
-        } else {
-          this.isRequestError = false;
-          this.isRequestValid = true;
-          this.snapshot.entryConfig = {
-            contextName: docFlatten['http://rengular.js.org/schema/contextName'],
-            contextTitle: docFlatten['http://rengular.js.org/schema/contextTitle'],
-            entryScene: docFlatten['http://rengular.js.org/schema/nextScene'],
-            version: docFlatten['http://schema.org/version'],
-          };
-        }
-      } else {
-        this.isRequestError = true;
-        this.isRequestValid = false;
-        this.errorMsg = 'Invalid JSONLD Document';
-      }
-    });
+        }),
+        map(async doc => {
+          if (!doc) { return null; }
+          const docExpanded = await jsonld.flatten(doc, {});
+          if (docExpanded['@graph'] && docExpanded['@graph'][0]) {
+            const docFlatten = docExpanded['@graph'][0];
+            if (!docFlatten['http://rengular.js.org/schema/contextName']) {
+              this.errorMsg = 'contextName is not configured';
+            } else if (!docFlatten['http://rengular.js.org/schema/contextTitle']) {
+              this.errorMsg = 'contextTitle is not configured';
+            } else if (!docFlatten['http://rengular.js.org/schema/nextScene']) {
+              this.errorMsg = 'entryScene is not configured';
+            } else {
+              this.snapshot.entryIRI = url;
+              this.isRequestError = false;
+              this.snapshot.entryConfig = {
+                contextName: docFlatten['http://rengular.js.org/schema/contextName'],
+                contextTitle: docFlatten['http://rengular.js.org/schema/contextTitle'],
+                entryScene: docFlatten['http://rengular.js.org/schema/nextScene'],
+                version: docFlatten['http://schema.org/version'],
+              };
+              return doc;
+            }
+          } else {
+            this.isRequestError = true;
+            this.errorMsg = 'Invalid JSONLD Document';
+          }
+          return null;
+        }),
+      )),
+    ).subscribe(_ => this.isInRequest = false);
   }
 
   entryChanged(value: string) {
-    this.entryIRI = value;
+    this.inputIRI = value;
     this.inputSubject.next(value);
   }
 
