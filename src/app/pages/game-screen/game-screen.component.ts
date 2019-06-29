@@ -30,11 +30,10 @@ export class GameScreenComponent implements OnInit {
     this.route.queryParamMap.pipe(
       map(params => params.get('init') || null)
     ).subscribe(initEntry =>
-      this.simulationService.initFromUrl(initEntry || '/renpi/maru-quest/context/1')
+      this.simulationService.initFromUrl(initEntry || '/renpi/maru-quest/context/simple-quest')
     );
     this.simulationService.leaveObserve.subscribe(
       e => this.router.navigate(['/']));
-    this.simulationService.initFromUrl('/renpi/maru-quest/context/1');
   }
 
 }
