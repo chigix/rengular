@@ -44,7 +44,7 @@ const STYLES = {
     '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
-    width: '390px',
+    width: '34em',
     position: 'absolute',
     marginTop: '-3em',
     right: '0',
