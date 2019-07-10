@@ -7,11 +7,16 @@ export interface ActionDef {
   jumpToScene: string;
 }
 
+export interface ActionOptDef {
+  gridCols: number;
+}
+
 @Component({
   selector: 'app-choice-menu',
   templateUrl: './choice-menu.component.html',
   styleUrls: ['./choice-menu.component.scss']
 })
+
 export class ChoiceMenuComponent implements OnInit {
 
   @Input() title?: string;

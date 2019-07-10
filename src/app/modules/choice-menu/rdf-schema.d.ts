@@ -1,7 +1,8 @@
 import { ComponentSchema, json } from 'app/renpi/rdf-schema';
-import { ActionDef } from './choice-menu.component';
+import { ActionDef, ActionOptDef } from './choice-menu.component';
 
 interface ChoiceMenuActionLd extends ActionDef { }
+interface ChoiceMenuActionOptLd extends ActionOptDef { }
 
 export interface ChoiceMenuLd extends ComponentSchema {
   '@context': ['https://rengular.js.org/context/common.jsonld', {
@@ -9,4 +10,5 @@ export interface ChoiceMenuLd extends ComponentSchema {
   }];
   '@type': 'ChoiceMenu';
   'ChoiceMenu:#choices': ChoiceMenuActionLd[];
+  'ChoiceMenu:#gridCols': ChoiceMenuActionOptLd[];
 }
