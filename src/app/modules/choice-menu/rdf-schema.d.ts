@@ -9,5 +9,5 @@ export interface ChoiceMenuLd extends ComponentSchema {
   }];
   '@type': 'ChoiceMenu';
   'ChoiceMenu:#choices': ChoiceMenuActionLd[];
-  'ChoiceMenu:#options': number
+  'ChoiceMenu:#gridCols': number
 }

@@ -12,7 +12,6 @@ export interface ActionDef {
   templateUrl: './choice-menu.component.html',
   styleUrls: ['./choice-menu.component.scss']
 })
-
 export class ChoiceMenuComponent implements OnInit {
 
   @Input() title?: string;
