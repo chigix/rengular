@@ -38,6 +38,7 @@
     "matchMedia": {"@id": "ren:matchMedia"},
     "css": {"@id": "ren:CssStyle#"},
     "backgroundImage": {"@id": "ren:backgroundImage", "@type": "@id"},
+    "gridCols" : {"@id":, "ren:gridCols, "@type": "@id},
     "nextScene": {"@id": "ren:nextScene", "@type": "@id"},
     "prevScene": {"@id": "ren:prevScene", "@type": "@id"},
     "ChoiceMenu": {"@id": "ren:ChoiceMenu"},

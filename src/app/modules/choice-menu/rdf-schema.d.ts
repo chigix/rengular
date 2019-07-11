@@ -10,5 +10,5 @@ export interface ChoiceMenuLd extends ComponentSchema {
   }];
   '@type': 'ChoiceMenu';
   'ChoiceMenu:#choices': ChoiceMenuActionLd[];
-  'ChoiceMenu:#gridCols': ChoiceMenuActionOptLd[];
+  'ChoiceMenu:#options': ChoiceMenuActionOptLd[];
 }
