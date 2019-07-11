@@ -13,10 +13,6 @@ export interface ActionDef {
   styleUrls: ['./choice-menu.component.scss']
 })
 
-export interface ActionOptDef {
-  gridCols: number;
-}
-
 export class ChoiceMenuComponent implements OnInit {
 
   @Input() title?: string;

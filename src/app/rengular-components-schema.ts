@@ -4,7 +4,7 @@ import { SimpleNaviComponent } from './modules/simple-navi';
 import { SceneComponent } from './modules/scene';
 import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
-import { ActionDef, ActionOptDef, ChoiceMenuComponent } from './modules/choice-menu';
+import { ActionDef, ChoiceMenuComponent } from './modules/choice-menu';
 import { LayeredImageComponent } from './modules/layered-image';
 
 const RENGULAR_REGISTRY: {
@@ -83,11 +83,7 @@ const RENGULAR_REGISTRY: {
   'http://rengular.js.org/schema/ChoiceMenu': {
     component: ChoiceMenuComponent,
     inputs: {
-      'http://rengular.js.org/schema/ChoiceMenu#options': (component, data) => {
-        component.choices = data.map(tuple => ({
-          gridCols: tuple['http://rengular.js.org/schema/gridCols']['@id'],
-        } as ActionOptDef));
-      },
+      'http://rengular.js.org/schema/ChoiceMenu#gridCols': 'gridCols',
       'http://rengular.js.org/schema/ChoiceMenu#choices': (component, data) => {
         component.choices = data.map(tuple => ({
           name: tuple['http://schema.org/name'],
