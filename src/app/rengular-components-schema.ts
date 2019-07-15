@@ -24,6 +24,10 @@ const RENGULAR_REGISTRY: {
       'http://rengular.js.org/schema/SimpleNavi#topGap': 'topGap',
       'http://rengular.js.org/schema/SimpleNavi#absoluteInViewport': 'absoluteInViewport',
       'http://rengular.js.org/schema/SimpleNavi#startScene': 'startScene',
+      'http://rengular.js.org/schema/SimpleNavi#loadScene': 'loadScene',
+      'http://rengular.js.org/schema/SimpleNavi#prefScene': 'prefScene',
+      'http://rengular.js.org/schema/SimpleNavi#aboutScene': 'aboutScene',
+      'http://rengular.js.org/schema/SimpleNavi#helpScene': 'helpScene',
       'http://rengular.js.org/schema/SimpleNavi#labels': (component, labels) => {
         labels = JSON.parse(labels);
         for (const label in labels) {
