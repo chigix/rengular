@@ -15,7 +15,7 @@ import { SceneHostDirective } from './scene-host.directive';
 })
 export class SimulationOutletComponent implements OnInit {
 
-  @ViewChild(SceneHostDirective) sceneHost: SceneHostDirective;
+  @ViewChild(SceneHostDirective, { static: true }) sceneHost: SceneHostDirective;
 
   resolution = { width: '100vw', height: '100vh', fontSize: null as number };
 

@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatListModule,
-  MatButtonModule,
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 import { OarsPocketComponent } from './oars-pocket.component';
 

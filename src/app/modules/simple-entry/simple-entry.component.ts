@@ -9,7 +9,7 @@ import { SimpleNaviComponent } from 'app/modules/simple-navi';
 })
 export class SimpleEntryComponent implements OnInit {
 
-  @ViewChild(SimpleNaviComponent) simpleNavi: SimpleNaviComponent;
+  @ViewChild(SimpleNaviComponent, { static: true }) simpleNavi: SimpleNaviComponent;
 
   constructor(
     private simulationService: SimulationServiceBase,
