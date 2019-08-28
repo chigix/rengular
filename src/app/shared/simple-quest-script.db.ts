@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { InMemoryDbService } from 'app/interceptors';
 import {
   GekijoLd, SceneLd, SimulationContextLd, CssLd, StaticSessionConfigLd,
 } from 'app/renpi/rdf-schema';
@@ -65,11 +65,11 @@ const context: SimulationContextLd[] = [{
   title: 'RenGULAR DEMO Script: Simple Quest',
   version: '1.0.0',
   interfaceVersion: 1,
-  entryScene: '/renpi/simple-quest/scene/1',
+  entryScene: '/ren-db/simple-quest/1',
   screenAspect: { width: 1066, height: 600, fontSize: 16 },
 }];
 
-const scene = [
+const simpleQuestScenes = [
   {
     id: '1',
     '@context': 'https://rengular.js.org/context/simple-entry.jsonld',
@@ -78,7 +78,7 @@ const scene = [
       '@context': 'https://rengular.js.org/context/simple-navi.jsonld',
       '@type': 'http://rengular.js.org/schema/SimpleNavi',
       topGap: 2,
-      startScene: '/renpi/simple-quest/scene/2',
+      startScene: '/ren-db/simple-quest/2',
       labels: JSON.stringify(TRANSLATION.simpleEntry),
     },
     staticSession: [{
@@ -117,7 +117,7 @@ const scene = [
           '@context': 'https://rengular.js.org/context/common.jsonld',
           id: './oarsPocket',
           '@type': 'OarsPocket',
-          nextScene: '/renpi/simple-quest/scene/3',
+          nextScene: '/ren-db/simple-quest/3',
           'OarsPocket:#labels': JSON.stringify({ skip: 'Next' }),
           stylingTo: [STYLES.oarsPocket],
         } as OarsPocketLd,
@@ -140,8 +140,8 @@ const scene = [
         id: './choices',
         '@type': 'ChoiceMenu',
         'ChoiceMenu:#choices': [
-          { title: 'Left Door', jumpToScene: '/renpi/simple-quest/scene/4' },
-          { title: 'Right Door', jumpToScene: '/renpi/simple-quest/scene/5' },
+          { title: 'Left Door', jumpToScene: '/ren-db/simple-quest/4' },
+          { title: 'Right Door', jumpToScene: '/ren-db/simple-quest/5' },
         ],
       } as ChoiceMenuLd,
     }, {
@@ -159,8 +159,8 @@ const scene = [
         '@context': 'https://rengular.js.org/context/common.jsonld',
         id: './oarsPocket',
         '@type': 'OarsPocket',
-        nextScene: '/renpi/simple-quest/scene/1',
-        prevScene: '/renpi/simple-quest/scene/2',
+        nextScene: '/ren-db/simple-quest/1',
+        prevScene: '/ren-db/simple-quest/2',
         'OarsPocket:#labels': JSON.stringify({ skip: 'Next' }),
         stylingTo: [STYLES.oarsPocket],
       } as OarsPocketLd,
@@ -206,8 +206,8 @@ const scene = [
         '@context': 'https://rengular.js.org/context/common.jsonld',
         id: './oarsPocket',
         '@type': 'OarsPocket',
-        nextScene: '/renpi/simple-quest/scene/1',
-        prevScene: '/renpi/simple-quest/scene/2',
+        nextScene: '/ren-db/simple-quest/1',
+        prevScene: '/ren-db/simple-quest/2',
         // labels: TRANSLATION.oarsPocket,
         'OarsPocket:#labels': JSON.stringify({ skip: 'Next' }),
         stylingTo: [STYLES.oarsPocket],
@@ -235,8 +235,8 @@ const scene = [
         '@context': 'https://rengular.js.org/context/common.jsonld',
         id: './oarsPocket',
         '@type': 'OarsPocket',
-        nextScene: '/renpi/simple-quest/scene/1',
-        prevScene: '/renpi/simple-quest/scene/2',
+        nextScene: '/ren-db/simple-quest/1',
+        prevScene: '/ren-db/simple-quest/2',
         // labels: TRANSLATION.oarsPocket,
         'OarsPocket:#labels': JSON.stringify({ skip: 'Next' }),
         stylingTo: [STYLES.oarsPocket],
@@ -248,5 +248,8 @@ const scene = [
 
 @Injectable({ providedIn: 'root' })
 export class SimpleQuestScriptDB implements InMemoryDbService {
-  createDb = () => ({ context, scene });
+  createDb = () => ({
+    context,
+    'simple-quest': simpleQuestScenes
+  })
 }

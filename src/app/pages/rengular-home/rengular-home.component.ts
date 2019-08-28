@@ -50,7 +50,7 @@ export class RengularHomeComponent implements OnInit {
       map(str => {
         return ['http://', 'https://']
           .findIndex(scheme => str.indexOf(scheme) === 0) >= 0 ?
-          str : `/renpi/maru-quest/context/${str}`;
+          str : `/ren-db/context/${str}`;
       }),
       concatMap(url => this.http.get(url).pipe(
         catchError(err => {
