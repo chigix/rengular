@@ -23,10 +23,10 @@ export class ChoiceMenuComponent implements OnInit {
     this.buttons = actions;
   }
 
-  private buttons: ActionDef[] = [];
+  buttons: ActionDef[] = [];
 
   constructor(
-    private simulationService: SimulationService,
+    public simulationService: SimulationService,
   ) { }
 
   ngOnInit() { }

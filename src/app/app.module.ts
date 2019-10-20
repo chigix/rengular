@@ -3,16 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RenDbInterceptor } from './interceptors';
 import { SimpleQuestScriptDB } from './shared/simple-quest-script.db';
 
-import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule,
-  MatProgressBarModule, MatToolbarModule,
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PagesRoutingModule } from './pages/pages-routing.module';
 import { NavigationComponent as RengularNavigationComponent } from './pages/navigation.component';
@@ -58,16 +62,18 @@ import { LayeredImageModule, LayeredImageComponent } from './modules/layered-ima
     OarsPocketModule,
     ChoiceMenuModule,
     LayeredImageModule,
-    // DEMO Game Script DB
-    HttpClientInMemoryWebApiModule.forRoot(
-      SimpleQuestScriptDB, {
-        rootPath: 'renpi/maru-quest',
-        dataEncapsulation: false,
-        passThruUnknownUrl: true,
-        put204: false,
-      }),
   ],
-  providers: [],
+  providers: [
+    [
+      // DEMO Game Script DB
+      // TODO: make a service injection module?
+      {
+        provide: HTTP_INTERCEPTORS,
+        useFactory: () => new RenDbInterceptor(new SimpleQuestScriptDB(), '/ren-db/'),
+        multi: true
+      }
+    ]
+  ],
   entryComponents: [
     SceneComponent,
     SimpleEntryComponent, SimpleNaviComponent,

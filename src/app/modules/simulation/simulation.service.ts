@@ -3,8 +3,7 @@ import {
   Injectable, OnDestroy, ComponentFactoryResolver,
   ComponentRef,
 } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { concat, from, Subject, BehaviorSubject, Observable, of, EMPTY } from 'rxjs';
 import { filter, catchError, first } from 'rxjs/operators';
 
@@ -58,8 +57,8 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
     private componentRegistry: ComponentsRegistryService,
     private componentFactoryResolver: ComponentFactoryResolver,
   ) {
-    this.initObserve = this.init$.pipe(filter(c => !!c));
-    this.leaveObserve = this.leave$.pipe(filter(s => !!s));
+    this.initObserve = this.init$.asObservable().pipe(filter(c => !!c));
+    this.leaveObserve = this.leave$.asObservable().pipe(filter(s => !!s));
   }
 
   /**

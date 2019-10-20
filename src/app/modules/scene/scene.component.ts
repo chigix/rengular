@@ -26,7 +26,7 @@ export class SceneComponent implements OnInit, Gekijo {
     private componentFactoryResolver: ComponentFactoryResolver,
   ) { }
 
-  @ViewChild(SceneHostDirective) sceneHost: SceneHostDirective;
+  @ViewChild(SceneHostDirective, { static: true }) sceneHost: SceneHostDirective;
 
   @Input() set backgroundImageUrl(url: string) {
     this.backgroundImageStyle = `url(${url})`;

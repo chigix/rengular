@@ -87,6 +87,7 @@ const RENGULAR_REGISTRY: {
   'http://rengular.js.org/schema/ChoiceMenu': {
     component: ChoiceMenuComponent,
     inputs: {
+      'http://rengular.js.org/schema/ChoiceMenu#gridCols': 'gridCols',
       'http://rengular.js.org/schema/ChoiceMenu#choices': (component, data) => {
         component.choices = data.map(tuple => ({
           name: tuple['http://schema.org/name'],
