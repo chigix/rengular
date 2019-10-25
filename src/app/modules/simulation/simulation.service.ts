@@ -180,7 +180,7 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
             '@id'?: string,
             '@type': string[] | string, // `@type`is certain, because this expandedActions is framed by type searching
           }) => {
-            if (Object.entries(doc).length === 0 && doc.constructor === Object) {
+            if (Object.entries(doc).length === 0) {
               throw new JsonldNotFoundError();
             }
             if (!doc['@id']) {
