@@ -29,6 +29,12 @@ class SceneIRINotAvailableError extends Error {
   }
 }
 
+class JsonldNotFoundError extends Error {
+  constructor() {
+    super(`Jsonld is not found.`);
+  }
+}
+
 class UnknownType extends Error {
   constructor(name: string) { super(`Type [${name}] is not registered.`); }
 }
@@ -174,6 +180,9 @@ export class SimulationService implements OnDestroy, SimulationServiceBase {
             '@id'?: string,
             '@type': string[] | string, // `@type`is certain, because this expandedActions is framed by type searching
           }) => {
+            if (Object.entries(doc).length === 0) {
+              throw new JsonldNotFoundError();
+            }
             if (!doc['@id']) {
               this.currentSceneDirective$ = oldDirectiveObservable;
               throw new SceneIRINotAvailableError('currentScene');
