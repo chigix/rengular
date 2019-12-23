@@ -34,8 +34,8 @@ import { TextboxModule, TextboxComponent } from './modules/textbox';
 import { OarsPocketModule, OarsPocketComponent } from './modules/oars-pocket';
 import {
   ChoiceMenuModule, ChoiceMenuComponent,
+  LayeredImageModule, LayeredImageComponent,
 } from '@rengular-component/primitive';
-import { LayeredImageModule, LayeredImageComponent } from './modules/layered-image';
 
 @NgModule({
   declarations: [

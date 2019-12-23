@@ -8,11 +8,11 @@ export interface ImageResource {
 }
 
 @Component({
-  selector: 'app-layered-image',
+  selector: 'ren-layered-image',
   templateUrl: './layered-image.component.html',
   styleUrls: ['./layered-image.component.scss']
 })
-export class LayeredImageComponent implements OnInit, ImageResource {
+export class LayeredImageComponent implements OnInit {
 
   @Input() width?: number;
   @Input() height?: number;

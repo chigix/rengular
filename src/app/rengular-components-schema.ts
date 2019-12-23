@@ -5,8 +5,8 @@ import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
 import {
   ActionDef, ChoiceMenuComponent,
+  LayeredImageComponent,
 } from '@rengular-component/primitive';
-import { LayeredImageComponent } from './modules/layered-image';
 
 const RENGULAR_REGISTRY: {
   [classIRI: string]: ComponentMeta<any>,
