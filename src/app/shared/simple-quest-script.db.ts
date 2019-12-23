@@ -5,9 +5,8 @@ import { CssLd, StaticSessionConfigLd } from '@rengular/network-context';
 import { GekijoLd, SceneLd } from 'src/app/modules/scene';
 import { SimpleEntry, SimpleNavi } from 'src/app/renpi';
 import {
-  ChoiceMenuLd, LayeredImageLd, OarsPocketLd,
+  ChoiceMenuLd, LayeredImageLd, OarsPocketLd, TextBoxLd,
 } from '@rengular-component/primitive';
-import { TextboxLd } from 'src/app/modules/textbox';
 
 interface SimpleEntryLd extends SimpleEntry {
   '@context': 'https://rengular.js.org/context/simple-entry.jsonld';
@@ -110,7 +109,7 @@ const simpleQuestScenes = [
           '@type': 'Textbox',
           text: 'The Goal is to save the princess against the Devil.',
           stylingTo: [STYLES.bottomText],
-        } as TextboxLd,
+        } as TextBoxLd,
       }, {
         '@type': 'ComponentAction',
         object: {
@@ -152,7 +151,7 @@ const simpleQuestScenes = [
         '@type': 'Textbox',
         text: 'Which door should I enter?',
         stylingTo: [STYLES.bottomText],
-      } as TextboxLd,
+      } as TextBoxLd,
     }, {
       '@type': 'ComponentAction',
       object: {
@@ -199,7 +198,7 @@ const simpleQuestScenes = [
         '@type': 'Textbox',
         text: 'Thank you ~~ Happy RenGULAR',
         stylingTo: [{ ...STYLES.bottomText, ...{ textAlign: 'center' } }],
-      } as TextboxLd,
+      } as TextBoxLd,
     }, {
       '@type': 'ComponentAction',
       object: {
@@ -228,7 +227,7 @@ const simpleQuestScenes = [
         '@type': 'Textbox',
         text: 'Thank you ~~ Happy RenGULAR',
         stylingTo: [{ ...STYLES.bottomText, ...{ textAlign: 'center' } }],
-      } as TextboxLd,
+      } as TextBoxLd,
     }, {
       '@type': 'ComponentAction',
       object: {

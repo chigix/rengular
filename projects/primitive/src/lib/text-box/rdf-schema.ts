@@ -1,8 +1,6 @@
 import { ComponentSchema } from '@rengular/network-context';
 
-type json = string;
-
-export interface TextboxLd extends ComponentSchema {
+export interface TextBoxLd extends ComponentSchema {
   '@type': 'Textbox';
   text: string;
 }

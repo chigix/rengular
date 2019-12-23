@@ -1,11 +1,11 @@
 import { ComponentMeta } from '@rengular/network-context';
 import { EntryMenuComponent, EntrySceneComponent } from '@rengular-component/prototypes';
 import { SceneComponent } from './modules/scene';
-import { TextboxComponent } from './modules/textbox';
 import {
   ActionDef, ChoiceMenuComponent,
   LayeredImageComponent,
   OarsPocketComponent,
+  TextBoxComponent,
 } from '@rengular-component/primitive';
 
 const RENGULAR_REGISTRY: {
@@ -78,12 +78,12 @@ const RENGULAR_REGISTRY: {
     children: {},
   } as ComponentMeta<OarsPocketComponent>,
   'http://rengular.js.org/schema/Textbox': {
-    component: TextboxComponent,
+    component: TextBoxComponent,
     inputs: {
       'http://schema.org/text': 'text',
     },
     children: {},
-  } as ComponentMeta<TextboxComponent>,
+  } as ComponentMeta<TextBoxComponent>,
   'http://rengular.js.org/schema/ChoiceMenu': {
     component: ChoiceMenuComponent,
     inputs: {

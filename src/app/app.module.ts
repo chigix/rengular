@@ -30,11 +30,11 @@ import { SceneModule, SceneComponent } from './modules/scene';
 import {
   EntryMenuModule, EntryMenuComponent, EntrySceneModule, EntrySceneComponent,
 } from '@rengular-component/prototypes';
-import { TextboxModule, TextboxComponent } from './modules/textbox';
 import {
   ChoiceMenuModule, ChoiceMenuComponent,
   LayeredImageModule, LayeredImageComponent,
   OarsPocketModule, OarsPocketComponent,
+  TextBoxModule, TextBoxComponent,
 } from '@rengular-component/primitive';
 
 @NgModule({
@@ -61,7 +61,7 @@ import {
     SceneModule,
     EntryMenuModule,
     EntrySceneModule,
-    TextboxModule,
+    TextBoxModule,
     OarsPocketModule,
     ChoiceMenuModule,
     LayeredImageModule,
@@ -80,7 +80,7 @@ import {
   entryComponents: [
     SceneComponent,
     EntryMenuComponent, EntrySceneComponent,
-    TextboxComponent, OarsPocketComponent, ChoiceMenuComponent,
+    TextBoxComponent, OarsPocketComponent, ChoiceMenuComponent,
     LayeredImageComponent,
   ],
   bootstrap: [AppComponent]
