@@ -31,6 +31,9 @@
       "@rengular-component/prototypes": [
         "projects/prototypes/src/public-api"
       ],
+      "@rengular-component/prototypes/rdf-schema": [
+        "projects/prototypes/src/rdf-schema"
+      ],
       "@rengular/network-context": [
         "projects/network-context/src/public-api"
       ]

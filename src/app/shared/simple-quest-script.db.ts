@@ -1,22 +1,12 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'src/app/interceptors';
 import { SimulationContextLd } from '@rengular/simulation';
-import { CssLd, StaticSessionConfigLd } from '@rengular/network-context';
+import { CssLd } from '@rengular/network-context';
 import { GekijoLd, SceneLd } from 'src/app/modules/scene';
-import { SimpleEntry, SimpleNavi } from 'src/app/renpi';
+import { SimpleEntryLd } from '@rengular-component/prototypes/rdf-schema';
 import {
   ChoiceMenuLd, LayeredImageLd, OarsPocketLd, TextBoxLd,
 } from '@rengular-component/primitive';
-
-interface SimpleEntryLd extends SimpleEntry {
-  '@context': 'https://rengular.js.org/context/simple-entry.jsonld';
-  '@type': 'http://rengular.js.org/schema/SimpleEntry';
-  simpleNavi: SimpleNavi & {
-    '@type': 'http://rengular.js.org/schema/SimpleNavi';
-    '@context': 'https://rengular.js.org/context/simple-navi.jsonld';
-  };
-  staticSession: StaticSessionConfigLd[];
-}
 
 const TRANSLATION = {
   simpleEntry: {
