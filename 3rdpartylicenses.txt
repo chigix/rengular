@@ -109,9 +109,23 @@ MIT
 @angular/router
 MIT
 
+@rengular-component/gekijo
+MIT
+
+@rengular-component/primitive
+MIT
+
+@rengular-component/prototypes
+MIT
+
 @rengular/network-context
+MIT
+
+@rengular/ren-schema-reg
+MIT
 
 @rengular/simulation
+MIT
 
 core-js
 MIT
