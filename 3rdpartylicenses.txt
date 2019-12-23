@@ -109,6 +109,10 @@ MIT
 @angular/router
 MIT
 
+@rengular/network-context
+
+@rengular/simulation
+
 core-js
 MIT
 Copyright (c) 2014-2019 Denis Pushkarev
