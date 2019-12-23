@@ -1,6 +1,24 @@
 {
   "name": "@rengular/simulation",
   "version": "0.5.0",
+  "author": "Richard Lea <chigix@zoho.com>",
+  "description": "An Angular based Semantic Web Computing Service",
+  "keywords": [
+    "rengular",
+    "ranobe",
+    "visual-novel",
+    "temporal simulation",
+    "semantic web"
+  ],
+  "homepage": "https://rengular.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chigix/rengular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chigix/rengular/issues"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14"
