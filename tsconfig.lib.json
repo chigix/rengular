@@ -1,0 +1,38 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": [],
+    "paths": {
+      "@rengular/simulation": [
+        "projects/simulation/dist"
+      ],
+      "@rengular/simulation/*": [
+        "projects/simulation/dist/*"
+      ],
+      "@rengular/ren-schema-reg": [
+        "projects/schema-reg/dist"
+      ],
+      "@rengular/ren-schema-reg/*": [
+        "projects/schema-reg/dist/*"
+      ],
+      "@rengular-component/primitive": [
+        "projects/primitive/dist"
+      ],
+      "@rengular-component/primitive/*": [
+        "projects/primitive/dist/*"
+      ],
+      "@rengular-component/prototypes": [
+        "projects/prototypes/dist"
+      ],
+      "@rengular-component/prototypes/*": [
+        "projects/prototypes/dist/*"
+      ],
+      "@rengular/network-context": [
+        "projects/network-context/dist"
+      ],
+      "@rengular/network-context/*": [
+        "projects/network-context/dist/*"
+      ]
+    }
+  },
+}

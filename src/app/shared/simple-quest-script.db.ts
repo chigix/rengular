@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'app/interceptors';
-import {
-  GekijoLd, SceneLd, SimulationContextLd, CssLd, StaticSessionConfigLd,
-} from 'app/renpi/rdf-schema';
-import { SimpleEntry, SimpleNavi } from 'app/renpi';
-import { ChoiceMenuLd } from 'app/modules/choice-menu';
-import { LayeredImageLd } from 'app/modules/layered-image';
-import { OarsPocketLd } from 'app/modules/oars-pocket';
-import { TextboxLd } from 'app/modules/textbox';
+import { InMemoryDbService } from 'src/app/interceptors';
+import { SimulationContextLd } from '@rengular/simulation';
+import { CssLd, StaticSessionConfigLd } from '@rengular/network-context';
+import { GekijoLd, SceneLd } from 'src/app/modules/scene';
+import { SimpleEntry, SimpleNavi } from 'src/app/renpi';
+import { ChoiceMenuLd } from 'src/app/modules/choice-menu';
+import { LayeredImageLd } from 'src/app/modules/layered-image';
+import { OarsPocketLd } from 'src/app/modules/oars-pocket';
+import { TextboxLd } from 'src/app/modules/textbox';
 
 interface SimpleEntryLd extends SimpleEntry {
   '@context': 'https://rengular.js.org/context/simple-entry.jsonld';

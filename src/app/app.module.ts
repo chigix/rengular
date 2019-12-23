@@ -25,7 +25,7 @@ import { GameScreenComponent } from './pages/game-screen/game-screen.component';
 import { LicenseComponent } from './pages/license/license.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
-import { SimulationModule } from './modules/simulation';
+import { SimulationModule } from '@rengular/simulation';
 import { SceneModule, SceneComponent } from './modules/scene';
 import { SimpleEntryModule, SimpleEntryComponent } from './modules/simple-entry';
 import { SimpleNaviModule, SimpleNaviComponent } from './modules/simple-navi';

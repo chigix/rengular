@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SimulationServiceBase } from 'app/renpi/services';
-import { SimpleNaviComponent } from 'app/modules/simple-navi';
+import { SimulationService } from '@rengular/simulation';
+import { SimpleNaviComponent } from 'src/app/modules/simple-navi';
 
 @Component({
   selector: 'ren-simple-entry',
@@ -12,7 +12,7 @@ export class SimpleEntryComponent implements OnInit {
   @ViewChild(SimpleNaviComponent, { static: true }) simpleNavi: SimpleNaviComponent;
 
   constructor(
-    private simulationService: SimulationServiceBase,
+    private simulationService: SimulationService,
   ) { }
 
   public get context() {

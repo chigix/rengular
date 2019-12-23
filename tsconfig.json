@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": "./",
     "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -17,7 +17,24 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@rengular/simulation": [
+        "projects/simulation/src/public-api"
+      ],
+      "@rengular/ren-schema-reg": [
+        "projects/schema-reg/src/public-api"
+      ],
+      "@rengular-component/primitive": [
+        "projects/primitive/src/public-api"
+      ],
+      "@rengular-component/prototypes": [
+        "projects/prototypes/src/public-api"
+      ],
+      "@rengular/network-context": [
+        "projects/network-context/src/public-api"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

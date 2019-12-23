@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SimulationServiceBase as SimulationService } from 'app/renpi/services';
+import { SimulationService } from '@rengular/simulation';
 
 export interface ActionDef {
   name?: string;

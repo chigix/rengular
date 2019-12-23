@@ -1,4 +1,6 @@
-import { ComponentSchema, json } from 'app/renpi/rdf-schema';
+import { ComponentSchema } from '@rengular/network-context';
+
+type json = string;
 
 export interface TextboxLd extends ComponentSchema {
   '@type': 'Textbox';

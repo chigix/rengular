@@ -1,5 +1,7 @@
-import { ComponentSchema, json } from 'app/renpi/rdf-schema';
+import { ComponentSchema } from '@rengular/network-context';
 import { ActionDef } from './choice-menu.component';
+
+type json = string;
 
 interface ChoiceMenuActionLd extends ActionDef { }
 

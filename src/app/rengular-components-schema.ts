@@ -1,4 +1,4 @@
-import { ComponentMeta } from './renpi/services';
+import { ComponentMeta } from '@rengular/network-context';
 import { SimpleEntryComponent } from './modules/simple-entry';
 import { SimpleNaviComponent } from './modules/simple-navi';
 import { SceneComponent } from './modules/scene';

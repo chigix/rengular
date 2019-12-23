@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
-import {
-  SimulationServiceBase as SimulationService,
-  StaticSessionService,
-} from 'app/renpi/services';
+import { SimulationService } from '@rengular/simulation';
+import { NetworkContextService } from '@rengular/network-context';
 
 @Component({
   selector: 'ren-oars-pocket',
@@ -32,7 +30,7 @@ export class OarsPocketComponent implements OnInit, OnDestroy {
 
   constructor(
     public simulation: SimulationService,
-    private staticSession: StaticSessionService,
+    private knowledgeNetwork: NetworkContextService,
   ) { }
 
   public autoContext = {
@@ -41,7 +39,7 @@ export class OarsPocketComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit() {
-    this.autoContext.active = this.staticSession.config(this, 'auto') || false;
+    this.autoContext.active = this.knowledgeNetwork.config(this, 'auto') || false;
     this.tryStartAuto();
   }
 
@@ -51,13 +49,13 @@ export class OarsPocketComponent implements OnInit, OnDestroy {
 
   toggleAutoAcitve() {
     this.autoContext.active = !this.autoContext.active;
-    this.staticSession.config(this, 'auto', this.autoContext.active);
+    this.knowledgeNetwork.config(this, 'auto', this.autoContext.active);
     this.tryStartAuto();
   }
 
   private tryStartAuto() {
     if (!this.autoContext.active) { return; }
-    const seconds = this.staticSession.config(this, 'auto-delay') || 0;
+    const seconds = this.knowledgeNetwork.config(this, 'auto-delay') || 0;
     if (this.autoContext.active && seconds > 9) {
       const currentTimeOutId = ++this.autoContext.timeOutId;
       setTimeout(() => {

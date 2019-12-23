@@ -1,5 +1,7 @@
-import { ComponentSchema, json } from 'app/renpi/rdf-schema';
+import { ComponentSchema } from "@rengular/network-context";
 import { ImageResource } from './layered-image.component';
+
+type json = string;
 
 export interface LayeredImageLd extends ComponentSchema, ImageResource {
   '@context': ['https://rengular.js.org/context/common.jsonld', {

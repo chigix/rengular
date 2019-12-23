@@ -129,6 +129,76 @@
           }
         }
       }
+    },
+    "simulation": {
+      "projectType": "library",
+      "root": "projects/simulation",
+      "sourceRoot": "projects/simulation/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/simulation/tsconfig.lib.json",
+            "project": "projects/simulation/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/simulation/src/test.ts",
+            "tsConfig": "projects/simulation/tsconfig.spec.json",
+            "karmaConfig": "projects/simulation/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/simulation/tsconfig.lib.json",
+              "projects/simulation/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "network-context": {
+      "projectType": "library",
+      "root": "projects/network-context",
+      "sourceRoot": "projects/network-context/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/network-context/tsconfig.lib.json",
+            "project": "projects/network-context/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/network-context/src/test.ts",
+            "tsConfig": "projects/network-context/tsconfig.spec.json",
+            "karmaConfig": "projects/network-context/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/network-context/tsconfig.lib.json",
+              "projects/network-context/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "rengular"

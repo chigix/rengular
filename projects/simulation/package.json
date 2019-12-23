@@ -1,0 +1,12 @@
+{
+  "name": "@rengular/simulation",
+  "version": "0.5.0",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
+  },
+  "dependencies": {
+    "jsonld": "^1.6.2",
+    "@rengular/network-context": "^0.5.0"
+  }
+}

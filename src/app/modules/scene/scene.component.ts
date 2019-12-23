@@ -1,13 +1,12 @@
 import {
   Component, ComponentFactoryResolver,
-  OnInit, Input, ViewChild,
+  OnInit, OnDestroy, Input, ViewChild,
 } from '@angular/core';
-import {
-  GekijoProgramService,
-  SimulationServiceBase as SimulationService
-} from 'app/renpi/services';
-import { Gekijo } from 'app/renpi/components';
-import { GekijoDirective, NewComponentDirective } from 'app/renpi/directives';
+import { BehaviorSubject } from 'rxjs';
+import { NewComponentDirective, NetworkContextService } from '@rengular/network-context';
+import { SimulationService } from '@rengular/simulation';
+import { GekijoProgramService } from './gekijo-program.service';
+import { GekijoDirective } from './directives';
 import { SceneHostDirective } from './scene-host.directive';
 
 @Component({
@@ -16,13 +15,16 @@ import { SceneHostDirective } from './scene-host.directive';
   styleUrls: ['./scene.component.scss'],
   providers: [{ provide: GekijoProgramService, useClass: GekijoProgramService }],
 })
-export class SceneComponent implements OnInit, Gekijo {
+export class SceneComponent implements OnInit, OnDestroy {
 
   backgroundImageStyle: string;
+
+  private destroyed$ = new BehaviorSubject(false);
 
   constructor(
     private gekijo: GekijoProgramService,
     private simulation: SimulationService,
+    private knowledgeNetwork: NetworkContextService,
     private componentFactoryResolver: ComponentFactoryResolver,
   ) { }
 
@@ -41,13 +43,18 @@ export class SceneComponent implements OnInit, Gekijo {
 
   ngOnInit() {
     this.gekijo.setCurrentGekijo(this.sceneHost.viewContainerRef, this);
-    this.simulation.observeDirectives().subscribe(dir => {
-      if (['http://rengular.js.org/schema/ComponentAction',
-        'https://rengular.js.org/schema/ComponentAction']
-        .indexOf(dir['@type']) > -1) {
-        return this.createComponent(dir as NewComponentDirective);
+    const subscription = this.knowledgeNetwork.newComponentDirectives$.subscribe(d => {
+      this.createComponent(d);
+    });
+    this.destroyed$.subscribe(e => {
+      if (e) {
+        subscription.unsubscribe();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
   }
 
   private createComponent(directive: NewComponentDirective) {
