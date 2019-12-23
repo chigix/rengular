@@ -2,10 +2,10 @@
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 @import '~projects/prototypes/src/theming';
+@import '~projects/primitive/src/theming';
 @import './styles-theming-helpers.scss';
 // Plus imports for other components in your app.
 @import 'app/pages/navigation.component.scss-theme.scss';
-@import 'app/modules/choice-menu/choice-menu.component.scss-theme.scss';
 @import 'app/modules/scene/scene.component.scss-theme.scss';
 @import 'app/modules/oars-pocket/oars-pocket.component.scss-theme.scss';
 

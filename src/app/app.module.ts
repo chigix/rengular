@@ -32,7 +32,9 @@ import {
 } from '@rengular-component/prototypes';
 import { TextboxModule, TextboxComponent } from './modules/textbox';
 import { OarsPocketModule, OarsPocketComponent } from './modules/oars-pocket';
-import { ChoiceMenuModule, ChoiceMenuComponent } from './modules/choice-menu';
+import {
+  ChoiceMenuModule, ChoiceMenuComponent,
+} from '@rengular-component/primitive';
 import { LayeredImageModule, LayeredImageComponent } from './modules/layered-image';
 
 @NgModule({

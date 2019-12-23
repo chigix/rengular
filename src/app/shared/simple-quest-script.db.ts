@@ -4,7 +4,7 @@ import { SimulationContextLd } from '@rengular/simulation';
 import { CssLd, StaticSessionConfigLd } from '@rengular/network-context';
 import { GekijoLd, SceneLd } from 'src/app/modules/scene';
 import { SimpleEntry, SimpleNavi } from 'src/app/renpi';
-import { ChoiceMenuLd } from 'src/app/modules/choice-menu';
+import { ChoiceMenuLd } from '@rengular-component/primitive';
 import { LayeredImageLd } from 'src/app/modules/layered-image';
 import { OarsPocketLd } from 'src/app/modules/oars-pocket';
 import { TextboxLd } from 'src/app/modules/textbox';

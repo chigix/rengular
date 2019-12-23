@@ -6,6 +6,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { ChoiceMenuComponent } from './choice-menu.component';
 
+
 @NgModule({
   declarations: [ChoiceMenuComponent],
   imports: [

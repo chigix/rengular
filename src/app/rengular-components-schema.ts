@@ -3,7 +3,9 @@ import { EntryMenuComponent, EntrySceneComponent } from '@rengular-component/pro
 import { SceneComponent } from './modules/scene';
 import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
-import { ActionDef, ChoiceMenuComponent } from './modules/choice-menu';
+import {
+  ActionDef, ChoiceMenuComponent,
+} from '@rengular-component/primitive';
 import { LayeredImageComponent } from './modules/layered-image';
 
 const RENGULAR_REGISTRY: {

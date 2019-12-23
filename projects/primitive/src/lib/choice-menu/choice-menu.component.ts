@@ -8,14 +8,13 @@ export interface ActionDef {
 }
 
 @Component({
-  selector: 'app-choice-menu',
+  selector: 'ren-choice-menu',
   templateUrl: './choice-menu.component.html',
   styleUrls: ['./choice-menu.component.scss']
 })
 export class ChoiceMenuComponent implements OnInit {
 
   @Input() title?: string;
-
   @Input() gridCols = 2;
   @Input() rowHeight = '40px';
 
