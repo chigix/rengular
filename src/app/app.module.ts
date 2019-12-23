@@ -26,7 +26,7 @@ import { LicenseComponent } from './pages/license/license.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { SimulationModule } from '@rengular/simulation';
-import { SceneModule, SceneComponent } from './modules/scene';
+import { GekijoModule, GekijoComponent } from '@rengular-component/gekijo';
 import {
   EntryMenuModule, EntryMenuComponent, EntrySceneModule, EntrySceneComponent,
 } from '@rengular-component/prototypes';
@@ -58,7 +58,7 @@ import {
     MatProgressBarModule, MatToolbarModule,
     // RenGULAR Components
     SimulationModule,
-    SceneModule,
+    GekijoModule,
     EntryMenuModule,
     EntrySceneModule,
     TextBoxModule,
@@ -78,7 +78,7 @@ import {
     ]
   ],
   entryComponents: [
-    SceneComponent,
+    GekijoComponent,
     EntryMenuComponent, EntrySceneComponent,
     TextBoxComponent, OarsPocketComponent, ChoiceMenuComponent,
     LayeredImageComponent,

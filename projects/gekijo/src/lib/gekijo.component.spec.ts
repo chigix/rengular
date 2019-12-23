@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SceneComponent } from './scene.component';
+import { GekijoComponent } from './gekijo.component';
 
-describe('SceneComponent', () => {
-  let component: SceneComponent;
-  let fixture: ComponentFixture<SceneComponent>;
+describe('GekijoComponent', () => {
+  let component: GekijoComponent;
+  let fixture: ComponentFixture<GekijoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SceneComponent ]
+      declarations: [ GekijoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SceneComponent);
+    fixture = TestBed.createComponent(GekijoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

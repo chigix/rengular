@@ -1,9 +1,9 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[scene-host]'
+  selector: '[renShotScope]'
 })
-export class SceneHostDirective {
+export class ShotScopeDirective {
 
   constructor(public viewContainerRef: ViewContainerRef) { }
 

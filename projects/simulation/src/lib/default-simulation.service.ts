@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, BehaviorSubject, Observable, of, EMPTY } from 'rxjs';
-import { filter, catchError, first, tap } from 'rxjs/operators';
+import { filter, catchError, first } from 'rxjs/operators';
 
 import { SimulationContext } from '../interfaces';
 import { SimulationService } from '../simulation.service';

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'src/app/interceptors';
 import { SimulationContextLd } from '@rengular/simulation';
 import { CssLd } from '@rengular/network-context';
-import { GekijoLd, SceneLd } from 'src/app/modules/scene';
+import { GekijoLd, SceneLd } from '@rengular-component/gekijo/rdf-schema';
 import { SimpleEntryLd } from '@rengular-component/prototypes/rdf-schema';
 import {
   ChoiceMenuLd, LayeredImageLd, OarsPocketLd, TextBoxLd,

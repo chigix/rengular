@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-@mixin scene-component-theme($theme) {
+@mixin ren-scene-theme($theme) {
   $primary: map-get($theme, 'primary');
 
   ren-scene,

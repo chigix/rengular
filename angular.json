@@ -269,6 +269,41 @@
           }
         }
       }
+    },
+    "gekijo": {
+      "projectType": "library",
+      "root": "projects/gekijo",
+      "sourceRoot": "projects/gekijo/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/gekijo/tsconfig.lib.json",
+            "project": "projects/gekijo/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gekijo/src/test.ts",
+            "tsConfig": "projects/gekijo/tsconfig.spec.json",
+            "karmaConfig": "projects/gekijo/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/gekijo/tsconfig.lib.json",
+              "projects/gekijo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "rengular"

@@ -1,6 +1,6 @@
 import { ComponentMeta } from '@rengular/network-context';
 import { EntryMenuComponent, EntrySceneComponent } from '@rengular-component/prototypes';
-import { SceneComponent } from './modules/scene';
+import { GekijoComponent } from '@rengular-component/gekijo';
 import {
   ActionDef, ChoiceMenuComponent,
   LayeredImageComponent,
@@ -41,22 +41,22 @@ const RENGULAR_REGISTRY: {
     children: {},
   } as ComponentMeta<EntryMenuComponent>,
   'http://rengular.js.org/schema/Scene': {
-    component: SceneComponent,
+    component: GekijoComponent,
     isScene: true,
     inputs: {
       'http://rengular.js.org/schema/backgroundImage': 'backgroundImageUrl',
     },
     children: {},
-  } as ComponentMeta<SceneComponent>,
+  } as ComponentMeta<GekijoComponent>,
   'http://rengular.js.org/schema/Gekijo': {
-    component: SceneComponent,
+    component: GekijoComponent,
     isScene: true,
     inputs: {
       // program: 'array',
       'http://rengular.js.org/schema/backgroundImage': 'backgroundImageUrl',
     },
     children: {},
-  } as ComponentMeta<SceneComponent>,
+  } as ComponentMeta<GekijoComponent>,
   'http://rengular.js.org/schema/OarsPocket': {
     component: OarsPocketComponent,
     inputs: {

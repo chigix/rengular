@@ -32,6 +32,12 @@
       ],
       "@rengular/network-context/*": [
         "projects/network-context/dist/*"
+      ],
+      "@rengular-component/gekijo": [
+        "projects/gekijo/dist"
+      ],
+      "@rengular-component/gekijo/*": [
+        "projects/gekijo/dist/*"
       ]
     }
   },

@@ -36,6 +36,12 @@
       ],
       "@rengular/network-context": [
         "projects/network-context/src/public-api"
+      ],
+      "@rengular-component/gekijo": [
+        "projects/gekijo/src/public-api"
+      ],
+      "@rengular-component/gekijo/rdf-schema": [
+        "projects/gekijo/src/rdf-schema"
       ]
     }
   },
