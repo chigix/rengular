@@ -1,6 +1,6 @@
 {
   "name": "@rengular-component/gekijo",
-  "version": "0.5.0",
+  "version": "0.5.1-alpha.0",
   "author": "Richard Lea <chigix@zoho.com>",
   "description": "RenGULAR components for rendering Scene and Gekijo",
   "keywords": [
@@ -20,11 +20,11 @@
   },
   "license": "MIT",
   "peerDependencies": {
+    "@angular/cdk": "~8.2.3",
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14",
-    "@angular/cdk": "~8.2.3",
-    "rxjs": "^6.4.0",
     "@rengular/network-context": "^0.5.0",
-    "@rengular/simulation": "^0.5.0"
+    "@rengular/simulation": "^0.5.0",
+    "rxjs": "^6.4.0"
   }
 }
