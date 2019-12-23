@@ -6,7 +6,6 @@ import { NetworkContextService } from '@rengular/network-context';
 @Component({
   selector: 'ren-oars-pocket',
   templateUrl: './oars-pocket.component.html',
-  styleUrls: ['./oars-pocket.component.scss']
 })
 export class OarsPocketComponent implements OnInit, OnDestroy {
 

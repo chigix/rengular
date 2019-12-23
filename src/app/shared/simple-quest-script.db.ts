@@ -5,9 +5,8 @@ import { CssLd, StaticSessionConfigLd } from '@rengular/network-context';
 import { GekijoLd, SceneLd } from 'src/app/modules/scene';
 import { SimpleEntry, SimpleNavi } from 'src/app/renpi';
 import {
-  ChoiceMenuLd, LayeredImageLd,
+  ChoiceMenuLd, LayeredImageLd, OarsPocketLd,
 } from '@rengular-component/primitive';
-import { OarsPocketLd } from 'src/app/modules/oars-pocket';
 import { TextboxLd } from 'src/app/modules/textbox';
 
 interface SimpleEntryLd extends SimpleEntry {

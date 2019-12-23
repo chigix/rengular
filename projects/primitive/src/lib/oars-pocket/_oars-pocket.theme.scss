@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-@mixin oars-pocket-component-theme($theme) {
+@mixin ren-oars-pocket-theme($theme) {
   $primary: map-get($theme, 'primary');
   $foreground: map-get($theme, foreground);
 

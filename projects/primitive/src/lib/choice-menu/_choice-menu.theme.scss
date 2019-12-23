@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-@mixin choice-menu-component-theme($theme) {
+@mixin ren-choice-menu-theme($theme) {
   $primary: map-get($theme, 'primary');
   $foreground: map-get($theme, foreground);
 

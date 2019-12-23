@@ -1,11 +1,11 @@
 import { ComponentMeta } from '@rengular/network-context';
 import { EntryMenuComponent, EntrySceneComponent } from '@rengular-component/prototypes';
 import { SceneComponent } from './modules/scene';
-import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
 import {
   ActionDef, ChoiceMenuComponent,
   LayeredImageComponent,
+  OarsPocketComponent,
 } from '@rengular-component/primitive';
 
 const RENGULAR_REGISTRY: {

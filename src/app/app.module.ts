@@ -31,10 +31,10 @@ import {
   EntryMenuModule, EntryMenuComponent, EntrySceneModule, EntrySceneComponent,
 } from '@rengular-component/prototypes';
 import { TextboxModule, TextboxComponent } from './modules/textbox';
-import { OarsPocketModule, OarsPocketComponent } from './modules/oars-pocket';
 import {
   ChoiceMenuModule, ChoiceMenuComponent,
   LayeredImageModule, LayeredImageComponent,
+  OarsPocketModule, OarsPocketComponent,
 } from '@rengular-component/primitive';
 
 @NgModule({
