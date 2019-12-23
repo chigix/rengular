@@ -8,7 +8,7 @@ import {
   TextBoxComponent,
 } from '@rengular-component/primitive';
 
-const RENGULAR_REGISTRY: {
+export const RENGULAR_REGISTRY: {
   [classIRI: string]: ComponentMeta<any>,
 } = {
   'http://rengular.js.org/schema/SimpleEntry': {
@@ -109,5 +109,3 @@ const RENGULAR_REGISTRY: {
     children: {},
   } as ComponentMeta<LayeredImageComponent>,
 };
-
-export default RENGULAR_REGISTRY;

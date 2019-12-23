@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { ComponentsRegistryService } from '@rengular/network-context';
 import { SimulationService, DefaultSimulationService } from '@rengular/simulation';
 import { NetworkContextService } from '@rengular/network-context';
-import RENGULAR from 'src/app/rengular-components-schema';
+import { RENGULAR_REGISTRY } from '@rengular/ren-schema-reg';
 
 @Component({
   selector: 'app-game-screen',
@@ -25,7 +25,7 @@ export class GameScreenComponent implements OnInit {
     private simulationService: SimulationService,
     private componentRegistry: ComponentsRegistryService,
   ) {
-    this.componentRegistry.registerClass(RENGULAR);
+    this.componentRegistry.registerClass(RENGULAR_REGISTRY);
     this.simulationService = simulationService;
   }
 

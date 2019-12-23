@@ -1,8 +1,8 @@
 {
-  "name": "@rengular/simulation",
+  "name": "@rengular/ren-schema-reg",
   "version": "0.5.0",
   "author": "Richard Lea <chigix@zoho.com>",
-  "description": "An Angular based Semantic Web Computing Service",
+  "description": "RenGULAR Schemas registered with common components",
   "keywords": [
     "rengular",
     "ranobe",
@@ -23,8 +23,5 @@
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14",
     "@rengular/network-context": "^0.5.0"
-  },
-  "dependencies": {
-    "jsonld": "^1.6.2"
   }
 }
