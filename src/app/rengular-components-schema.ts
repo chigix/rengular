@@ -1,6 +1,5 @@
 import { ComponentMeta } from '@rengular/network-context';
-import { SimpleEntryComponent } from './modules/simple-entry';
-import { SimpleNaviComponent } from './modules/simple-navi';
+import { EntryMenuComponent, EntrySceneComponent } from '@rengular-component/prototypes';
 import { SceneComponent } from './modules/scene';
 import { OarsPocketComponent } from './modules/oars-pocket';
 import { TextboxComponent } from './modules/textbox';
@@ -11,15 +10,15 @@ const RENGULAR_REGISTRY: {
   [classIRI: string]: ComponentMeta<any>,
 } = {
   'http://rengular.js.org/schema/SimpleEntry': {
-    component: SimpleEntryComponent,
+    component: EntrySceneComponent,
     isScene: true,
     inputs: {},
     children: {
-      'http://rengular.js.org/schema/SimpleEntry/navi': 'simpleNavi',
+      'http://rengular.js.org/schema/SimpleEntry/navi': 'entryMenu',
     },
-  } as ComponentMeta<SimpleEntryComponent>,
+  } as ComponentMeta<EntrySceneComponent>,
   'http://rengular.js.org/schema/SimpleNavi': {
-    component: SimpleNaviComponent,
+    component: EntryMenuComponent,
     inputs: {
       'http://rengular.js.org/schema/SimpleNavi#topGap': 'topGap',
       'http://rengular.js.org/schema/SimpleNavi#absoluteInViewport': 'absoluteInViewport',
@@ -32,14 +31,13 @@ const RENGULAR_REGISTRY: {
         labels = JSON.parse(labels);
         for (const label in labels) {
           if (labels.hasOwnProperty(label)) {
-            const element = labels[label];
             component.i18n[label] = labels[label];
           }
         }
       },
     },
     children: {},
-  } as ComponentMeta<SimpleNaviComponent>,
+  } as ComponentMeta<EntryMenuComponent>,
   'http://rengular.js.org/schema/Scene': {
     component: SceneComponent,
     isScene: true,

@@ -2,11 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SimulationService } from '@rengular/simulation';
 
 @Component({
-  selector: 'ren-simple-navi',
-  templateUrl: './simple-navi.component.html',
-  styleUrls: ['./simple-navi.component.scss']
+  selector: 'ren-entry-menu',
+  templateUrl: './entry-menu.component.html',
 })
-export class SimpleNaviComponent implements OnInit {
+export class EntryMenuComponent implements OnInit {
 
   @Input() topGap?: number;
   @Input() i18n = {
@@ -30,7 +29,6 @@ export class SimpleNaviComponent implements OnInit {
     public simulation: SimulationService,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

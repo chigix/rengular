@@ -1,10 +1,10 @@
 @import '~@angular/material/theming';
 
-@mixin simple-entry-component-theme($theme) {
+@mixin ren-entry-scene-theme($theme) {
   $primary: map-get($theme, 'primary');
   $foreground: map-get($theme, foreground);
 
-  ren-simple-entry {
+  ren-entry-scene {
     background-color: mat-color($primary);
 
     .left-menu {

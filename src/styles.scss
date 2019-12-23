@@ -1,12 +1,12 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import '~projects/prototypes/src/theming';
 @import './styles-theming-helpers.scss';
 // Plus imports for other components in your app.
 @import 'app/pages/navigation.component.scss-theme.scss';
 @import 'app/modules/choice-menu/choice-menu.component.scss-theme.scss';
 @import 'app/modules/scene/scene.component.scss-theme.scss';
-@import 'app/modules/simple-entry/simple-entry.component.scss-theme.scss';
 @import 'app/modules/oars-pocket/oars-pocket.component.scss-theme.scss';
 
 .homepage {
@@ -69,7 +69,7 @@
   @include theming-helpers($rengular-theme);
   @include choice-menu-component-theme($rengular-theme);
   @include scene-component-theme($rengular-theme);
-  @include simple-entry-component-theme($rengular-theme);
+  @include ren-entry-scene-theme($rengular-theme);
   @include oars-pocket-component-theme($rengular-theme);
 }
 

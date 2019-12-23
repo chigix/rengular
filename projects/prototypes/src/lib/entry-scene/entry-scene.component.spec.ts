@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SimpleNaviComponent } from './simple-navi.component';
+import { EntrySceneComponent } from './entry-scene.component';
 
-describe('SimpleNaviComponent', () => {
-  let component: SimpleNaviComponent;
-  let fixture: ComponentFixture<SimpleNaviComponent>;
+describe('EntrySceneComponent', () => {
+  let component: EntrySceneComponent;
+  let fixture: ComponentFixture<EntrySceneComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleNaviComponent ]
+      declarations: [ EntrySceneComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleNaviComponent);
+    fixture = TestBed.createComponent(EntrySceneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

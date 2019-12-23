@@ -27,8 +27,9 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 
 import { SimulationModule } from '@rengular/simulation';
 import { SceneModule, SceneComponent } from './modules/scene';
-import { SimpleEntryModule, SimpleEntryComponent } from './modules/simple-entry';
-import { SimpleNaviModule, SimpleNaviComponent } from './modules/simple-navi';
+import {
+  EntryMenuModule, EntryMenuComponent, EntrySceneModule, EntrySceneComponent,
+} from '@rengular-component/prototypes';
 import { TextboxModule, TextboxComponent } from './modules/textbox';
 import { OarsPocketModule, OarsPocketComponent } from './modules/oars-pocket';
 import { ChoiceMenuModule, ChoiceMenuComponent } from './modules/choice-menu';
@@ -56,8 +57,8 @@ import { LayeredImageModule, LayeredImageComponent } from './modules/layered-ima
     // RenGULAR Components
     SimulationModule,
     SceneModule,
-    SimpleEntryModule,
-    SimpleNaviModule,
+    EntryMenuModule,
+    EntrySceneModule,
     TextboxModule,
     OarsPocketModule,
     ChoiceMenuModule,
@@ -76,7 +77,7 @@ import { LayeredImageModule, LayeredImageComponent } from './modules/layered-ima
   ],
   entryComponents: [
     SceneComponent,
-    SimpleEntryComponent, SimpleNaviComponent,
+    EntryMenuComponent, EntrySceneComponent,
     TextboxComponent, OarsPocketComponent, ChoiceMenuComponent,
     LayeredImageComponent,
   ],
