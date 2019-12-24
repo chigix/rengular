@@ -6,15 +6,15 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Subject, BehaviorSubject, Observable, of, EMPTY } from 'rxjs';
 import { filter, catchError, first } from 'rxjs/operators';
-
-import { SimulationContext } from '../interfaces';
-import { SimulationService } from '../simulation.service';
 import {
   ComponentMeta, ComponentsRegistryService, NetworkContextService,
   NewComponentDirective, ComponentMetaConfigDirective,
 } from '@rengular/network-context';
 import { assignComponentProperty, assignComponentStyle, scanGraphIntoComponentsCollection } from './utils';
 import { SimulationOutletComponent } from './simulation-outlet/simulation-outlet.component';
+import { SimulationContext } from '../interfaces';
+import { SimulationService } from '../simulation.service';
+import { compactToSimulationContext } from '../rdf-schema';
 
 interface SceneContext {
   sceneIRI: string;
@@ -101,23 +101,10 @@ export class DefaultSimulationService extends SimulationService implements OnDes
       }
       return of(context);
     })().pipe(first()).toPromise()
-      .then(doc => jsonld.expand(doc)).then(doc => {
-        return jsonld.compact(doc, {
-          ren: 'http://rengular.js.org/schema/',
-          id: '@id',
-          name: 'ren:contextName',
-          title: 'ren:contextTitle',
-          entryScene: 'ren:nextScene',
-          screenAspect: 'ren:screenAspect',
-          width: 'ren:screenAspectWidth',
-          height: 'ren:screenAspectHeight',
-          fontSize: 'ren:screenAspectFontSize',
-          version: 'http://schema.org/version',
-          interfaceVersion: 'http://schema.org/schemaVersion',
-        });
-      }).then((ctx: SimulationContext) => {
+      .then(doc => jsonld.expand(doc)).then(compactToSimulationContext).then(ctx => {
         this.simulationContext = ctx;
         this.init$.next(ctx);
+        this.knowledgeNetwork.updateNodeIndexing(ctx);
       });
   }
 

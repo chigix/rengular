@@ -9,4 +9,5 @@ export * from './lib/simulation-outlet/simulation-outlet.component';
 export * from './interfaces';
 export * from './exceptions';
 export * from './rdf-schema';
+export * from './type-guards';
 

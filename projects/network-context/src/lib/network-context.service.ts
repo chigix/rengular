@@ -1,10 +1,11 @@
+import * as jsonld from 'jsonld';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, concat, from, Observable } from 'rxjs';
+import { Observable, BehaviorSubject, concat, from, defer } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { ComponentsRegistryService } from './components-registry.service';
 import {
   ContextDirective, ComponentMetaConfigDirective, NewComponentDirective,
-} from './context-directives';
+} from './directives.context';
 import * as SHM from './schema-iris';
 
 @Injectable()
@@ -14,6 +15,9 @@ export class NetworkContextService {
 
   private latestDirective$ = new BehaviorSubject<{ directive: ContextDirective, finished: boolean }>(null);
   private directiveHistory: { directive: ContextDirective, finished: boolean }[] = [];
+
+  private latestIndexing$ = new BehaviorSubject<any>(null);
+  private indexes: { [id: string]: object } = {};
 
   private sessions: {
     [typeIRI: string]: { [property: string]: any }
@@ -54,6 +58,9 @@ export class NetworkContextService {
     } else {
       throw new Error('Current Network Context has been initialized by ' + this.initializer);
     }
+    this.indexes = {};
+    this.latestIndexing$.pipe(filter(d => !!d))
+      .subscribe(jsonLd => this.indexes[jsonLd['@id']] = jsonLd);
   }
 
   public config<T>(component: any, property: string, value?: T) {
@@ -83,7 +90,6 @@ export class NetworkContextService {
     );
   }
 
-
   public castDirective(directive: ContextDirective) {
     const managed = { directive, finished: false };
     const innerFinish = directive.finish;
@@ -95,5 +101,28 @@ export class NetworkContextService {
   public clearDirectives() {
     this.directiveHistory = [];
     this.latestDirective$.next(null);
+  }
+
+  public updateNodeIndexing(expandedJsonLd: any) {
+    return jsonld.expand(expandedJsonLd)
+      .then((data: { '@id': string } | { '@id': string }[]) => {
+        (Array.isArray(data) ? data : [data])
+          .forEach(jsonLd => this.latestIndexing$.next(jsonLd));
+      });
+  }
+
+  public observeNodeIndexing(typeGuard: (jsonLd: object) => boolean) {
+    const typeChecked = new BehaviorSubject<any>(null);
+    return defer(() => {
+      const noUse = new Promise(resolve => {
+        Object.values(this.indexes).forEach(jsonLd => new Promise(inner => {
+          if (typeGuard(jsonLd)) { typeChecked.next(jsonLd); }
+        }));
+        typeChecked.complete();
+        resolve();
+      });
+      return concat(typeChecked, this.latestIndexing$)
+        .pipe(filter(d => !!d));
+    });
   }
 }
