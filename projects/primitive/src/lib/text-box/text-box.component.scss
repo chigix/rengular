@@ -10,6 +10,18 @@
   /* IE6-9 */
   color: white;
   padding: 10px;
-  width: 90%;
+  /*
+  * === ABOUT POSITIONING STRATEGY ===
+  * https://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-width
+  * If none of the three is 'auto': If both 'margin-left' and 'margin-right' are 'auto',
+  * solve the equation under the extra constraint that the two margins get equal values,
+  * unless this would make them negative.
+  *
+  * But the positioning around height is not designed as built-in for text-box.
+  */
+  position: absolute;
   margin: auto;
+  left: 0;
+  right: 0;
+  width: 90%;
 }

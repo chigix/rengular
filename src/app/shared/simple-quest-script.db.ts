@@ -33,17 +33,15 @@ const STYLES = {
     '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
-    width: '34em',
-    position: 'absolute',
-    marginTop: '-3em',
-    right: '0',
+    bottom: '3em',
+    right: 'calc(5% - 10px)',
     color: 'cornsilk',
   } as CssLd,
   bottomText: {
     '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
     matchMedia: 'ALL',
-    marginTop: '30em',
+    bottom: '4em',
   } as CssLd,
 };
 

@@ -1,10 +1,23 @@
 :host {
   display: block;
+  /*
+  * === ABOUT POSITIONING STRATEGY ===
+  * https://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-height
+  * If none of the three are 'auto': If both 'margin-top' and 'margin-bottom' are 'auto',
+  * solve the equation under the extra constraint that the two margins get equal values.
+  * https://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-width
+  * If none of the three is 'auto': If both 'margin-left' and 'margin-right' are 'auto',
+  * solve the equation under the extra constraint that the two margins get equal values,
+  * unless this would make them negative.
+  */
   position: absolute;
   width: 400px;
-  top: 30%;
-  left: 50%;
-  margin-left: -200px;
+  height: 100px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 9em;
+  margin: auto;
 }
 
 button {

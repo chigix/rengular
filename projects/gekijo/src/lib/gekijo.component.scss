@@ -1,6 +1,7 @@
 .ui-scene {
   // Still not sure is this overflow here best practice?
   overflow: hidden;
+  position: relative;
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
@@ -9,7 +10,7 @@
 }
 
 .standard-layer {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   z-index: 10;
