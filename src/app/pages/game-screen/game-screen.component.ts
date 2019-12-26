@@ -2,12 +2,13 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, filter, map } from 'rxjs/operators';
 
-import { ComponentsRegistryService } from '@rengular/network-context';
+import {
+  ComponentsRegistryService, initContextFromComponent, NetworkContextService,
+} from '@rengular/network-context';
 import {
   SimulationService, DefaultSimulationService, isSimulationContext,
   compactToSimulationContext,
 } from '@rengular/simulation';
-import { NetworkContextService } from '@rengular/network-context';
 import { RENGULAR_REGISTRY } from '@rengular/ren-schema-reg';
 
 @Component({
@@ -32,8 +33,7 @@ export class GameScreenComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.componentRegistry.registerClass(RENGULAR_REGISTRY);
-    this.knowledgeNetwork.init(this);
+    initContextFromComponent(this.knowledgeNetwork, RENGULAR_REGISTRY, this);
     this.knowledgeNetwork.observeNodeIndexing(isSimulationContext)
       .subscribe(async jsonLd => {
         const simulationCtx = await compactToSimulationContext(jsonLd);

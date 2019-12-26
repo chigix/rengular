@@ -7,6 +7,21 @@ import {
   ContextDirective, ComponentMetaConfigDirective, NewComponentDirective,
 } from './directives.context';
 import * as SHM from './schema-iris';
+import { ComponentMeta } from '../interfaces';
+
+const initializedContexts: { ctx: NetworkContextService, reg: ComponentsRegistryService }[] = [];
+
+export function initContextFromComponent(
+  contextService: NetworkContextService,
+  schemaRegister: {
+    [classIRI: string]: ComponentMeta<any>,
+  },
+  component: any,
+) {
+  contextService.init(component);
+  const init = initializedContexts.find(c => c.ctx === contextService);
+  init.reg.registerClass(schemaRegister);
+}
 
 @Injectable()
 export class NetworkContextService {
@@ -42,6 +57,7 @@ export class NetworkContextService {
     ];
     if (this.initializer === null) {
       this.initializer = initializer;
+      initializedContexts.push({ ctx: this, reg: this.registry });
     } else if (this.initializer === initializer) {
       this.clearDirectives();
       this.observeDirectives().subscribe({
