@@ -26,15 +26,10 @@ import { LicenseComponent } from './pages/license/license.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { SimulationModule } from '@rengular/simulation';
-import { GekijoModule, GekijoComponent } from '@rengular-component/gekijo';
+import { GekijoModule } from '@rengular-component/gekijo';
+import { EntryMenuModule, EntrySceneModule } from '@rengular-component/prototypes';
 import {
-  EntryMenuModule, EntryMenuComponent, EntrySceneModule, EntrySceneComponent,
-} from '@rengular-component/prototypes';
-import {
-  ChoiceMenuModule, ChoiceMenuComponent,
-  LayeredImageModule, LayeredImageComponent,
-  OarsPocketModule, OarsPocketComponent,
-  TextBoxModule, TextBoxComponent,
+  ChoiceMenuModule, LayeredImageModule, OarsPocketModule, TextBoxModule,
 } from '@rengular-component/primitive';
 
 @NgModule({
@@ -76,12 +71,6 @@ import {
         multi: true
       }
     ]
-  ],
-  entryComponents: [
-    GekijoComponent,
-    EntryMenuComponent, EntrySceneComponent,
-    TextBoxComponent, OarsPocketComponent, ChoiceMenuComponent,
-    LayeredImageComponent,
   ],
   bootstrap: [AppComponent]
 })

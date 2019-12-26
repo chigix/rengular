@@ -29,12 +29,10 @@ export class GameScreenComponent implements OnInit {
     private knowledgeNetwork: NetworkContextService,
     private simulationService: SimulationService,
     private componentRegistry: ComponentsRegistryService,
-  ) {
-    this.componentRegistry.registerClass(RENGULAR_REGISTRY);
-    this.simulationService = simulationService;
-  }
+  ) { }
 
   ngOnInit() {
+    this.componentRegistry.registerClass(RENGULAR_REGISTRY);
     this.knowledgeNetwork.init(this);
     this.knowledgeNetwork.observeNodeIndexing(isSimulationContext)
       .subscribe(async jsonLd => {

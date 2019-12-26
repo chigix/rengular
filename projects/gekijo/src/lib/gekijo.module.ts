@@ -7,6 +7,7 @@ import { ShotScopeDirective } from './shot-scope.directive';
 @NgModule({
   declarations: [GekijoComponent, ShotScopeDirective],
   imports: [],
-  exports: [GekijoComponent]
+  exports: [GekijoComponent],
+  entryComponents: [GekijoComponent],
 })
 export class GekijoModule { }

@@ -12,5 +12,6 @@ import { EntryMenuModule } from '../entry-menu';
     EntryMenuModule,
   ],
   exports: [EntrySceneComponent],
+  entryComponents: [EntrySceneComponent],
 })
 export class EntrySceneModule { }

@@ -10,5 +10,6 @@ import { LayeredImageComponent } from './layered-image.component';
     CommonModule
   ],
   exports: [LayeredImageComponent],
+  entryComponents: [LayeredImageComponent],
 })
 export class LayeredImageModule { }

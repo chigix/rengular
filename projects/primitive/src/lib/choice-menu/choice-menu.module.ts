@@ -18,5 +18,6 @@ import { ChoiceMenuComponent } from './choice-menu.component';
   exports: [
     ChoiceMenuComponent,
   ],
+  entryComponents: [ChoiceMenuComponent],
 })
 export class ChoiceMenuModule { }

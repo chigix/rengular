@@ -8,5 +8,6 @@ import { TextBoxComponent } from './text-box.component';
     CommonModule
   ],
   exports: [TextBoxComponent],
+  entryComponents: [TextBoxComponent],
 })
 export class TextBoxModule { }

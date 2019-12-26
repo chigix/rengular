@@ -13,5 +13,6 @@ import { OarsPocketComponent } from './oars-pocket.component';
     MatButtonModule,
   ],
   exports: [OarsPocketComponent],
+  entryComponents: [OarsPocketComponent],
 })
 export class OarsPocketModule { }

@@ -11,5 +11,6 @@ import { EntryMenuComponent } from './entry-menu.component';
     CommonModule, MatListModule,
   ],
   exports: [EntryMenuComponent],
+  entryComponents: [EntryMenuComponent],
 })
 export class EntryMenuModule { }
