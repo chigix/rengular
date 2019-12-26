@@ -72,7 +72,7 @@
           "@id": "http://rengular.js.org/schema/Component"
         },
         {
-          "@id": "http://schema.org/Episode"
+          "@id": "http://schema.org/Clip"
         }
       ]
     },
