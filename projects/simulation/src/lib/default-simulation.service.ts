@@ -21,6 +21,10 @@ interface SceneContext {
   sceneComponentMeta: ComponentMeta<any>;
   componentsIRI: { [iri: string]: any };
   componentRefsIRI: { [iri: string]: ComponentRef<any> };
+  // TODO: https://github.com/chigix/rengular/issues/27
+  // * episode simulation
+  // * history building
+  clipNumber?: number;
 }
 
 class SceneIRINotAvailableError extends Error {
@@ -39,6 +43,10 @@ class UnknownType extends Error {
   constructor(name: string) { super(`Type [${name}] is not registered.`); }
 }
 
+/**
+ * TODO: Rename to EpisodeSimulationService
+ * * Support all schema definition from http://schema.org/Episode
+ */
 @Injectable()
 export class DefaultSimulationService extends SimulationService implements OnDestroy {
 

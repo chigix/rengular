@@ -1,6 +1,6 @@
 import * as jsonld from 'jsonld';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, concat, from, defer } from 'rxjs';
+import { Observable, BehaviorSubject, concat, from, defer, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { ComponentsRegistryService } from './components-registry.service';
 import {
@@ -128,17 +128,9 @@ export class NetworkContextService {
   }
 
   public observeNodeIndexing(typeGuard: (jsonLd: object) => boolean) {
-    const typeChecked = new BehaviorSubject<any>(null);
     return defer(() => {
-      const noUse = new Promise(resolve => {
-        Object.values(this.indexes).forEach(jsonLd => new Promise(inner => {
-          if (typeGuard(jsonLd)) { typeChecked.next(jsonLd); }
-        }));
-        typeChecked.complete();
-        resolve();
-      });
-      return concat(typeChecked, this.latestIndexing$)
-        .pipe(filter(d => !!d));
+      return concat(of(Object.values(this.indexes)), this.latestIndexing$)
+        .pipe(filter(d => !!d), filter(typeGuard));
     });
   }
 }

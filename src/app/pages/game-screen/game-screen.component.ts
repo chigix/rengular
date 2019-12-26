@@ -29,11 +29,11 @@ export class GameScreenComponent implements OnInit {
     private router: Router,
     private knowledgeNetwork: NetworkContextService,
     private simulationService: SimulationService,
-    private componentRegistry: ComponentsRegistryService,
   ) { }
 
   ngOnInit() {
     initContextFromComponent(this.knowledgeNetwork, RENGULAR_REGISTRY, this);
+    // DEMO: read resolution config from context init
     this.knowledgeNetwork.observeNodeIndexing(isSimulationContext)
       .subscribe(async jsonLd => {
         const simulationCtx = await compactToSimulationContext(jsonLd);
@@ -50,6 +50,11 @@ export class GameScreenComponent implements OnInit {
           this.onResize({ currentTarget: window });
         }
       });
+    // DEMO: log history
+    this.knowledgeNetwork.observeNodeIndexing(
+      (jsonLd) =>
+        jsonLd['@type'] && jsonLd['@type'].indexOf('http://schema.org/Clip') > -1)
+      .subscribe(console.log);
     const thisSimulation = this.simulationService as DefaultSimulationService;
     this.route.queryParamMap.pipe(
       map(params => params.get('init') || null)

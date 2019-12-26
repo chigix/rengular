@@ -2,7 +2,7 @@
   <mat-grid-list [cols]="gridCols" [rowHeight]="rowHeight" gutterSize="20px">
     <mat-grid-tile *ngFor="let button of buttons">
       <button mat-raised-button
-        (click)="simulationService.sceneFromIRI(button.jumpToScene)">{{ button.title }}</button>
+        (click)="forwardScene(button.jumpToScene)">{{ button.title }}</button>
     </mat-grid-tile>
   </mat-grid-list>
 </ng-template>

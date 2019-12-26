@@ -46,6 +46,24 @@ export class OarsPocketComponent implements OnInit, OnDestroy {
     this.sceneFlag = true;
   }
 
+  /**
+   * TODO: whether move to simulation framework?
+   * @param sceneIri sceneIRI
+   */
+  forwardScene(sceneIri: string) {
+    // Consider More::
+    // * Build the event object inside networkContext
+    // * Build the event object inside simulationService
+    //   * clipNumber could be available if built into simulationService
+    //   * history feature could be implemented
+    this.knowledgeNetwork.updateNodeIndexing({
+      '@context': 'https://rengular.js.org/context/common.jsonld',
+      id: sceneIri,
+      '@type': 'http://schema.org/Clip',
+    });
+    this.simulation.sceneFromIRI(sceneIri, '<nextScene>');
+  }
+
   toggleAutoAcitve() {
     this.autoContext.active = !this.autoContext.active;
     this.knowledgeNetwork.config(this, 'auto', this.autoContext.active);

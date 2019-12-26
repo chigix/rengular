@@ -6,7 +6,7 @@
     (click)="simulation.sceneFromIRI(historyScene, 'historyScene')">
     {{ i18n.history }} </button>
   <button mat-button [class.mat-list-item]="!horizontal" [disabled]="!nextScene"
-    (click)="simulation.sceneFromIRI(nextScene, 'nextScene')">
+    (click)="forwardScene(nextScene)">
     {{ i18n.skip }} </button>
   <button mat-button [class.mat-list-item]="!horizontal"
     [class.disabled]="!autoContext.active" (click)="toggleAutoAcitve()">

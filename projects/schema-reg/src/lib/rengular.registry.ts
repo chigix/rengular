@@ -40,6 +40,14 @@ export const RENGULAR_REGISTRY: {
     },
     children: {},
   } as ComponentMeta<EntryMenuComponent>,
+  'http://schema.org/Clip': {
+    component: GekijoComponent,
+    isScene: true,
+    inputs: {
+      'http://rengular.js.org/schema/backgroundImage': 'backgroundImageUrl',
+    },
+    children: {},
+  } as ComponentMeta<GekijoComponent>,
   'http://rengular.js.org/schema/Scene': {
     component: GekijoComponent,
     isScene: true,
