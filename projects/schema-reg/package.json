@@ -1,6 +1,6 @@
 {
   "name": "@rengular/ren-schema-reg",
-  "version": "0.5.1-alpha.0",
+  "version": "0.5.1-alpha.3",
   "author": "Richard Lea <chigix@zoho.com>",
   "description": "RenGULAR Schemas registered with common components",
   "keywords": [
