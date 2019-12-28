@@ -148,8 +148,17 @@
     {
       "@id": "http://rengular.js.org/schema/Textbox",
       "@type": "rdfs:Class",
-      "rdfs:comment": "The Textbox Component provided by RenGULAR.",
+      "rdfs:comment": "The TextBox Component provided by RenGULAR.",
       "rdfs:label": "ChoiceMenu",
+      "rdfs:subClassOf": {
+        "@id": "http://rengular.js.org/schema/Component"
+      }
+    },
+    {
+      "@id": "http://rengular.js.org/schema/DigitalClock",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The DigitalClock Component provided by RenGULAR.",
+      "rdfs:label": "DigitalClock",
       "rdfs:subClassOf": {
         "@id": "http://rengular.js.org/schema/Component"
       }
