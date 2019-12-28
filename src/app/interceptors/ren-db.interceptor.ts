@@ -13,7 +13,6 @@ import {
   createResponseFromResponseOptions$, createErrorResponseOptions, STATUS
 } from './http-response.util';
 
-@Injectable()
 export class RenDbInterceptor implements HttpInterceptor {
 
   protected dbReadySubject: BehaviorSubject<boolean>;
@@ -25,8 +24,7 @@ export class RenDbInterceptor implements HttpInterceptor {
      */
     protected inMemDbService: InMemoryDbService,
     protected location: string,
-  ) {
-  }
+  ) { }
 
   /**
    * Main Interceptor Process implementing the HttpInterceptor interface.
