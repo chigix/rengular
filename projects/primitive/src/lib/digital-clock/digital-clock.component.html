@@ -1,7 +1,7 @@
 <div class="display light">
   <div class="weekdays">
     <ng-container *ngFor="let wd of weekdayNames; let i = index">
-      <span [class.active]="i == (timeTelling$ | async)[6] - 1">
+      <span [class.active]="(timeTelling$ | async)[6] == i + 1">
         {{ wd }}
       </span>
     </ng-container>

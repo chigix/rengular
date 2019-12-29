@@ -60,7 +60,7 @@ const context: SimulationContextLd[] = [{
   title: 'RenGULAR DEMO Script: Simple Quest',
   version: '1.0.0',
   interfaceVersion: 1,
-  entryScene: '/ren-db/simple-quest/2',
+  entryScene: '/ren-db/simple-quest/1',
   screenAspect: { width: 1066, height: 600, fontSize: 16 },
 }];
 

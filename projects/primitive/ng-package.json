@@ -4,6 +4,8 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
+      "date-fns/format": "date-fns/format",
+      "date-fns/parseISO": "date-fns/parseISO",
       "@rengular/simulation": "@rengular/simulation",
       "@rengular/network-context": "@rengular/network-context"
     }

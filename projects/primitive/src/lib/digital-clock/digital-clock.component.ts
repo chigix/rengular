@@ -28,8 +28,11 @@ export class DigitalClockComponent implements OnInit {
 
   ngOnInit() { }
 
-  digitToNameContext(digit1: number, digit2: number) {
-    return { digit1: digitToName[digit1], digit2: digitToName[digit2] };
+  digitToNameContext(digit1: string, digit2: string) {
+    return {
+      digit1: digitToName[parseInt(digit1, 10)],
+      digit2: digitToName[parseInt(digit2, 10)],
+    };
   }
 
 }
