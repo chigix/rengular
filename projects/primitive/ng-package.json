@@ -7,5 +7,8 @@
       "@rengular/simulation": "@rengular/simulation",
       "@rengular/network-context": "@rengular/network-context"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "date-fns", "tslib"
+  ]
 }

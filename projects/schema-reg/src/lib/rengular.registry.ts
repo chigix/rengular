@@ -6,7 +6,10 @@ import {
   LayeredImageComponent,
   OarsPocketComponent,
   TextBoxComponent,
+  DigitalClockComponent,
 } from '@rengular-component/primitive';
+
+function noop() { }
 
 export const RENGULAR_REGISTRY: {
   [classIRI: string]: ComponentMeta<any>,
@@ -116,4 +119,20 @@ export const RENGULAR_REGISTRY: {
     },
     children: {},
   } as ComponentMeta<LayeredImageComponent>,
+  'http://rengular.js.org/schema/DigitalClock': {
+    component: DigitalClockComponent,
+    inputs: {
+      'http://schema.org/observationDate': 'observationDate',
+      'http://schema.org/measuredValue': noop,
+    },
+    children: {},
+  } as ComponentMeta<DigitalClockComponent>,
+  'http://schema.org/Observation': {
+    component: DigitalClockComponent,
+    inputs: {
+      'http://schema.org/observationDate': 'observationDate',
+      'http://schema.org/measuredValue': noop,
+    },
+    children: {},
+  } as ComponentMeta<DigitalClockComponent>,
 };

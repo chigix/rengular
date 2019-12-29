@@ -29,6 +29,14 @@ const TRANSLATION = {
 };
 
 const STYLES = {
+  dateStatus: {
+    '@context': 'https://rengular.js.org/context/css.jsonld',
+    '@type': 'StyleAction',
+    matchMedia: 'ALL',
+    fontSize: '1em',
+    right: 'auto',
+    left: '1em',
+  } as CssLd,
   oarsPocket: {
     '@context': 'https://rengular.js.org/context/css.jsonld',
     '@type': 'StyleAction',
@@ -52,7 +60,7 @@ const context: SimulationContextLd[] = [{
   title: 'RenGULAR DEMO Script: Simple Quest',
   version: '1.0.0',
   interfaceVersion: 1,
-  entryScene: '/ren-db/simple-quest/1',
+  entryScene: '/ren-db/simple-quest/2',
   screenAspect: { width: 1066, height: 600, fontSize: 16 },
 }];
 
@@ -90,6 +98,16 @@ const simpleQuestScenes = [
     '@type': 'http://rengular.js.org/schema/Scene',
     createComponent: [
       {
+        '@type': 'ComponentAction',
+        object: {
+          '@context': 'https://rengular.js.org/context/common.jsonld',
+          id: './clock',
+          '@type': 'schema:Observation',
+          measuredValue: 'schema:DateTime',
+          observationDate: '2019-04-26T02:28',
+          stylingTo: [STYLES.dateStatus],
+        } as any,
+      }, {
         '@type': 'ComponentAction',
         object: {
           '@context': 'https://rengular.js.org/context/common.jsonld',
