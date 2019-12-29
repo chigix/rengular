@@ -30,6 +30,7 @@ import { GekijoModule } from '@rengular-component/gekijo';
 import { EntryMenuModule, EntrySceneModule } from '@rengular-component/prototypes';
 import {
   ChoiceMenuModule, LayeredImageModule, OarsPocketModule, TextBoxModule,
+  DigitalClockModule,
 } from '@rengular-component/primitive';
 
 @NgModule({
@@ -51,15 +52,18 @@ import {
     // Material
     MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule,
     MatProgressBarModule, MatToolbarModule,
-    // RenGULAR Components
+    // RenGULAR Core
     SimulationModule,
     GekijoModule,
+    // RenGULAR Prototype Components
     EntryMenuModule,
     EntrySceneModule,
+    // RenGULAR Primitive Components
     TextBoxModule,
     OarsPocketModule,
     ChoiceMenuModule,
     LayeredImageModule,
+    DigitalClockModule,
   ],
   providers: [
     [

@@ -44,6 +44,7 @@
     "LayeredImage": {"@id": "ren:LayeredImage"},
     "OarsPocket": {"@id": "ren:OarsPocket"},
     "Textbox": {"@id": "ren:Textbox"},
+    "DigitalClock": {"@id": "ren:DigitalClock"},
     "Scene": {"@id": "ren:Scene"},
     "Gekijo": {"@id": "ren:Gekijo"},
     "program": {"@id": "ren:program"},

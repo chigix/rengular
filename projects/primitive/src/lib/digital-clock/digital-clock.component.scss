@@ -1,0 +1,460 @@
+/* Source: http://tutorialzine.com/2013/06/digital-clock/ */
+
+/*-------------------------
+	Simple reset
+--------------------------*/
+
+$baseEmSize: 16;
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*-------------------------
+	The clocks
+--------------------------*/
+
+:host {
+  font-size: $baseEmSize * 1px;
+  width: 23.125em;
+  margin: auto;
+  right: 0;
+  left: 0;
+  position: absolute;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 25em;
+    height: 1.25em;
+    border-radius: 100%;
+    left: 50%;
+    margin-left: -12.5em;
+    bottom: 0.125em;
+    z-index: -1;
+  }
+}
+
+.display {
+  text-align: center;
+  padding: 2.5em 1.25em 1.25em;
+  border-radius: 0.375em;
+  position: relative;
+  height: 3.375em;
+}
+
+
+/*-------------------------
+	Light color theme
+--------------------------*/
+
+
+.light {
+  background-color: #f3f3f3;
+  color: #272e38;
+
+  &:after {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  & .digits div span {
+    background-color: #272e38;
+    border-color: #272e38;
+  }
+
+  & .digits div.dots:before,
+  & .digits div.dots:after {
+    background-color: #272e38;
+  }
+
+  & .alarm {
+    // background:url('../img/alarm_light.jpg');
+    background-color: blue;
+  }
+
+  &.display {
+    background-color: #dddddd;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) inset, 0 1px 1px #fafafa;
+  }
+}
+
+/*-------------------------
+	Dark color theme
+--------------------------*/
+
+.dark {
+  background-color: #272e38;
+  color: #cacaca;
+
+  &:after {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  & .digits div span {
+    background-color: #cacaca;
+    border-color: #cacaca;
+  }
+
+  & .alarm {
+    // background:url('../img/alarm_dark.jpg');
+    background-color: green;
+  }
+
+  & .display {
+    background-color: #0f1620;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) inset, 0 1px 1px #2d3642;
+  }
+
+  & .digits div.dots:before,
+  & .digits div.dots:after {
+    background-color: #cacaca;
+  }
+}
+
+/*-------------------------
+	The Digits
+--------------------------*/
+
+.digits div {
+  text-align: left;
+  position: relative;
+  width: 1.75em;
+  height: 3.125em;
+  display: inline-block;
+  margin: 0 0.25em;
+
+  span {
+    opacity: 0;
+    position: absolute;
+
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    transition: 0.25s;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 0.3125em solid transparent;
+    }
+  }
+}
+
+.digits .d1 {
+  height: (5/$baseEmSize) * 1em;
+  width: (16/$baseEmSize) * 1em;
+  top: 0;
+  left: (6/$baseEmSize) * 1em;
+
+  &:before {
+    border-width: 0 (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em 0;
+    border-right-color: inherit;
+    left: (-5/$baseEmSize) * 1em;
+  }
+
+  &:after {
+    border-width: 0 0 (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em;
+    border-left-color: inherit;
+    right: (-5/$baseEmSize) * 1em;
+  }
+}
+
+.digits .d2 {
+  height: (5/$baseEmSize) * 1em;
+  width: (16/$baseEmSize) * 1em;
+  top: (24/$baseEmSize) * 1em;
+  left: (6/$baseEmSize) * 1em;
+
+  &:before {
+    border-width: (3/$baseEmSize) * 1em (4/$baseEmSize) * 1em (2/$baseEmSize) * 1em;
+    border-right-color: inherit;
+    left: (-8/$baseEmSize) * 1em;
+  }
+
+  &:after {
+    border-width: (3/$baseEmSize) * 1em (4/$baseEmSize) * 1em (2/$baseEmSize) * 1em;
+    border-left-color: inherit;
+    right: (-8/$baseEmSize) * 1em;
+  }
+}
+
+.digits .d3 {
+  height: (5/$baseEmSize) * 1em;
+  width: (16/$baseEmSize) * 1em;
+  top: (48/$baseEmSize) * 1em;
+  left: (6/$baseEmSize) * 1em;
+
+  &:before {
+    border-width: (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em 0 0;
+    border-right-color: inherit;
+    left: (-5/$baseEmSize) * 1em;
+  }
+
+  &:after {
+    border-width: (5/$baseEmSize) * 1em 0 0 (5/$baseEmSize) * 1em;
+    border-left-color: inherit;
+    right: (-5/$baseEmSize) * 1em;
+  }
+}
+
+.digits .d4 {
+  width: (5/$baseEmSize) * 1em;
+  height: (14/$baseEmSize) * 1em;
+  top: (7/$baseEmSize) * 1em;
+  left: 0;
+
+  &:before {
+    border-width: 0 (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em 0;
+    border-bottom-color: inherit;
+    top: (-5/$baseEmSize) * 1em;
+  }
+
+  &:after {
+    border-width: 0 0 (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em;
+    border-left-color: inherit;
+    bottom: (-5/$baseEmSize) * 1em;
+  }
+}
+
+.digits .d5 {
+  width: (5/$baseEmSize) * 1em;
+  height: (14/$baseEmSize) * 1em;
+  top: (7/$baseEmSize) * 1em;
+  right: 0;
+
+  &:before {
+    border-width: 0 0 (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em;
+    border-bottom-color: inherit;
+    top: (-5/$baseEmSize) * 1em;
+  }
+
+  &:after {
+    border-width: (5/$baseEmSize) * 1em 0 0 (5/$baseEmSize) * 1em;
+    border-top-color: inherit;
+    bottom: (-5/$baseEmSize) * 1em;
+  }
+}
+
+.digits .d6 {
+  width: (5/$baseEmSize) * 1em;
+  height: (14/$baseEmSize) * 1em;
+  top: (32/$baseEmSize) * 1em;
+  left: 0;
+
+  &:before {
+    border-width: 0 (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em 0;
+    border-bottom-color: inherit;
+    top: (-5/$baseEmSize) * 1em;
+  }
+
+  &:after {
+    border-width: 0 0 (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em;
+    border-left-color: inherit;
+    bottom: (-5/$baseEmSize) * 1em;
+  }
+}
+
+
+.digits .d7 {
+  width: (5/$baseEmSize) * 1em;
+  height: (14/$baseEmSize) * 1em;
+  top: (32/$baseEmSize) * 1em;
+  right: 0;
+
+  &:before {
+    border-width: 0 0 (5/$baseEmSize) * 1em (5/$baseEmSize) * 1em;
+    border-bottom-color: inherit;
+    top: (-5/$baseEmSize) * 1em;
+  }
+
+  &:after {
+    border-width: (5/$baseEmSize) * 1em 0 0 (5/$baseEmSize) * 1em;
+    border-top-color: inherit;
+    bottom: (-5/$baseEmSize) * 1em;
+  }
+}
+
+
+
+/* 1 */
+
+.digits div.one .d5,
+.digits div.one .d7 {
+  opacity: 1;
+}
+
+/* 2 */
+
+.digits div.two .d1,
+.digits div.two .d5,
+.digits div.two .d2,
+.digits div.two .d6,
+.digits div.two .d3 {
+  opacity: 1;
+}
+
+/* 3 */
+
+.digits div.three .d1,
+.digits div.three .d5,
+.digits div.three .d2,
+.digits div.three .d7,
+.digits div.three .d3 {
+  opacity: 1;
+}
+
+/* 4 */
+
+.digits div.four .d5,
+.digits div.four .d2,
+.digits div.four .d4,
+.digits div.four .d7 {
+  opacity: 1;
+}
+
+/* 5 */
+
+.digits div.five .d1,
+.digits div.five .d2,
+.digits div.five .d4,
+.digits div.five .d3,
+.digits div.five .d7 {
+  opacity: 1;
+}
+
+/* 6 */
+
+.digits div.six .d1,
+.digits div.six .d2,
+.digits div.six .d4,
+.digits div.six .d3,
+.digits div.six .d6,
+.digits div.six .d7 {
+  opacity: 1;
+}
+
+
+/* 7 */
+
+.digits div.seven .d1,
+.digits div.seven .d5,
+.digits div.seven .d7 {
+  opacity: 1;
+}
+
+/* 8 */
+
+.digits div.eight .d1,
+.digits div.eight .d2,
+.digits div.eight .d3,
+.digits div.eight .d4,
+.digits div.eight .d5,
+.digits div.eight .d6,
+.digits div.eight .d7 {
+  opacity: 1;
+}
+
+/* 9 */
+
+.digits div.nine .d1,
+.digits div.nine .d2,
+.digits div.nine .d3,
+.digits div.nine .d4,
+.digits div.nine .d5,
+.digits div.nine .d7 {
+  opacity: 1;
+}
+
+/* 0 */
+
+.digits div.zero .d1,
+.digits div.zero .d3,
+.digits div.zero .d4,
+.digits div.zero .d5,
+.digits div.zero .d6,
+.digits div.zero .d7 {
+  opacity: 1;
+}
+
+
+/* The dots */
+
+.digits div.dots {
+  width: (5/$baseEmSize) * 1em;
+}
+
+.digits div.dots:before,
+.digits div.dots:after {
+  width: (5/$baseEmSize) * 1em;
+  height: (5/$baseEmSize) * 1em;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: (14/$baseEmSize) * 1em;
+}
+
+.digits div.dots:after {
+  top: (34/$baseEmSize) * 1em;
+}
+
+
+/*-------------------------
+	The Alarm
+--------------------------*/
+
+
+.alarm {
+  width: (16/$baseEmSize) * 1em;
+  height: (16/$baseEmSize) * 1em;
+  bottom: (20/$baseEmSize) * 1em;
+  // background-image:url('../img/alarm_light.jpg');
+  background-color: red;
+  position: absolute;
+  opacity: 0.2;
+}
+
+.alarm.active {
+  opacity: 1;
+}
+
+
+/*-------------------------
+	Weekdays
+--------------------------*/
+
+
+.weekdays {
+  font-size: (12/$baseEmSize) * 1em;
+  position: absolute;
+  width: 100%;
+  top: (10/$baseEmSize) * 1em;
+  left: 0;
+  text-align: center;
+}
+
+
+.weekdays span {
+  opacity: 0.2;
+  padding: 0 (10/$baseEmSize) * 1em;
+}
+
+.weekdays span.active {
+  opacity: 1;
+}
+
+
+/*-------------------------
+		AM/PM
+--------------------------*/
+
+
+.ampm {
+  position: absolute;
+  bottom: (20/$baseEmSize) * 1em;
+  right: (20/$baseEmSize) * 1em;
+  font-size: (12/$baseEmSize) * 1em;
+}

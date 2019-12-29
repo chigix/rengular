@@ -1,0 +1,71 @@
+<div class="display light">
+  <div class="weekdays">
+    <ng-container *ngFor="let wd of weekdayNames; let i = index">
+      <span [class.active]="i == (timeTelling$ | async)[6] - 1">
+        {{ wd }}
+      </span>
+    </ng-container>
+  </div>
+  <div class="ampm">
+    {{ (timeTelling$ | async)[7] }}{{ (timeTelling$ | async)[8] }}
+  </div>
+  <div class="alarm"></div>
+  <div class="digits">
+    <ng-container *ngFor="let pos of positions">
+      <div *ngIf="pos == ':'" class="dots"></div>
+      <ng-container *ngIf="pos == 'H'">
+        <ng-container
+          *ngTemplateOutlet="
+            digit;
+            context: digitToNameContext(
+              (timeTelling$ | async)[0],
+              (timeTelling$ | async)[1]
+            )
+          "
+        ></ng-container>
+      </ng-container>
+      <ng-container *ngIf="pos == 'M'">
+        <ng-container
+          *ngTemplateOutlet="
+            digit;
+            context: digitToNameContext(
+              (timeTelling$ | async)[2],
+              (timeTelling$ | async)[3]
+            )
+          "
+        ></ng-container>
+      </ng-container>
+      <ng-container *ngIf="pos == 'S'">
+        <ng-container
+          *ngTemplateOutlet="
+            digit;
+            context: digitToNameContext(
+              (timeTelling$ | async)[4],
+              (timeTelling$ | async)[5]
+            )
+          "
+        ></ng-container>
+      </ng-container>
+      <ng-template #digit let-digit1="digit1" let-digit2="digit2">
+        <div class="{{ digit1 }}">
+          <span class="d1"></span>
+          <span class="d2"></span>
+          <span class="d3"></span>
+          <span class="d4"></span>
+          <span class="d5"></span>
+          <span class="d6"></span>
+          <span class="d7"></span>
+        </div>
+        <div class="{{ digit2 }}">
+          <span class="d1"></span>
+          <span class="d2"></span>
+          <span class="d3"></span>
+          <span class="d4"></span>
+          <span class="d5"></span>
+          <span class="d6"></span>
+          <span class="d7"></span>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

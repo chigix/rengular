@@ -14,6 +14,12 @@ A set of user interface components for rendering semantically annotated data.
 * TextBox
   * element: `<ren-text-box>`
   * RDF IRI: <http://rengular.js.org/schema/Textbox>
+* DigitalClock
+  * element: `ren-digital-clock`
+  * RDF IRI:
+    * <http://rengular.js.org/schema/DigitalClock>
+    * <http://rengular.js.org/schema/TimeTelling>
+  * This UI is mainly sourced from <https://tutorialzine.com/2013/06/digital-clock>
 
 ## Use cases
 
