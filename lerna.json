@@ -2,5 +2,5 @@
   "packages": [
     "projects/*"
   ],
-  "version": "0.5.1-alpha.4"
+  "version": "0.5.1-beta.0"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@rengular-component/primitive",
-  "version": "0.5.1-alpha.4",
+  "version": "0.5.1-beta.0",
   "author": "Richard Lea <chigix@zoho.com>",
   "description": "A set of user interface components for fast prototyping with RenGULAR",
   "keywords": [
