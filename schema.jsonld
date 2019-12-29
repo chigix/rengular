@@ -159,9 +159,10 @@
       "@type": "rdfs:Class",
       "rdfs:comment": "The DigitalClock Component provided by RenGULAR.",
       "rdfs:label": "DigitalClock",
-      "rdfs:subClassOf": {
-        "@id": "http://rengular.js.org/schema/Component"
-      }
+      "rdfs:subClassOf": [
+        { "@id": "http://rengular.js.org/schema/Component" },
+        { "@id": "http://schema.org/Observation" }
+      ]
     },
     {
       "@id": "http://rengular.js.org/schema/SimpleEntry",
