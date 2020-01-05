@@ -109,6 +109,10 @@ export const RENGULAR_REGISTRY: {
     },
     children: {},
   } as ComponentMeta<ChoiceMenuComponent>,
+  // TODO: Check http://rengular.js.org/schema/ChoiceMenu && http://schema.org/ItemList
+  // ChooseAction --> object = Gekijo/Clip
+  //              --> actionOptions = Gekijo/Clip[]
+  // Demo: https://github.com/chigix/rengular/issues/29
   'http://rengular.js.org/schema/LayeredImage': {
     component: LayeredImageComponent,
     inputs: {

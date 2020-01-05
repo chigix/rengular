@@ -50,4 +50,14 @@ export class ChoiceMenuComponent implements OnInit {
     this.simulationService.sceneFromIRI(sceneIri, 'from User Choice');
   }
 
+  /**
+   * @TODO
+   * * send put request to update the object field
+   * * forward the next scene from the result field in response
+   * * demo: https://github.com/chigix/rengular/issues/29
+   */
+  putChooseResult() {
+    throw new Error('Not Implemented Yet');
+  }
+
 }
