@@ -100,7 +100,11 @@ export const RENGULAR_REGISTRY: {
     inputs: {
       'http://rengular.js.org/schema/ChoiceMenu#gridCols': 'gridCols',
       'http://rengular.js.org/schema/ChoiceMenu#choices': (component, data) => {
-        component.choices = data.map(tuple => ({
+        // TODO: Add default behavior for calculating cols
+        // to make the choices matrix as square as possible.
+        // But allow override through the setting on gridCols option.
+        // component.gridCols = (Array.isArray(data) ? data.length : 1);
+        component.choices = (Array.isArray(data) ? data : [data]).map(tuple => ({
           name: tuple['http://schema.org/name'],
           title: tuple['http://schema.org/title'],
           jumpToScene: tuple['http://rengular.js.org/schema/nextScene']['@id'],
