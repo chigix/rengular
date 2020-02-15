@@ -1,25 +1,33 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import {
+  ComponentsRegistryService, NetworkContextService,
+} from '@rengular/network-context';
 
 import { SimulationOutletComponent } from './simulation-outlet.component';
+import { DefaultSimulationService } from '../default-simulation.service';
+import { SimulationService } from '../../simulation.service';
+
+async function setup() {
+  TestBed.configureTestingModule({
+    imports: [HttpClientModule],
+    providers: [
+      ComponentsRegistryService, NetworkContextService,
+      { provide: SimulationService, useClass: DefaultSimulationService }
+    ],
+    declarations: [SimulationOutletComponent],
+  });
+  await TestBed.compileComponents();
+  const fixture = TestBed.createComponent(SimulationOutletComponent);
+  const component = fixture.componentInstance;
+  return { fixture, component };
+}
 
 describe('SimulationOutletComponent', () => {
-  let component: SimulationOutletComponent;
-  let fixture: ComponentFixture<SimulationOutletComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SimulationOutletComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SimulationOutletComponent);
-    component = fixture.componentInstance;
+  it('should create', async () => {
+    const { fixture, component } = await setup();
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
