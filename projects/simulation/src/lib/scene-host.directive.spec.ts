@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { SceneHostDirective } from './scene-host.directive';
 
 @Component({

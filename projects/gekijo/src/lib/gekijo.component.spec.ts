@@ -1,25 +1,31 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  ComponentsRegistryService, NetworkContextService,
+} from '@rengular/network-context';
+import { SimulationService, DefaultSimulationService } from '@rengular/simulation';
 
 import { GekijoComponent } from './gekijo.component';
 
-describe('GekijoComponent', () => {
-  let component: GekijoComponent;
-  let fixture: ComponentFixture<GekijoComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GekijoComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GekijoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+async function setup() {
+  TestBed.configureTestingModule({
+    imports: [HttpClientTestingModule],
+    providers: [
+      ComponentsRegistryService, NetworkContextService,
+      { provide: SimulationService, useClass: DefaultSimulationService }
+    ],
+    declarations: [GekijoComponent],
   });
+  await TestBed.compileComponents();
+  const fixture = TestBed.createComponent(GekijoComponent);
+  const component = fixture.componentInstance;
+  return { fixture, component };
+}
 
-  it('should create', () => {
+describe('GekijoComponent', () => {
+
+  it('should create', async () => {
+    const { component } = await setup();
     expect(component).toBeTruthy();
   });
 });
