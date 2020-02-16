@@ -1,5 +1,8 @@
 # RenGULAR:Gekijo
 
+[![CircleCI](https://circleci.com/gh/chigix/rengular/tree/master.svg?style=shield)](https://circleci.com/gh/chigix/rengular/tree/master)
+[![npm version](https://badge.fury.io/js/%40rengular-component%2Fgekijo.svg)](https://www.npmjs.com/@rengular-component/gekijo)
+
 A couple of special RenGULAR Primitive Components that are designed for providing rendering solution on Scene and Gekijo.
 
 * Scene

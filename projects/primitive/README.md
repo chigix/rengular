@@ -1,5 +1,8 @@
 # RenGULAR Primitive Components
 
+[![CircleCI](https://circleci.com/gh/chigix/rengular/tree/master.svg?style=shield)](https://circleci.com/gh/chigix/rengular/tree/master)
+[![npm version](https://badge.fury.io/js/%40rengular-component%2Fprimitive.svg)](https://www.npmjs.com/@rengular-component/primitive)
+
 A set of user interface components for rendering semantically annotated data.
 
 * ChoiceMenu

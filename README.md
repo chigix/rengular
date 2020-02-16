@@ -1,5 +1,8 @@
 # RenGULAR <img src="https://github.com/chigix/rengular/blob/master/src/assets/logo-150.png" align="right" />
 
+[![CircleCI](https://circleci.com/gh/chigix/rengular/tree/master.svg?style=shield)](https://circleci.com/gh/chigix/rengular/tree/master)
+[![npm version](https://badge.fury.io/js/%40rengular%2Fnetwork-context.svg)](https://www.npmjs.com/@rengular/network-context)
+
 The modern visual novel-style game engine leveraging the power of
 [web](https://www.webcomponents.org/) and [Angular](https://angular.io/) in ultimate stories
 -- open source and free to render interactive storytelling on browsers acrossing
