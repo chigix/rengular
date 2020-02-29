@@ -1,6 +1,6 @@
 # RenGULAR <img src="https://github.com/chigix/rengular/blob/master/src/assets/logo-150.png" align="right" />
 
-[![CircleCI](https://circleci.com/gh/chigix/rengular/tree/master.svg?style=shield)](https://circleci.com/gh/chigix/rengular/tree/master)
+[![CircleCI](https://circleci.com/gh/chigix/rengular/tree/master.svg?style=svg)](https://circleci.com/gh/chigix/rengular/tree/master)
 [![npm version](https://badge.fury.io/js/%40rengular%2Fnetwork-context.svg)](https://www.npmjs.com/@rengular/network-context)
 <a href="https://json-ld.org/" title="JSON-LD"><img style="border:0px;" width="88" src="https://json-ld.org/images/json-ld-button-88.png" alt="JSON-LD-logo-88"/></a>
 
@@ -12,7 +12,7 @@ variety of smart devices upon the modern Web Components standards embracing the
 
 ## Design Overview
 
-Documents are preparing in Wiki Repository and in planning to be integrated into [project homepage](https://rengular.js.org).
+Documents are preparing in [Wiki Repository](https://github.com/chigix/rengular/wiki) and in planning to be integrated into [project homepage](https://rengular.js.org).
 
 ### Component Theming and Typography
 
