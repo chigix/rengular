@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  setup:
     working_directory: ~/rengular
     docker:
       - image: circleci/node:10-browsers
@@ -13,7 +13,31 @@ jobs:
           key: rengular-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
-      - run: npm run lint
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - "node_modules"
+      - run:
+          name: Linting
+          command: npm run lint
+  test:
+    working_directory: ~/rengular
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - checkout
       - run: npm run test simulation -- --no-watch --no-progress --browsers=ChromeHeadlessCI,FirefoxHeadlessCI
       - run: npm run test network-context -- --no-watch --no-progress --browsers=ChromeHeadlessCI,FirefoxHeadlessCI
       - run: npm run test gekijo -- --no-watch --no-progress --browsers=ChromeHeadlessCI,FirefoxHeadlessCI
+      - run: npm run test primitive -- --no-watch --no-progress --browsers=ChromeHeadlessCI,FirefoxHeadlessCI
+
+workflows:
+  version: 2
+  setup-test:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
