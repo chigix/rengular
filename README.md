@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/chigix/rengular/tree/master.svg?style=shield)](https://circleci.com/gh/chigix/rengular/tree/master)
 [![npm version](https://badge.fury.io/js/%40rengular%2Fnetwork-context.svg)](https://www.npmjs.com/@rengular/network-context)
+<a href="https://json-ld.org/" title="JSON-LD"><img style="border:0px;" width="88" src="https://json-ld.org/images/json-ld-button-88.png" alt="JSON-LD-logo-88"/></a>
 
 The modern visual novel-style game engine leveraging the power of
 [web](https://www.webcomponents.org/) and [Angular](https://angular.io/) in ultimate stories
@@ -11,13 +12,7 @@ variety of smart devices upon the modern Web Components standards embracing the
 
 ## Design Overview
 
-Coping with Angular (´；ω；｀)ﾌﾞﾜｯ
-
-[![rengular-design](./src/assets/rengular-summary.png)](https://angulardoc.org/repos/detail/github/183480328/angular/%252Fsrc/summary)
-
-### RenGULAR Simulation Framework
-
-![rengular-design](./src/assets/simulation.png)
+Documents are preparing in Wiki Repository and in planning to be integrated into [project homepage](https://rengular.js.org).
 
 ### Component Theming and Typography
 
@@ -134,28 +129,6 @@ common basic components, RenGULAR Primitive Components.
 * `http://rengular.js.org/schema/ComponentAction`: Load New Component
 * `http://rengular.js.org/schema/StaticSessionAction`: Store Information shared
   by same type.
-
-## TODO
-
-* Schematics for generate a RenGULAR game boilerplate.
-
-## Development server
-
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`.
-Angular will automatically reload if you change any of the source files.
-
-## Build
-
-Run `npm run build` to build the project.
-The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Story
 

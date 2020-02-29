@@ -14,7 +14,7 @@ jobs:
           paths:
             - "node_modules"
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: ~/rengular
           paths:
             - "node_modules"
       - run:
@@ -25,9 +25,9 @@ jobs:
     docker:
       - image: circleci/node:10-browsers
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
       - checkout
+      - attach_workspace:
+          at: ~/rengular
       - run: npm run test simulation -- --no-watch --no-progress --browsers=ChromeHeadlessCI,FirefoxHeadlessCI
       - run: npm run test network-context -- --no-watch --no-progress --browsers=ChromeHeadlessCI,FirefoxHeadlessCI
       - run: npm run test gekijo -- --no-watch --no-progress --browsers=ChromeHeadlessCI,FirefoxHeadlessCI
