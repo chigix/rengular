@@ -25,6 +25,6 @@
     "@rengular/network-context": "^0.5.0"
   },
   "dependencies": {
-    "jsonld": "^1.6.2"
+    "jsonld": "^8.1.0"
   }
 }
